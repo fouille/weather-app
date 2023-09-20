@@ -1,0 +1,67 @@
+@import url('root.css');
+
+
+.page{
+  display: flex;
+  gap: 2rem;
+  width: 90%;
+  height: 90vh;
+  margin: 0 auto;
+  margin-top: 2.15rem;
+  
+  /* background-color: white; */
+}
+
+nav{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 110px;
+  /* margin-left: 7rem; */
+  background-color: var(--interface-color);
+  border-radius: 20px;
+}
+
+.super{
+  width: 100px;
+  height: 100px;
+  color: white
+}
+
+.search {
+  background-color: var(--interface-color);
+  min-width: 750px;
+  min-height: 45px;
+  margin: 0 auto;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.search input{
+  background-color: var(--interface-color);
+  border: none;
+  outline: none;
+  padding: .5rem 1rem;
+  width: 95%;
+  color: white;
+  font-family: "Roboto";
+}
+
+
+/* placeholder color change for chrome, firefox, opera */
+::placeholder{
+  color: white;
+  opacity: 1;
+}
+
+/* for  IE */
+:-ms-input-placeholder {
+  color: white;
+}
+
+/* for Edge */
+::-ms-input-placeholder { 
+  color: white;
+}
+
