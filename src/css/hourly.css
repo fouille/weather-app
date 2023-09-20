@@ -1,0 +1,9 @@
+@import url("root.css");
+
+.hourly-forecast{
+    display: flex;
+    background-color: var(--interface-color);
+    width: 100%;
+    min-height: 30%;
+    border-radius: 18px;
+}

@@ -1,0 +1,21 @@
+@import url('root.css');
+
+.seven-day{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+    flex-basis: 28%;
+}
+
+.empty-container {
+    flex-basis: 7%;
+    width: 100%;
+}
+
+.s-d-forecast{
+    width: 100%;
+    background-color: var(--interface-color);
+    flex-basis: 93%;
+    border-radius: 18px;
+}

@@ -1,0 +1,17 @@
+@import url("root.css");
+
+.content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+    flex-basis: 60%;
+}
+
+.city{
+    display: flex;
+    justify-content: space-between;
+    min-width: 750px;
+    min-height: 150px;
+    border: 1px solid black;
+}
