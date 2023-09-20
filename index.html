@@ -8,9 +8,7 @@
   </head>
   <body>
     <div class="page">
-      <nav>
-        <div class="super"></div>
-      </nav>
+      <nav></nav>
       <div class="content">
         <form action="">
           <div class="search">
@@ -23,10 +21,52 @@
           </div>
         </form>
         <div class="city">
-          <div class="city-text"></div>
-          <div class="weather-icon"></div>
+          <div class="city-text">
+            <p class="city-name">Madrid</p>
+            <p class="rain-chance">Chance of rain: 0%</p>
+          </div>
+          <div class="city-temperature">31°</div>
+          <div class="weather-icon">
+            <img src="icons/26.png" alt="" />
+          </div>
         </div>
-        <div class="hourly-forecast"></div>
+        <div class="hourly-forecast">
+          <p class="hourly-text">TODAY'S FORECAST</p>
+          <div class="hourly-content">
+            <ul>
+              <li class="h-item">
+                <div class="h-time">6:00 AM</div>
+                <img src="icons/35.png" alt="" />
+                <div class="h-temp">25°</div>
+              </li>
+              <li class="h-item">
+                <div class="h-time">9:00 AM</div>
+                <img src="icons/27.png" alt="" />
+                <div class="h-temp">28°</div>
+              </li>
+              <li class="h-item">
+                <div class="h-time">12:00 PM</div>
+                <img src="icons/26.png" alt="" id="not-fit"/>
+                <div class="h-temp">33°</div>
+              </li>
+              <li class="h-item">
+                <div class="h-time">3:00 PM</div>
+                <img src="icons/26.png" alt="" id="not-fit"/>
+                <div class="h-temp">34°</div>
+              </li>
+              <li class="h-item">
+                <div class="h-time">6:00 PM</div>
+                <img src="icons/26.png" alt="" id="not-fit"/>
+                <div class="h-temp">32°</div>
+              </li>
+              <li class="h-item">
+                <div class="h-time">9:00 PM</div>
+                <img src="icons/27.png" alt="" />
+                <div class="h-temp">30°</div>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="weather-details"></div>
       </div>
       <div class="seven-day">
