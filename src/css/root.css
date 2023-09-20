@@ -1,0 +1,11 @@
+:root {
+  --background: #0b131e;
+  --interface-color: #202b3b;
+}
+
+body{
+  background-color: var(--background);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
