@@ -8,6 +8,8 @@
   --btn-color: #0095ff;
   --btn-hover: #0077cc;
   --details-value: #c4cad3;
+  --nav-active-p: #c4cad3;
+  --nav-active-svg: #f0f1f1;
 }
 
 * {

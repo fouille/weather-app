@@ -3,14 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="src/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="icons/umbrella-favicon.png" />
   </head>
   <body>
     <div class="page">
       <nav>
+        <!-- App Logo -->
+        <div class="logo">
+          <img src="icons/umbrella-logo.png" alt="" />
+        </div>
+
+        <!-- NAV items -->
+        <!-- 1st item: weather -->
+        <div class="n-item-1 n-item--active">
+          <svg viewBox="0 -32 576 576">
+            <use href="icons/nav.svg#weather"></use>
+          </svg>
+          <p class="nav-text">Weather</p>
+        </div>
+
+        <!-- 2nd item: cities  -->
+        <div class="n-item-2">
+          <svg viewBox="0 0 460.054 460.054">
+            <use href="icons/nav.svg#options"></use>
+          </svg>
+          <p class="nav-text">Cities</p>
+        </div>
+
+        <!-- 3rd item: map -->
+        <div class="n-item-3">
+          <svg viewBox="0 0 576 512">
+            <use href="icons/nav.svg#map"></use>
+          </svg>
+          <p class="nav-text">Map</p>
+        </div>
         
+        <!-- 4th item: settings -->
+        <div class="n-item-4">
+          <svg viewBox="0 0 32 32">
+            <use href="icons/nav.svg#settings"></use>
+          </svg>
+          <p class="nav-text">Settings</p>
+        </div>
       </nav>
+      <!-- End of NAV section -->
+
       <div class="content">
         <form action="">
           <div class="search">
