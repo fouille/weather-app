@@ -5,6 +5,9 @@
   --interface-color: #202b3b;
   --grey-font: #9399a2;
   --grey-temperature: #dde0e4;
+  --btn-color: #0095ff;
+  --btn-hover: #0077cc;
+  --details-value: #c4cad3;
 }
 
 * {
