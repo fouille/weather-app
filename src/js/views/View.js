@@ -1,6 +1,12 @@
 export default class View {
   _data;
 
+  render(data){
+    if (!data || (Array.isArray(data) && data.length === 0)) return new Error(`No data`);
+    this._data = data;
+
+  }
+
   _clear() {
     this._parentElement.innerHTML = "";
   }
@@ -8,7 +14,7 @@ export default class View {
   renderSpinner() {
     this._clear();
     const html = `<div class="spinner">
-                <svg width="24" height="24" viewBox="0 0 24 24">
+                <svg viewBox="0 0 24 24">
                   <circle id="spinner" cx="12" cy="12" r="0"/>
                 </svg>
             </div>`;
