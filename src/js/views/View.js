@@ -8,8 +8,8 @@ export default class View {
   renderSpinner() {
     this._clear();
     const html = `<div class="spinner">
-                <svg>
-                    <use href="${icons}#icon-loader"></use>
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <circle id="spinner" cx="12" cy="12" r="0"/>
                 </svg>
             </div>`;
 

@@ -1,4 +1,5 @@
 import * as model from './model.js'
+import landingPageView from "./views/landingPageView.js";
 
 
 const controlShowWeather = async function(){
@@ -11,7 +12,7 @@ const controlShowWeather = async function(){
 }
 
 const init = function(){
-    controlShowWeather();
+    landingPageView.addHandlerRender(controlShowWeather);
 }
 
 init();
