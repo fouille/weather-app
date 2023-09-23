@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="src/css/main.css" />
-    <link rel="icon" type="image/x-icon" href="icons/logo/umbrella-favicon.png" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="icons/logo/umbrella-favicon.png"
+    />
   </head>
   <body>
     <div class="page">
@@ -39,7 +43,7 @@
           </svg>
           <p class="nav-text">Map</p>
         </div>
-        
+
         <!-- 4th item: settings -->
         <div class="n-item-4">
           <svg viewBox="0 0 32 32">
@@ -227,10 +231,116 @@
         </div>
         <!-- end of weather details section -->
       </div>
+      <!-- start of seven day forecast section -->
       <div class="seven-day">
         <div class="empty-container"></div>
-        <div class="s-d-forecast"></div>
+        <div class="s-d-forecast">
+          <div class="s-d-text">
+            <p class="hourly-text">7-DAY FORECAST</p>
+          </div>
+          <ul class="s-d-list">
+            <!-- first day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Today</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/26.png" alt="" id="special-margin" />
+                </div>
+                <p class="bold-light-text bold-container">Sunny</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">36</p>
+                <div class="regular-light-text">/22</div>
+              </div>
+            </li>
+            <!-- second day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Tue</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/26.png" alt="" id="special-margin" />
+                </div>
+                <p class="bold-light-text bold-container">Sunny</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/21</div>
+              </div>
+            </li>
+            <!-- 3rd day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Wed</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/26.png" alt="" id="special-margin" />
+                </div>
+                <p class="bold-light-text bold-container">Sunny</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/21</div>
+              </div>
+            </li>
+            <!-- 4th day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Thu</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/35.png" alt="" />
+                </div>
+                <p class="bold-light-text bold-container">Cloudy</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/21</div>
+              </div>
+            </li>
+            <!-- 5th day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Fri</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/35.png" alt="" />
+                </div>
+                <p class="bold-light-text bold-container">Cloudy</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/21</div>
+              </div>
+            </li>
+            <!-- 6th day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Sat</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/7.png" alt="" />
+                </div>
+                <p class="bold-light-text bold-container">Rainy</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/21</div>
+              </div>
+            </li>
+            <!-- 7th day -->
+            <li class="s-d-item">
+              <p class="regular-light-text weekday">Sun</p>
+              <div class="s-d-icon-condition">
+                <div class="img-container">
+                  <img src="icons/26.png" alt="" id="special-margin" />
+                </div>
+                <p class="bold-light-text bold-container">Sunny</p>
+              </div>
+              <div class="s-d-smallest-highest">
+                <p class="bold-light-text">37</p>
+                <div class="regular-light-text">/22</div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
+      <!-- end of seven day forecast section -->
     </div>
   </body>
 </html>

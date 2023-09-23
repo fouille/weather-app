@@ -1,21 +1,111 @@
-@import url('root.css');
+@import url("root.css");
 
-.seven-day{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 1rem;
-    flex-basis: 28%;
+.seven-day {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+  flex-basis: 28%;
 }
 
 .empty-container {
-    flex-basis: 7%;
-    width: 100%;
+  flex-basis: 7%;
+  width: 100%;
 }
 
-.s-d-forecast{
-    width: 100%;
-    background-color: var(--interface-color);
-    flex-basis: 93%;
-    border-radius: 18px;
+.s-d-forecast {
+  width: 100%;
+  background-color: var(--interface-color);
+  flex-basis: 93%;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.s-d-text {
+  padding-top: 1rem;
+  /* border: 1px solid black; */
+  width: 90%;
+}
+
+.s-d-list {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  width: 90%;
+  height: 89%;
+}
+
+.s-d-item {
+  /* border: 1px solid pink; */
+  flex-basis: calc(100% / 7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 5px;
+}
+
+.bold-light-text {
+  color: var(--nav-active-p);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+
+.regular-light-text {
+  color: var(--grey-font);
+  font-size: 0.9rem;
+  /* border: 1px solid black; */
+  flex-basis: 20%;
+}
+
+.s-d-smallest-highest {
+  display: flex;
+  /* border: 1px solid olive; */
+  flex-basis: 20%;
+  justify-content: flex-end;
+  padding-right: .3rem;
+}
+
+.s-d-icon-condition {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid black; */
+  flex-basis: 60%;
+  justify-content: center;
+}
+
+.s-d-icon-condition img {
+  height: 40px;
+  width: auto;
+  /* border: 1px solid white; */
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px !important;
+  /* border: 1px solid green */
+}
+
+.bold-container {
+  /* border: 1px solid white; */
+  flex-basis: 45%;
+}
+
+.s-d-item:not(:last-child) {
+  border-bottom: 1px solid #303f56;
+}
+
+.s-d-item:hover {
+  background-color: #344661;
+  transform: translateY(-5%);
+}
+
+.weekday{
+    padding-left: .3rem;
 }
