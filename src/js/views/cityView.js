@@ -1,5 +1,13 @@
 import View from "./View.js";
-import sunny from "url:../../../icons/26.png";
+import sunny from "url:../../../img/26.png";
+import clear from "url:../../../img/weather-imgs/moon/clear.png";
+import cloud from "url:../../../img/weather-imgs/cloud/cloudy.png";
+import cloudySun from "url:../../../img/weather-imgs/sun/cloudy-sun.png";
+import cloudyMoon from "url:../../../img/weather-imgs/moon/cloudy-moon.png";
+import rainyCloud from "url:../../../img/weather-imgs/cloud/rainy-cloud.png";
+import rainyCloudySun from "url:../../../img/weather-imgs/sun/rainy-cloudy-sun.png";
+import rainyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-cloudy-moon.png";
+import snowyRainyCloud from "url:../../../img/weather-imgs/cloud/snowy-rainy-cloud.png";
 
 
 class CityView extends View {
@@ -21,6 +29,21 @@ class CityView extends View {
     this._parentElement.style.justifyContent = "center";
   }
 
+  _getSrc(){
+    const allImports = {
+      sunny: sunny,
+      clear: clear,
+      cloud: cloud,
+      cloudySun: cloudySun,
+      cloudyMoon: cloudyMoon,
+      rainyCloud: rainyCloud,
+      rainyCloudySun: rainyCloudySun,
+      rainyCloudyMoon: rainyCloudyMoon,
+      snowyRainyCloud: snowyRainyCloud,
+    };
+    return allImports[this._data.cityImg]
+  }
+
   insertCity(){
     if (Object.keys(this._data).length === 0) return;
     this._clear();
@@ -40,7 +63,7 @@ class CityView extends View {
             this._data.current.feelslike_c
           )}°</div>
           <div class="weather-icon">
-            <img src="${sunny}" alt="" />
+            <img src="${this._getSrc()}" id="city-image" alt="" />
           </div>`;
   }
 }
