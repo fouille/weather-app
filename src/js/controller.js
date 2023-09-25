@@ -1,17 +1,21 @@
 import * as model from './model.js'
-import landingPageView from "./views/landingPageView.js";
-
+import landingPageView from './views/LandingPageView.js';
+import sevenDayView from './views/sevenDayView.js';
+import hourlyView from './views/hourlyView.js';
+import detailsView from './views/detailsView.js';
+import cityView from './views/cityView.js';
 
 const controlShowWeather = async function(){
     try{
         // load weather data from the model
         await model.getCurrentWeather('Kyiv');
 
-        // Render spinner
-        landingPageView.renderSpinner()
+        // Render loading animation
+        sevenDayView.renderLoading();
+        hourlyView.renderLoading();
+        detailsView.renderLoading();
+        cityView.renderSpinner();
 
-        // Loading animation
-        landingPageView._renderLoadingAnimation();
     } catch(err){
         console.error(err)
     }

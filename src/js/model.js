@@ -14,7 +14,14 @@ const createObj = function(data){
 export const getCurrentWeather = async function (city) {
   try {
     const data = await AJAX(`${URL}${API_KEY}&q=${city}${CURRENT_W}`);
-    state = createObj(data);
+    
+    // create new object, so I don't reassign a const variable (state)
+    const newState = createObj(data);
+
+    // Modify state properties instead of reassigning the whole state
+    Object.keys(newState).forEach((key) => {
+      state[key] = newState[key];
+    });
   } catch (error) {
     console.error(error);
   }

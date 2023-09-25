@@ -11,14 +11,9 @@ export default class View {
     this._parentElement.innerHTML = "";
   }
 
-  renderSpinner() {
+  renderLoading() {
     this._clear();
-    const html = `<div class="spinner">
-                <svg viewBox="0 0 24 24">
-                  <circle id="spinner" cx="12" cy="12" r="0"/>
-                </svg>
-            </div>`;
-
+    const html = `<div class="loading-animation"></div>`;
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
 
