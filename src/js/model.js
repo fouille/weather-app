@@ -22,6 +22,7 @@ export const getCurrentWeather = async function (city) {
     Object.keys(newState).forEach((key) => {
       state[key] = newState[key];
     });
+    
   } catch (error) {
     console.error(error);
   }

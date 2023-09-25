@@ -16,6 +16,14 @@ const controlShowWeather = async function(){
         detailsView.renderLoading();
         cityView.renderSpinner();
 
+        // Render Data for each element
+        sevenDayView.render(model.state);
+        hourlyView.render(model.state);
+        detailsView.render(model.state);
+        cityView.render(model.state);
+
+        // Insert city data
+        cityView.insertCity();
     } catch(err){
         console.error(err)
     }
