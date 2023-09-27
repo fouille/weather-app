@@ -1,28 +1,5 @@
 import View from "./View.js";
-import sunny from "url:../../../img/weather-imgs/sun/sunny.png";
-import clear from "url:../../../img/weather-imgs/moon/clear.png";
-import cloud from "url:../../../img/weather-imgs/cloud/cloudy.png";
-import cloudySun from "url:../../../img/weather-imgs/sun/cloudy-sun.png";
-import cloudyMoon from "url:../../../img/weather-imgs/moon/cloudy-moon.png";
-import rainyCloud from "url:../../../img/weather-imgs/cloud/rainy-cloud.png";
-import rainyCloudySun from "url:../../../img/weather-imgs/sun/rainy-cloudy-sun.png";
-import rainyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-cloudy-moon.png";
-import snowyRainyCloud from "url:../../../img/weather-imgs/cloud/snowy-rainy-cloud.png";
-import snowyCloudyMoon from "url:../../../img/weather-imgs/moon/snowy-cloudy-moon.png";
-import snowyCloud from "url:../../../img/weather-imgs/cloud/snowy-cloud.png";
-import snowyRainyMoon from "url:../../../img/weather-imgs/moon/snowy-rainy-cloudy-moon.png";
-import lightningRainyCloudySun from "url:../../../img/weather-imgs/sun/lightning-rainy-cloudy-sun.png";
-import lightningSnowyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-cloud.png";
-import lightningRainyCloud from "url:../../../img/weather-imgs/cloud/lightning-rainy-cloud.png";
-import lightningCloud from "url:../../../img/weather-imgs/cloud/lightning-cloud.png";
-import windySun from "url:../../../img/weather-imgs/sun/windy-sun.png";
-import windyMoon from "url:../../../img/weather-imgs/moon/windy-moon.png";
-import windyCloudySun from "url:../../../img/weather-imgs/sun/windy-cloudy-sun.png";
-import windyCloudyMoon from "url:../../../img/weather-imgs/moon/windy-cloudy-moon.png";
-import rainyWindyCloudySun from "url:../../../img/weather-imgs/sun/rainy-windy-cloudy-sun.png";
-import rainyWindyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-windy-cloudy-moon.png";
-import lightningSnowyWindyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-windy-cloud.png";
-import rainyWindyCloud from "url:../../../img/weather-imgs/cloud/windy-rainy-cloud.png";
+
 
 class CityView extends View {
   _parentElement = document.querySelector(".city");
@@ -43,41 +20,15 @@ class CityView extends View {
     this._parentElement.style.justifyContent = "center";
   }
 
-  _getSrc() {
-    const allImports = {
-      sunny: sunny,
-      clear: clear,
-      cloud: cloud,
-      cloudySun: cloudySun,
-      cloudyMoon: cloudyMoon,
-      rainyCloud: rainyCloud,
-      rainyCloudySun: rainyCloudySun,
-      rainyCloudyMoon: rainyCloudyMoon,
-      snowyRainyCloud: snowyRainyCloud,
-      snowyCloudyMoon: snowyCloudyMoon,
-      snowyCloud: snowyCloud,
-      snowyRainyMoon: snowyRainyMoon,
-      lightningRainyCloudySun: lightningRainyCloudySun,
-      lightningSnowyCloud: lightningSnowyCloud,
-      lightningRainyCloud: lightningRainyCloud,
-      lightningCloud: lightningCloud,
-      lightningSnowyWindyCloud: lightningSnowyWindyCloud,
-      windySun: windySun,
-      windyMoon: windyMoon,
-      windyCloudySun: windyCloudySun,
-      windyCloudyMoon: windyCloudyMoon,
-      rainyWindyCloudySun: rainyWindyCloudySun,
-      rainyWindyCloudyMoon: rainyWindyCloudyMoon,
-      rainyWindyCloud: rainyWindyCloud,
-    };
-    return allImports[this._data.cityImg];
-  }
+
 
   insertCity() {
     if (Object.keys(this._data).length === 0) return;
     this._clear();
     const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
+    
+    // return to space-between
     this._toggleCenter();
   }
 
@@ -93,7 +44,8 @@ class CityView extends View {
           )}°</div>
           <div class="weather-icon">
             <img src="${this._getSrc()}" ${
-      this._getSrc() === cloud || this._getSrc() === lightningSnowyWindyCloud
+      this._getSrc() === this._allImports.cloud ||
+      this._getSrc() === this._allImports.lightningSnowyWindyCloud
         ? "width='200px'"
         : "width='157px'"
     } id="city-image" alt="" />

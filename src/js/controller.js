@@ -24,6 +24,10 @@ const controlShowWeather = async function(){
 
         // Insert city data
         cityView.insertCity();
+
+        // Insert hourly data
+        hourlyView.insertHourly();
+        
     } catch(err){
         console.error(err)
     }
