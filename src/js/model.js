@@ -30,6 +30,7 @@ export const getCurrentWeather = async function (city) {
 };
 
 export const getWeatherImage = function () {
+  return "snowyCloudyMoon";
   const isWindy = state.current.wind_mph > 21;
   const day = state.current.is_day;
   const condition = state.current.condition.text;

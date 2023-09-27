@@ -92,7 +92,11 @@ class CityView extends View {
             this._data.current.feelslike_c
           )}°</div>
           <div class="weather-icon">
-            <img src="${this._getSrc()}" id="city-image" alt="" />
+            <img src="${this._getSrc()}" ${
+      this._getSrc() === cloud || this._getSrc() === lightningSnowyWindyCloud
+        ? "width='200px'"
+        : "width='157px'"
+    } id="city-image" alt="" />
           </div>`;
   }
 }
