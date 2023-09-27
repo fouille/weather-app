@@ -8,7 +8,13 @@ import rainyCloud from "url:../../../img/weather-imgs/cloud/rainy-cloud.png";
 import rainyCloudySun from "url:../../../img/weather-imgs/sun/rainy-cloudy-sun.png";
 import rainyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-cloudy-moon.png";
 import snowyRainyCloud from "url:../../../img/weather-imgs/cloud/snowy-rainy-cloud.png";
-
+import snowyCloudyMoon from "url:../../../img/weather-imgs/moon/snowy-cloudy-moon.png";
+import snowyCloud from "url:../../../img/weather-imgs/cloud/snowy-cloud.png";
+import snowyRainyMoon from "url:../../../img/weather-imgs/moon/snowy-rainy-cloudy-moon.png";
+import lightningRainyCloudySun from "url:../../../img/weather-imgs/sun/lightning-rainy-cloudy-sun.png";
+import lightningSnowyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-cloud.png";
+import lightningRainyCloud from "url:../../../img/weather-imgs/cloud/lightning-rainy-cloud.png"
+import lightningCloud from "url:../../../img/weather-imgs/cloud/lightning-cloud.png";
 
 class CityView extends View {
   _parentElement = document.querySelector(".city");
@@ -40,6 +46,13 @@ class CityView extends View {
       rainyCloudySun: rainyCloudySun,
       rainyCloudyMoon: rainyCloudyMoon,
       snowyRainyCloud: snowyRainyCloud,
+      snowyCloudyMoon: snowyCloudyMoon,
+      snowyCloud: snowyCloud,
+      snowyRainyMoon: snowyRainyMoon,
+      lightningRainyCloudySun: lightningRainyCloudySun,
+      lightningSnowyCloud: lightningSnowyCloud,
+      lightningRainyCloud: lightningRainyCloud,
+      lightningCloud: lightningCloud,
     };
     return allImports[this._data.cityImg]
   }
