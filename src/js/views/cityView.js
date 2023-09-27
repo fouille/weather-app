@@ -1,5 +1,5 @@
 import View from "./View.js";
-import sunny from "url:../../../img/26.png";
+import sunny from "url:../../../img/weather-imgs/sun/sunny.png";
 import clear from "url:../../../img/weather-imgs/moon/clear.png";
 import cloud from "url:../../../img/weather-imgs/cloud/cloudy.png";
 import cloudySun from "url:../../../img/weather-imgs/sun/cloudy-sun.png";
@@ -13,29 +13,37 @@ import snowyCloud from "url:../../../img/weather-imgs/cloud/snowy-cloud.png";
 import snowyRainyMoon from "url:../../../img/weather-imgs/moon/snowy-rainy-cloudy-moon.png";
 import lightningRainyCloudySun from "url:../../../img/weather-imgs/sun/lightning-rainy-cloudy-sun.png";
 import lightningSnowyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-cloud.png";
-import lightningRainyCloud from "url:../../../img/weather-imgs/cloud/lightning-rainy-cloud.png"
+import lightningRainyCloud from "url:../../../img/weather-imgs/cloud/lightning-rainy-cloud.png";
 import lightningCloud from "url:../../../img/weather-imgs/cloud/lightning-cloud.png";
+import windySun from "url:../../../img/weather-imgs/sun/windy-sun.png";
+import windyMoon from "url:../../../img/weather-imgs/moon/windy-moon.png";
+import windyCloudySun from "url:../../../img/weather-imgs/sun/windy-cloudy-sun.png";
+import windyCloudyMoon from "url:../../../img/weather-imgs/moon/windy-cloudy-moon.png";
+import rainyWindyCloudySun from "url:../../../img/weather-imgs/sun/rainy-windy-cloudy-sun.png";
+import rainyWindyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-windy-cloudy-moon.png";
+import lightningSnowyWindyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-windy-cloud.png";
+import rainyWindyCloud from "url:../../../img/weather-imgs/cloud/windy-rainy-cloud.png";
 
 class CityView extends View {
   _parentElement = document.querySelector(".city");
 
-  renderSpinner(){
+  renderSpinner() {
     this._clear();
     const html =
       '<div class="spinner"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle id="spinner" cx="12" cy="12" r="0"></circle></svg></div>';
-    this._parentElement.insertAdjacentHTML('afterbegin', html);
+    this._parentElement.insertAdjacentHTML("afterbegin", html);
     this._toggleCenter();
   }
 
-  _toggleCenter(){
+  _toggleCenter() {
     if (this._parentElement.style.justifyContent === "center") {
-        this._parentElement.style.justifyContent = "space-between";
-        return;
+      this._parentElement.style.justifyContent = "space-between";
+      return;
     }
     this._parentElement.style.justifyContent = "center";
   }
 
-  _getSrc(){
+  _getSrc() {
     const allImports = {
       sunny: sunny,
       clear: clear,
@@ -53,19 +61,27 @@ class CityView extends View {
       lightningSnowyCloud: lightningSnowyCloud,
       lightningRainyCloud: lightningRainyCloud,
       lightningCloud: lightningCloud,
+      lightningSnowyWindyCloud: lightningSnowyWindyCloud,
+      windySun: windySun,
+      windyMoon: windyMoon,
+      windyCloudySun: windyCloudySun,
+      windyCloudyMoon: windyCloudyMoon,
+      rainyWindyCloudySun: rainyWindyCloudySun,
+      rainyWindyCloudyMoon: rainyWindyCloudyMoon,
+      rainyWindyCloud: rainyWindyCloud,
     };
-    return allImports[this._data.cityImg]
+    return allImports[this._data.cityImg];
   }
 
-  insertCity(){
+  insertCity() {
     if (Object.keys(this._data).length === 0) return;
     this._clear();
     const html = this._generateMarkup();
-    this._parentElement.insertAdjacentHTML('afterbegin', html);
+    this._parentElement.insertAdjacentHTML("afterbegin", html);
     this._toggleCenter();
   }
 
-  _generateMarkup(){
+  _generateMarkup() {
     return `<div class="city-text">
             <p class="city-name">${this._data.location.name}</p>
             <p class="rain-chance">Chance of rain: ${

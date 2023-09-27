@@ -30,14 +30,19 @@ export const getCurrentWeather = async function (city) {
 };
 
 export const getWeatherImage = function () {
-  const isWindy = state.current.wind_mph > 20;
-  console.log(isWindy);
+  const isWindy = state.current.wind_mph > 21;
   const day = state.current.is_day;
   const condition = state.current.condition.text;
   // clear sun
-  if (condition === "Sunny") return "sunny";
+  if (condition === "Sunny") {
+    if(isWindy) return "windySun";
+    return "sunny";
+  } 
   // clear moon
-  if (condition === "Clear") return "clear";
+  if (condition === "Clear") {
+    if (isWindy) return "windyMoon";
+    return "clear";
+  } 
   // cloud
   if (
     condition === "Cloudy" ||
@@ -62,9 +67,10 @@ export const getWeatherImage = function () {
       if (
         condition.includes("rain") ||
         condition.toLowerCase().includes("drizzle")
-      )
+      ) {
+        if(isWindy) return "rainyWindyCloudySun";
         return "rainyCloudySun";
-
+      }
       // cloud with snow and rain
       if (condition.includes("sleet")) return "snowyRainyCloud";
     }
@@ -72,14 +78,19 @@ export const getWeatherImage = function () {
       // thunder
       if (condition.includes("thunder")) {
         if (condition.includes("rain")) return "lightningRainyCloud";
-        if (condition.includes("snow")) return "lightningSnowyCloud";
+        if (condition.includes("snow")) {
+          if(isWindy) return "lightningSnowyWindyCloud";          
+          return "lightningSnowyCloud";
+        } 
       }
       // moon with rain
       if (
         condition.includes("rain") ||
         condition.toLowerCase().includes("drizzle")
-      )
-        return "rainyCloudyMoon";
+      ) {
+        if (isWindy) return "rainyWindyCloudyMoon";
+        return "rainyCloudyMoon"; 
+      }
 
       // moon with snow
       if (condition.includes("snow")) return "snowyCloudyMoon";
@@ -114,12 +125,18 @@ export const getWeatherImage = function () {
   if (
     condition.toLowerCase().includes("drizzle") ||
     condition.toLowerCase().includes("rain")
-  )
+  ) {
+    if(isWindy) return "rainyWindyCloud";
     return "rainyCloud";
+  }
 
   // clouds with sun or moon
   if (condition === "Partly cloudy") {
-    if (day) return "cloudySun";
+    if (day) {
+      if (isWindy) return "windyCloudySun";
+      return "cloudySun";
+    }
+    if (isWindy) return "windyCloudyMoon"; 
     return "cloudyMoon";
   }
   // sun with snow
