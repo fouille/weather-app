@@ -30,6 +30,9 @@ const controlShowWeather = async function(){
         
         // Insert details data
         detailsView.insertDetails();
+
+        // Insert seven day forecast data
+        sevenDayView.insertDays()
     } catch(err){
         console.error(err)
     }

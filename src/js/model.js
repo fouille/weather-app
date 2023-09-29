@@ -8,7 +8,9 @@ import {
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
-export const state = {};
+export const state = {
+  weekdays: ['Mon', 'Tue', "Wed", "Thu", "Fri", "Sat", "Sun"],
+};
 
 const createObj = function (data) {
   return {
@@ -48,10 +50,37 @@ export const getCurrentWeather = async function (city) {
         hour.is_day
       );
     });
+
+    // get image for each day
+    state.forecast.forecastday.forEach(day=>{
+      day.dominantCondition = getPredominantWeather(day);
+      day.img = getWeatherImage(day.dominantCondition, false, true);
+    })
+
   } catch (error) {
     console.error(error);
   }
 };
+
+// get appropriate condition that describes the day
+const getPredominantWeather = function (day) {
+    const condCounts = {};
+    // Iterate through the array
+    for (const item of day.hour) {
+      const condition = item.condition.text;
+      if (condition === "Clear") continue;
+      if (condCounts[condition]) {
+        // If it is, increment the count
+        condCounts[condition]++;
+      } else {
+        // If it's not, add it to the object with a count of 1
+        condCounts[condition] = 1;
+      }
+    }
+    const sortedArr = Object.entries(condCounts);
+    sortedArr.sort((a, b) => b[1] - a[1]);
+    return sortedArr[0][0];
+  }
 
 const getHours = function () {
   console.log(state);
