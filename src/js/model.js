@@ -54,13 +54,30 @@ export const getCurrentWeather = async function (city) {
     // get image for each day
     state.forecast.forecastday.forEach(day=>{
       day.dominantCondition = getPredominantWeather(day);
-      day.img = getWeatherImage(day.dominantCondition, false, true);
+      day.highestWind = getHighestWind(day);
+      
+      day.img = getWeatherImage(
+        day.dominantCondition,
+        day.highestWind > WINDY_LEVEL,
+        true
+      );
+      console.log(day);
     })
 
   } catch (error) {
     console.error(error);
   }
 };
+
+// get the highest wind value of the day
+const getHighestWind = function(day){
+  let count = -Infinity;
+  for(const hour of day.hour){
+    const wind = hour.wind_mph;
+    if (count < wind) count = wind;
+  }
+  return count;
+}
 
 // get appropriate condition that describes the day
 const getPredominantWeather = function (day) {
@@ -82,6 +99,8 @@ const getPredominantWeather = function (day) {
     return sortedArr[0][0];
   }
 
+
+// Get 6 hours (every 3 hours)
 const getHours = function () {
   console.log(state);
   const firstDayArr = state.forecast.forecastday[0].hour;
@@ -90,8 +109,8 @@ const getHours = function () {
 
   const newArr = [];
 
-  // for loop to get day after day
-  for (let i = 0; i < HOURLY_LENGTH * 2; i += 2) {
+  // every 3 hours
+  for (let i = 0; i < HOURLY_LENGTH * 3; i += 3) {
     if (curHour + i > 23) {
       newArr.push(secondDayArr[curHour + i - secondDayArr.length]);
       continue;
