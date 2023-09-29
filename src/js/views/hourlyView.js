@@ -19,7 +19,7 @@ class HourlyView extends View {
   _generateMarkup(hour) {
     return `<li class="h-item">
                 <div class="h-time">${new Date(hour.time).getHours()}:00</div>
-                <img src="${this._getSrc(hour.img)}" alt="" ${(this._getSrc(
+                <img src="${this._getSrc(hour.img)}" alt="sunny" ${(this._getSrc(
       hour.img
     ) === this._allImports.sunny || this._getSrc(
       hour.img

@@ -34,20 +34,34 @@
 }
 
 .d-details {
-    width: 90%;
+    /* border: 1px solid black; */
+    margin-left: 5%;
+    width: 95%;
+    align-items: center;
+    justify-content: flex-start;
     height: 75%;
     display: flex;
     flex-wrap: wrap;
-
-
 }
 
 [class^="d-h-item"] {
+    /* border: 1px solid white; */
     display: flex;
     align-items: baseline;
     flex-direction: column;
-    width: 33.33%;
     height: 50%;
+}
+
+.real-feel, .rain{
+    width: 37%;
+}
+
+.wind, .uv{
+    width: 37%;
+}
+
+.visibility, .sunset{
+    width: 26%;
 }
 
 .icon-text{

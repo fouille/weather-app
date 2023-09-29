@@ -31,40 +31,48 @@ export const getCurrentWeather = async function (city) {
     });
 
     // get the appropriate image to a corresponding weather condition
-    state.cityImg = getWeatherImage(state.current.condition.text, state.current.wind_mph > WINDY_LEVEL, state.current.is_day);
+    state.cityImg = getWeatherImage(
+      state.current.condition.text,
+      state.current.wind_mph > WINDY_LEVEL,
+      state.current.is_day
+    );
 
     // get hours according to current time
     state.hourly = getHours();
 
     // get image for each hour
-    state.hourly.forEach(hour=>{
+    state.hourly.forEach((hour) => {
       hour.img = getWeatherImage(
         hour.condition.text,
-        hour.wind_mph > WINDY_LEVEL, hour.is_day);
+        hour.wind_mph > WINDY_LEVEL,
+        hour.is_day
+      );
     });
-
   } catch (error) {
     console.error(error);
   }
 };
 
-const getHours = function(){
+const getHours = function () {
+  console.log(state);
   const firstDayArr = state.forecast.forecastday[0].hour;
   const secondDayArr = state.forecast.forecastday[1].hour;
   const curHour = new Date().getHours();
 
-  // for hours that fit next 5 hours in the day
-  if(curHour < 19) return firstDayArr.slice(curHour, curHour + HOURLY_LENGTH);
+  const newArr = [];
 
-  // for hours that do not fit
-  if(curHour >= 19) return [
-    ...firstDayArr.slice(curHour, curHour + HOURLY_LENGTH),
-    ...secondDayArr.slice(0, curHour - 18),
-  ];
-}
+  // for loop to get day after day
+  for (let i = 0; i < HOURLY_LENGTH * 2; i += 2) {
+    if (curHour + i > 23) {
+      newArr.push(secondDayArr[curHour + i - secondDayArr.length]);
+      continue;
+    }
+    newArr.push(firstDayArr[curHour + i]);
+  }
+  return newArr;
+};
 
 const getWeatherImage = function (condition, isWindy, isDay) {
-
   // clear sun
   if (condition === "Sunny") {
     if (isWindy) return "windySun";

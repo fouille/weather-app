@@ -28,6 +28,8 @@ const controlShowWeather = async function(){
         // Insert hourly data
         hourlyView.insertHourly();
         
+        // Insert details data
+        detailsView.insertDetails();
     } catch(err){
         console.error(err)
     }
