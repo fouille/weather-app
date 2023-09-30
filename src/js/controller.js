@@ -6,20 +6,13 @@ import detailsView from './views/detailsView.js';
 import cityView from './views/cityView.js';
 
 
-const alertUser = function (position) {
-  console.log(position);
-};
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(alertUser, () => alert("bitch"));
-}
-
-
 
 const controlShowWeather = async function(){
     try{
+        const city = await model.getLocation();
+        if(!city) city = "Zhytomyr";
         // load weather data from the model
-        await model.getCurrentWeather("Vorkuta");
+        await model.getCurrentWeather(city);
 
         // Render loading animation
         sevenDayView.renderLoading();

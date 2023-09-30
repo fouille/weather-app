@@ -20,6 +20,30 @@ const createObj = function (data) {
   };
 };
 
+export const getLocation = async function () {
+  if (navigator.geolocation) {
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+
+      const { longitude, latitude } = position.coords;
+      const data = await AJAX(
+        `https://geocode.xyz/${latitude},${longitude}?geoit=json`
+      );
+      if(data.city.includes("Throttled")) return "Zhytomyr";
+      return data.city;
+    } catch (error) {
+      console.error("Error getting location:", error);
+      throw error; // Optionally rethrow the error for handling at a higher level.
+    }
+  } else {
+    return "Zhytomyr";
+    // You can also throw an error here if needed.
+  }
+};
+
+
 export const getCurrentWeather = async function (city) {
   try {
     const data = await AJAX(`${URL}${API_KEY}&q=${city}${CURRENT_W}`);
