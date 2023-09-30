@@ -61,7 +61,6 @@ export const getCurrentWeather = async function (city) {
         day.highestWind > WINDY_LEVEL,
         true
       );
-      console.log(day);
     })
 
   } catch (error) {

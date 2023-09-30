@@ -44,6 +44,11 @@
     width: 55px; 
 }
 
+#another-fit {
+    height: 50px;
+    width: 60px; 
+}
+
 .h-item{
     display: flex;
     flex-direction: column;

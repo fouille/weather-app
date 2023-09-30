@@ -36,7 +36,7 @@ class SevenDayView extends View {
               <div class="s-d-smallest-highest">
                 <p class="bold-light-text">${Math.round(day.day.maxtemp_c)}</p>
                 <div class="regular-light-text">/${Math.round(
-                  day.day.maxtemp_c
+                  day.day.mintemp_c
                 )}</div>
               </div>
             </li>`;

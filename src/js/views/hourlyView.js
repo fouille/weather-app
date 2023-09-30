@@ -19,11 +19,12 @@ class HourlyView extends View {
   _generateMarkup(hour) {
     return `<li class="h-item">
                 <div class="h-time">${new Date(hour.time).getHours()}:00</div>
-                <img src="${this._getSrc(hour.img)}" alt="sunny" ${(this._getSrc(
-      hour.img
-    ) === this._allImports.sunny || this._getSrc(
-      hour.img
-    ) === this._allImports.clear) ? "id='not-fit'" : ""} />
+                <img src="${this._getSrc(hour.img)}" alt="weather condition" ${
+      (this._getSrc(hour.img) !== this._allImports.cloud &&
+      this._getSrc(hour.img) !== this._allImports.snowyCloud)
+        ? 'id="not-fit"'
+        : ""
+    } />
                 <div class="h-temp">${Math.round(hour.feelslike_c)}°</div>
               </li>`;
   }

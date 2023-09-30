@@ -5,10 +5,21 @@ import hourlyView from './views/hourlyView.js';
 import detailsView from './views/detailsView.js';
 import cityView from './views/cityView.js';
 
+
+const alertUser = function (position) {
+  console.log(position);
+};
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(alertUser, () => alert("bitch"));
+}
+
+
+
 const controlShowWeather = async function(){
     try{
         // load weather data from the model
-        await model.getCurrentWeather('Kyiv');
+        await model.getCurrentWeather("Vorkuta");
 
         // Render loading animation
         sevenDayView.renderLoading();
