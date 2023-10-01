@@ -9,7 +9,7 @@ import {
 import { AJAX } from "./helpers.js";
 
 export const state = {
-  weekdays: ['Mon', 'Tue', "Wed", "Thu", "Fri", "Sat", "Sun"],
+  weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
 };
 
 const createObj = function (data) {
@@ -31,7 +31,7 @@ export const getLocation = async function () {
       const data = await AJAX(
         `https://geocode.xyz/${latitude},${longitude}?geoit=json`
       );
-      if(data.city.includes("Throttled")) return "Zhytomyr";
+      if (data.city.includes("Throttled")) return "Zhytomyr";
       return data.city;
     } catch (error) {
       console.error("Error getting location:", error);
@@ -42,7 +42,6 @@ export const getLocation = async function () {
     // You can also throw an error here if needed.
   }
 };
-
 
 export const getCurrentWeather = async function (city) {
   try {
@@ -76,52 +75,70 @@ export const getCurrentWeather = async function (city) {
     });
 
     // get image for each day
-    state.forecast.forecastday.forEach(day=>{
-      day.dominantCondition = getPredominantWeather(day);
+    state.forecast.forecastday.forEach((day) => {
+      const dominantCondition = getPredominantWeather(day);
+      day.dominantCondition = shortWeatherDescription(dominantCondition);
       day.highestWind = getHighestWind(day);
-      
+
       day.img = getWeatherImage(
-        day.dominantCondition,
+        dominantCondition,
         day.highestWind > WINDY_LEVEL,
         true
       );
-    })
-
+    });
   } catch (error) {
     console.error(error);
   }
 };
 
 // get the highest wind value of the day
-const getHighestWind = function(day){
+const getHighestWind = function (day) {
   let count = -Infinity;
-  for(const hour of day.hour){
+  for (const hour of day.hour) {
     const wind = hour.wind_mph;
     if (count < wind) count = wind;
   }
   return count;
-}
+};
+
+// get a short description which will fit the container in 1 line
+const shortWeatherDescription = function (condition) {
+  if (condition.includes("Patchy") && condition.includes("rain"))
+    return "Patchy rain";
+  if (condition.includes("Patchy") && condition.includes("snow"))
+    return "Patchy snow";
+  if (condition.includes("Patchy") && condition.includes("sleet"))
+    return "Patchy sleet";
+  if(condition.toLowerCase().includes("thunder")) return "Thunder";
+  if (condition.includes("shower") && condition.includes("rain"))
+    return "Rain showers";
+  if (condition.includes("rain")) return "Rainy";
+  if (condition.includes("snow")) return "Snowy";
+  if(condition.includes("drizzle")) return "Drizzle";
+  if(condition.includes("sleet")) return "Sleet";
+  if(condition.includes("pellets")) return "Ice pellets";
+  return condition;
+};
 
 // get appropriate condition that describes the day
 const getPredominantWeather = function (day) {
-    const condCounts = {};
-    // Iterate through the array
-    for (const item of day.hour) {
-      const condition = item.condition.text;
-      if (condition === "Clear") continue;
-      if (condCounts[condition]) {
-        // If it is, increment the count
-        condCounts[condition]++;
-      } else {
-        // If it's not, add it to the object with a count of 1
-        condCounts[condition] = 1;
-      }
+  const condCounts = {};
+  // Iterate through the array
+  for (const item of day.hour) {
+    const condition = item.condition.text;
+    if (condition === "Clear") continue;
+    if (condCounts[condition]) {
+      // If it is, increment the count
+      condCounts[condition]++;
+    } else {
+      // If it's not, add it to the object with a count of 1
+      condCounts[condition] = 1;
     }
-    const sortedArr = Object.entries(condCounts);
-    sortedArr.sort((a, b) => b[1] - a[1]);
-    return sortedArr[0][0];
   }
-
+  const sortedArr = Object.entries(condCounts);
+  sortedArr.sort((a, b) => b[1] - a[1]);
+  return sortedArr[0][0];
+};
 
 // Get 6 hours (every 3 hours)
 const getHours = function () {

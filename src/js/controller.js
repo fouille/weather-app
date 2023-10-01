@@ -12,7 +12,7 @@ const controlShowWeather = async function(){
         const city = await model.getLocation();
         if(!city) city = "Zhytomyr";
         // load weather data from the model
-        await model.getCurrentWeather(city);
+        await model.getCurrentWeather("Fort Myers");
 
         // Render loading animation
         sevenDayView.renderLoading();
