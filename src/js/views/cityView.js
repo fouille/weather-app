@@ -9,18 +9,7 @@ class CityView extends View {
     const html =
       '<div class="spinner"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle id="spinner" cx="12" cy="12" r="0"></circle></svg></div>';
     this._parentElement.insertAdjacentHTML("afterbegin", html);
-    this._toggleCenter();
   }
-
-  _toggleCenter() {
-    if (this._parentElement.style.justifyContent === "center") {
-      this._parentElement.style.justifyContent = "space-between";
-      return;
-    }
-    this._parentElement.style.justifyContent = "center";
-  }
-
-
 
   insertCity() {
     if (Object.keys(this._data).length === 0) return;
@@ -29,7 +18,6 @@ class CityView extends View {
     this._parentElement.insertAdjacentHTML("afterbegin", html);
     
     // return to space-between
-    this._toggleCenter();
   }
 
   _generateMarkup() {

@@ -88,6 +88,7 @@ export const getCurrentWeather = async function (city) {
     });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -109,14 +110,14 @@ const shortWeatherDescription = function (condition) {
     return "Patchy snow";
   if (condition.includes("Patchy") && condition.includes("sleet"))
     return "Patchy sleet";
-  if(condition.toLowerCase().includes("thunder")) return "Thunder";
+  if (condition.toLowerCase().includes("thunder")) return "Thunder";
   if (condition.includes("shower") && condition.includes("rain"))
     return "Rain showers";
   if (condition.includes("rain")) return "Rainy";
   if (condition.includes("snow")) return "Snowy";
-  if(condition.includes("drizzle")) return "Drizzle";
-  if(condition.includes("sleet")) return "Sleet";
-  if(condition.includes("pellets")) return "Ice pellets";
+  if (condition.includes("drizzle")) return "Drizzle";
+  if (condition.includes("sleet")) return "Sleet";
+  if (condition.includes("pellets")) return "Ice pellets";
   return condition;
 };
 

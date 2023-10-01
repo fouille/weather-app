@@ -22,6 +22,7 @@ import rainyWindyCloudySun from "url:../../../img/weather-imgs/sun/rainy-windy-c
 import rainyWindyCloudyMoon from "url:../../../img/weather-imgs/moon/rainy-windy-cloudy-moon.png";
 import lightningSnowyWindyCloud from "url:../../../img/weather-imgs/cloud/lightning-snowy-windy-cloud.png";
 import rainyWindyCloud from "url:../../../img/weather-imgs/cloud/windy-rainy-cloud.png";
+import details from "url:../../../img/svg/details.svg";
 
 export default class View {
   _data;
@@ -76,7 +77,7 @@ export default class View {
     const html = ` <div class="error">
             <div>
               <svg>
-                <use href="${icons}#icon-alert-triangle"></use>
+                <use href="${details}#icon-alert-triangle"></use>
               </svg>
             </div>
             <p>${message}</p>
@@ -89,7 +90,7 @@ export default class View {
     const html = ` <div class="message">
             <div>
               <svg>
-                <use href="${icons}#icon-smile"></use>
+                <use href="${details}#icon-smile"></use>
               </svg>
             </div>
             <p>${message}</p>

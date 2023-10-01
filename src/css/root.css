@@ -77,3 +77,19 @@ ul {
       background-position: -200% 0;
   }
 }
+
+.error{
+  color: var(--nav-active-p);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  align-self: center;
+}
+
+.error svg{ 
+  width: 50px;
+  height: 50px;
+  fill: var(--nav-active-svg);
+}
