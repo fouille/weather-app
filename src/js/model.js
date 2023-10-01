@@ -275,3 +275,5 @@ const getWeatherImage = function (condition, isWindy, isDay) {
   // cloud with snow and rain
   if (condition.includes("sleet")) return "snowyRainyCloud";
 };
+
+

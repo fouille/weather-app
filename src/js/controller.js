@@ -1,12 +1,22 @@
 import * as model from "./model.js";
-import landingPageView from "./views/LandingPageView.js";
+import landingPageView from "./views/landingPageView.js";
 import sevenDayView from "./views/sevenDayView.js";
 import hourlyView from "./views/hourlyView.js";
 import detailsView from "./views/detailsView.js";
 import cityView from "./views/cityView.js";
 import searchView from "./views/searchView.js";
+import settingsView from "./views/settingsView.js";
+import citiesView from "./views/citiesView.js";
+import detailSectionView from "./views/detailSectionView.js";
 
-const controlShowWeather = async function (city=undefined) {
+const navElements = [
+  landingPageView,
+  settingsView,
+  citiesView,
+  detailSectionView,
+];
+
+const controlShowWeather = async function (city = undefined) {
   try {
     if (typeof city === "object") {
       city = await model.getLocation();
@@ -16,7 +26,7 @@ const controlShowWeather = async function (city=undefined) {
     await model.getCurrentWeather(city);
 
     // Render loading animation
-    controlLoadAnimation()
+    controlLoadAnimation();
 
     // Render Data for each element
     sevenDayView.render(model.state);
@@ -37,17 +47,17 @@ const controlShowWeather = async function (city=undefined) {
     sevenDayView.insertDays();
   } catch (err) {
     console.error(err);
-    cityView.renderError('Failed to fetch')
+    cityView.renderError("Failed to fetch");
     controlLoadAnimation(true);
   }
 };
 
-const controlLoadAnimation = function(error=false) {
-    sevenDayView.renderLoading();
-    hourlyView.renderLoading();
-    detailsView.renderLoading();
-    if(!error)cityView.renderSpinner();
-}
+const controlLoadAnimation = function (error = false) {
+  sevenDayView.renderLoading();
+  hourlyView.renderLoading();
+  detailsView.renderLoading();
+  if (!error) cityView.renderSpinner();
+};
 
 const controlSearchResult = function () {
   const query = searchView.getQuery();
@@ -55,9 +65,40 @@ const controlSearchResult = function () {
   controlShowWeather(query);
 };
 
+const controlLanding = function () {
+  landingPageView.enableActive();
+  controlActiveElement(landingPageView);
+};
+
+const controlSettings = function () {
+  settingsView.enableActive();
+  controlActiveElement(settingsView);
+};
+
+const controlCities = function () {
+  citiesView.enableActive();
+  controlActiveElement(citiesView);
+};
+
+const controlDetails = function () {
+  detailSectionView.enableActive();
+  controlActiveElement(detailSectionView);
+};
+
+const controlActiveElement = function (enabled) {
+  navElements.forEach((el) => {
+    if (el === enabled) return;
+    el.disableActive();
+  });
+};
+
 const init = function () {
   landingPageView.addHandlerRender(controlShowWeather);
   searchView.addHandlerSearch(controlSearchResult);
+  landingPageView.addHandlerClick(controlLanding);
+  settingsView.addHandlerClick(controlSettings);
+  citiesView.addHandlerClick(controlCities);
+  detailSectionView.addHandlerClick(controlDetails);
 };
 
 init();

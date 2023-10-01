@@ -46,10 +46,14 @@ nav{
 .n-item--active p{
   color: var(--nav-active-p);
   font-weight: 600;
+    transition: .3s all;
+
 }
 
 .n-item--active svg {
   fill: var(--nav-active-svg);
+  transition: .3s all;
+
 }
 
 nav svg{
@@ -62,7 +66,6 @@ nav svg{
   color: var(--grey-font);
   font-size: .9rem;
 }
-
 
 .search {
   background-color: var(--interface-color);
