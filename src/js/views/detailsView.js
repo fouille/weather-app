@@ -6,14 +6,20 @@ import details from "url:../../../img/svg/details.svg";
 class DetailsView extends View {
   _parentElement = document.querySelector(".d-details");
 
-  insertDetails(){
-     if (Object.keys(this._data).length === 0) return;
-     this._clear();
-     const html = this._generateMarkup();
+  insertDetails() {
+    if (Object.keys(this._data).length === 0) return;
+    this._clear();
+    const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
 
-  _generateMarkup(){
+  renderLoading() {
+    this._clear();
+    const html = `<div class="loading-animation" id="details-load"></div>`;
+    this._parentElement.insertAdjacentHTML("afterbegin", html);
+  }
+
+  _generateMarkup() {
     return (
       `<div class="d-h-item-1 real-feel">
               <div class="icon-text">
@@ -115,7 +121,6 @@ class DetailsView extends View {
             </div>`
     );
   }
-
 }
 
 export default new DetailsView();

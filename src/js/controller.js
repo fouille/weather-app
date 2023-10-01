@@ -16,10 +16,7 @@ const controlShowWeather = async function (city=undefined) {
     await model.getCurrentWeather(city);
 
     // Render loading animation
-    sevenDayView.renderLoading();
-    hourlyView.renderLoading();
-    detailsView.renderLoading();
-    cityView.renderSpinner();
+    controlLoadAnimation()
 
     // Render Data for each element
     sevenDayView.render(model.state);
@@ -40,9 +37,17 @@ const controlShowWeather = async function (city=undefined) {
     sevenDayView.insertDays();
   } catch (err) {
     console.error(err);
-    cityView.renderError('Failed to fetch stupid')
+    cityView.renderError('Failed to fetch')
+    controlLoadAnimation(true);
   }
 };
+
+const controlLoadAnimation = function(error=false) {
+    sevenDayView.renderLoading();
+    hourlyView.renderLoading();
+    detailsView.renderLoading();
+    if(!error)cityView.renderSpinner();
+}
 
 const controlSearchResult = function () {
   const query = searchView.getQuery();

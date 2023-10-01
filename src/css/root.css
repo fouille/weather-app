@@ -69,6 +69,12 @@ ul {
   border-radius: 15px;
 }
 
+#details-load {
+  width: 95%;
+  margin-bottom: 10rem;
+  height: 95%;
+}
+
 @keyframes loading {
   0% {
       background-position: 200% 0;
