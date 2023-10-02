@@ -73,6 +73,9 @@ const controlLanding = function () {
 const controlSettings = function () {
   settingsView.enableActive();
   controlActiveElement(settingsView);
+
+  settingsView.clearContentContainer();
+  settingsView.insertElements();
 };
 
 const controlCities = function () {

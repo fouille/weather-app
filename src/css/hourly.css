@@ -31,7 +31,7 @@
 }
 
 .hourly-content li:not(:last-child){
-    border-right: 1px solid #303f56;
+    border-right: 1px solid var(--border-color);
 }
 
 .h-item img{

@@ -13,7 +13,6 @@ class LandingPageView extends View {
     this._parentElement.addEventListener("click", (e) => {
       const target = e.target.closest(".n-item-1");
       if (!target) return;
-      console.log("Here");
       callback();
     });
   }

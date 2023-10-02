@@ -1,0 +1,132 @@
+@import url("root.css");
+
+.setting-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--interface-color);
+  width: 100%;
+  min-height: 84%;
+  border-radius: 18px;
+  align-items: center;
+}
+
+.general-settings {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--interface-color);
+  width: 100%;
+  min-height: 16%;
+  border-radius: 18px;
+}
+
+.setting-option {
+  flex-basis: 20%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.setting-o-text {
+  color: var(--grey-font);
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-basis: 30%;
+  display: flex;   
+  align-items: center;
+}
+
+.toggle-container {
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.toggle{
+    width: 100%;
+    height: 60%;
+    background-color: var(--background);
+    border-radius: 10px;
+    display: flex;
+    padding: .2rem;
+}
+
+
+
+.toggle-el{
+  color: var(--grey-font);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-el:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  right: 0;
+  height: 40%;
+  width: 1px; /* Adjust the width as needed */
+  background-color: var(--border-color);
+  z-index: 1
+}
+
+.toggle-el--active {
+  background-color: var(--setting-active);
+  color: var(--nav-active-p);
+  font-weight: 600;
+}
+
+.fahrenheit{
+  flex-basis: 50%;
+}
+
+.celsius{
+  flex-basis: 50%;
+}
+
+.wind-km {
+  flex-basis: 33.33%;
+}
+.wind-miles {
+  flex-basis: 33.33%;
+}
+.wind-knots {
+  flex-basis: 33.33%;
+}
+
+.pressure-in{
+  flex-basis: 33.33%;
+}
+.pressure-mb{
+  flex-basis: 33.33%;
+}
+.pressure-mm{
+  flex-basis: 33.33%;
+}
+
+.precipitation-mm{
+  flex-basis: 50%;
+}
+
+.precipitation-in{
+  flex-basis: 50%;
+}
+
+.distance-km{
+  flex-basis: 50%;
+}
+
+.distance-miles{
+  flex-basis: 50%;
+}
