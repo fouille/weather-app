@@ -74,6 +74,7 @@
   background-color: var(--setting-active);
   color: var(--nav-active-p);
   font-weight: 600;
+  transition: background-color .3s ease-in-out;
   /* border-left: 1px solid var(--setting-active)  */
 }
 

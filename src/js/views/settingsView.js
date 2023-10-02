@@ -33,6 +33,15 @@ class SettingsView extends View {
     });
   }
 
+  toggleActive(target){
+    if(!target) return;
+    const elArray = Array.from(
+      target.closest(".toggle").querySelectorAll(".toggle-el")
+    );
+    elArray.forEach((el) => el.classList.remove("toggle-el--active"));
+    target.classList.add("toggle-el--active");
+  }
+
   clearSettingsContainer() {
     const setCont = [
       document.querySelector(".units"),

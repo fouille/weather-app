@@ -82,7 +82,7 @@ const controlSettings = function () {
 };
 
 const controlSettingsOption = function(target){
-  model.saveOptions(target)
+  settingsView.toggleActive(model.saveOptions(target));
 }
 
 const controlCities = function () {
