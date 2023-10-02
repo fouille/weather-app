@@ -100,3 +100,7 @@ ul {
   height: 50px;
   fill: var(--nav-active-svg);
 }
+
+.disable{
+  display: none !important;
+}

@@ -16,15 +16,6 @@
   align-items: center;
 }
 
-.general-settings {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--interface-color);
-  width: 100%;
-  min-height: 16%;
-  border-radius: 18px;
-}
-
 .setting-option {
   flex-basis: 20%;
   width: 95%;
@@ -38,7 +29,7 @@
   font-weight: 600;
   font-size: 0.8rem;
   flex-basis: 30%;
-  display: flex;   
+  display: flex;
   align-items: center;
 }
 
@@ -48,18 +39,16 @@
   align-items: center;
 }
 
-.toggle{
-    width: 100%;
-    height: 60%;
-    background-color: var(--background);
-    border-radius: 10px;
-    display: flex;
-    padding: .2rem;
+.toggle {
+  width: 100%;
+  height: 60%;
+  background-color: var(--background);
+  border-radius: 10px;
+  display: flex;
+  padding: 0.2rem;
 }
 
-
-
-.toggle-el{
+.toggle-el {
   color: var(--grey-font);
   font-size: 0.9rem;
   display: flex;
@@ -78,20 +67,21 @@
   height: 40%;
   width: 1px; /* Adjust the width as needed */
   background-color: var(--border-color);
-  z-index: 1
+  z-index: 1;
 }
 
 .toggle-el--active {
   background-color: var(--setting-active);
   color: var(--nav-active-p);
   font-weight: 600;
+  /* border-left: 1px solid var(--setting-active)  */
 }
 
-.fahrenheit{
+.fahrenheit {
   flex-basis: 50%;
 }
 
-.celsius{
+.celsius {
   flex-basis: 50%;
 }
 
@@ -105,28 +95,124 @@
   flex-basis: 33.33%;
 }
 
-.pressure-in{
+.pressure-in {
   flex-basis: 33.33%;
 }
-.pressure-mb{
+.pressure-mb {
   flex-basis: 33.33%;
 }
-.pressure-mm{
+.pressure-mm {
   flex-basis: 33.33%;
 }
 
-.precipitation-mm{
+.precipitation-mm {
   flex-basis: 50%;
 }
 
-.precipitation-in{
+.precipitation-in {
   flex-basis: 50%;
 }
 
-.distance-km{
+.distance-km {
   flex-basis: 50%;
 }
 
-.distance-miles{
+.distance-miles {
   flex-basis: 50%;
+}
+
+.general-settings {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--interface-color);
+  width: 100%;
+  min-height: 40%;
+  border-radius: 18px;
+  padding: 1rem 1.5rem;
+  gap: .2rem;
+}
+
+.general-option {
+    display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  /* border: 1px solid green; */
+}
+
+.general-option:not(:last-child){
+  border-bottom: 1px solid var(--border-color);
+}
+
+.general-option:not(:first-child){
+  padding-top: .5rem;
+}
+
+.general-row{
+  display: flex;
+  flex: 3;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.row-small{
+  flex: 3;
+  /* align-self: center; */
+  align-items: flex-start;
+}
+
+.general-text {
+  color: var(--nav-active-p);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.general-desc{
+  color: var(--grey-font);
+  font-size: .9rem;
+}
+
+.t-f-hours {
+  flex-basis: 25%;
+}
+
+.location {
+  flex-basis: 37%;
+}
+
+.notifications {
+  flex-basis: 37%;
+}
+
+input[type="checkbox"].toggle-switch {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: lightgrey;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s background-color ease-in-out;
+  position: relative;
+}
+input[type="checkbox"].toggle-switch:checked {
+  background-color: var(--btn-color);
+}
+input[type="checkbox"].toggle-switch::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  transform: scale(0.7);
+  left: 0;
+  transition: left 0.2s ease-in-out;
+  box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
+}
+input[type="checkbox"].toggle-switch:checked::after {
+  left: 20px;
 }

@@ -68,15 +68,22 @@ const controlSearchResult = function () {
 const controlLanding = function () {
   landingPageView.enableActive();
   controlActiveElement(landingPageView);
+
+  landingPageView.reviveContentContainer();
+  settingsView.clearSettingsContainer();
 };
 
 const controlSettings = function () {
   settingsView.enableActive();
   controlActiveElement(settingsView);
 
-  settingsView.clearContentContainer();
+  landingPageView.clearContentContainer();
   settingsView.insertElements();
 };
+
+const controlSettingsOption = function(target){
+  model.saveOptions(target)
+}
 
 const controlCities = function () {
   citiesView.enableActive();
@@ -102,6 +109,7 @@ const init = function () {
   settingsView.addHandlerClick(controlSettings);
   citiesView.addHandlerClick(controlCities);
   detailSectionView.addHandlerClick(controlDetails);
+  settingsView.addHandlerSettings(controlSettingsOption);
 };
 
 init();

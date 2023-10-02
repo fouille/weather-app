@@ -72,15 +72,21 @@ export default class View {
     const html = `<div class="loading-animation"></div>`;
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
-  
+
   enableActive() {
-    console.log(this._navElement);
     this._navElement.classList.add("n-item--active");
   }
 
   disableActive() {
-    console.log(this._navElement);
     this._navElement.classList.remove("n-item--active");
+  }
+
+  _makeVisible(arr) {
+    arr.forEach((el) => el.classList.remove("disable"));
+  }
+
+  _makeInvisible(arr) {
+    arr.forEach((el) => el.classList.add("disable"));
   }
 
   renderError(message = this._errorMessage) {

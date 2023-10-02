@@ -10,6 +10,8 @@ import { AJAX } from "./helpers.js";
 
 export const state = {
   weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  userSettings: {
+  }
 };
 
 const createObj = function (data) {
@@ -276,4 +278,10 @@ const getWeatherImage = function (condition, isWindy, isDay) {
   if (condition.includes("sleet")) return "snowyRainyCloud";
 };
 
-
+export const saveOptions = function (target) {
+  const setting = target.dataset.setting;
+  if (setting) {
+    const value = target.textContent.trim().toLowerCase();
+    state.userSettings[setting] = value;
+  }
+};
