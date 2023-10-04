@@ -6,13 +6,7 @@ class SevenDayView extends View {
   insertDays() {
     if (Object.keys(this._data).length === 0) return;
     this._clear();
-    const html = this._data.forecast.forecastday
-      .map((day, i) => {
-        const weekDay = this._data.weekdays[new Date(day.date).getDay() - 1];
-        if (i === 0) return this._generateMarkup(day, "Today");
-        return this._generateMarkup(day, weekDay);
-      })
-      .join("");
+    const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
 
@@ -20,7 +14,17 @@ class SevenDayView extends View {
     return this._allImports[condition];
   }
 
-  _generateMarkup(day, weekDay) {
+  _generateMarkup(){
+    return this._data.forecast.forecastday
+      .map((day, i) => {
+        const weekDay = this._data.weekdays[new Date(day.date).getDay() - 1];
+        if (i === 0) return this._generateHTML(day, "Today");
+        return this._generateHTML(day, weekDay);
+      })
+      .join("");
+  }
+
+  _generateHTML(day, weekDay) {
     return `<li class="s-d-item">
               <p class="regular-light-text weekday">${weekDay}</p>
               <div class="s-d-icon-condition">

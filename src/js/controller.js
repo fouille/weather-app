@@ -34,7 +34,7 @@ const controlShowWeather = async function (city = undefined) {
     detailsView.render(model.state);
     cityView.render(model.state);
     settingsView.render(model.state);
-    
+
     // Insert city data
     cityView.insertCity();
 
@@ -72,6 +72,12 @@ const controlLanding = function () {
 
   landingPageView.reviveContentContainer();
   settingsView.clearSettingsContainer();
+
+  // Update DOM components
+  cityView.update(model.state);
+  detailsView.update(model.state);
+  hourlyView.update(model.state);
+  sevenDayView.update(model.state);
 };
 
 const controlSettings = function () {
@@ -82,13 +88,13 @@ const controlSettings = function () {
   settingsView.insertElements();
 };
 
-const controlSettingsOption = function(target){
+const controlSettingsOption = function (target) {
   settingsView.toggleActive(model.saveOptions(target));
-}
+};
 
-const controlGeneralSettings = function(target){
-  model.saveGeneral(target)
-}
+const controlGeneralSettings = function (target) {
+  model.saveGeneral(target);
+};
 
 const controlCities = function () {
   citiesView.enableActive();

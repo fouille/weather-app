@@ -7,9 +7,7 @@ class HourlyView extends View {
   insertHourly() {
     if (Object.keys(this._data).length === 0) return;
     this._clear();
-    const html = this._data.hourly
-      .map((hour) => this._generateMarkup(hour))
-      .join("");
+    const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
 
@@ -17,7 +15,11 @@ class HourlyView extends View {
     return this._allImports[condition];
   }
 
-  _generateMarkup(hour){
+  _generateMarkup(){
+    return this._data.hourly.map((hour) => this._generateHTML(hour)).join("");
+  }
+
+  _generateHTML(hour){
     return `<li class="h-item">
                 <div class="h-time">${
                   this._data.generalSettings.TFhours
