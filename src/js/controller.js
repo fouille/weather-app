@@ -86,6 +86,10 @@ const controlSettingsOption = function(target){
   settingsView.toggleActive(model.saveOptions(target));
 }
 
+const controlGeneralSettings = function(target){
+  model.saveGeneral(target)
+}
+
 const controlCities = function () {
   citiesView.enableActive();
   controlActiveElement(citiesView);
@@ -111,6 +115,7 @@ const init = function () {
   citiesView.addHandlerClick(controlCities);
   detailSectionView.addHandlerClick(controlDetails);
   settingsView.addHandlerSettings(controlSettingsOption);
+  settingsView.addHandlerGeneralSettings(controlGeneralSettings);
 };
 
 init();

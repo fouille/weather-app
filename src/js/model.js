@@ -15,7 +15,12 @@ export const state = {
     windSpeed: "km/h",
     pressure: "mb",
     precipitation: "millimiters",
-    distance: "kilometers"
+    distance: "kilometers",
+  },
+  generalSettings: {
+    TFhours: true,
+    location: true,
+    notifications: false,
   },
 };
 
@@ -292,14 +297,28 @@ export const saveOptions = function (target) {
   return target;
 };
 
+export const saveGeneral = function(target) {
+  const setting = target.dataset.general;
+  if(!setting) return;
+  if(state.generalSettings[setting]) state.generalSettings[setting] = false;
+  else state.generalSettings[setting] = true;
+  persistGeneralSettings();
+}
+
 const persistSettings = function(){
   localStorage.setItem("settings", JSON.stringify(state.userSettings))
 }
 
+const persistGeneralSettings = function() {
+  localStorage.setItem("general settings", JSON.stringify(state.generalSettings));
+}
 
 const init = function(){
   const storage = localStorage.getItem("settings")
   if(storage) state.userSettings = JSON.parse(storage);
+
+  const generalStorage = localStorage.getItem("general settings");
+  if(generalStorage) state.generalSettings = JSON.parse(generalStorage);
 }
 
 init();

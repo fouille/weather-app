@@ -23,7 +23,6 @@ class DetailsView extends View {
     return (km * 0.539957).toFixed(1);
   }
   _generateMarkup() {
-    console.log(this._data);
     return (
       `<div class="d-h-item-1 real-feel">
               <div class="icon-text">
@@ -58,7 +57,17 @@ class DetailsView extends View {
                 <p class="grey-classic">Wind</p>
               </div>
               <div class="wind-value">
-                <p class="d-value">${this._data.userSettings.windSpeed === "km/h" ? `${this._data.current.wind_kph} km/h` : `${this._data.userSettings.windSpeed === "m/h" ? `${this._data.current.wind_mph} m/h` : `${this._convertToKnots(this._data.current.wind_kph)} knots` }`} </p>
+                <p class="d-value">${
+                  this._data.userSettings.windSpeed === "km/h"
+                    ? `${this._data.current.wind_kph} km/h`
+                    : `${
+                        this._data.userSettings.windSpeed === "m/h"
+                          ? `${this._data.current.wind_mph} m/h`
+                          : `${this._convertToKnots(
+                              this._data.current.wind_kph
+                            )} knots`
+                      }`
+                } </p>
               </div>
             </div>` +
       `<div class="d-h-item-1 visibility">
@@ -126,9 +135,13 @@ class DetailsView extends View {
                 <p class="grey-classic">Sunset</p>
               </div>
               <div class="sunset-value">
-                <p class="d-value">${convertTo24Hour(
-                  this._data.forecast.forecastday[0].astro.sunset
-                )}</p>
+                <p class="d-value">${
+                  this._data.generalSettings.TFhours
+                    ? `${convertTo24Hour(
+                        this._data.forecast.forecastday[0].astro.sunset
+                      )}`
+                    : `${this._data.forecast.forecastday[0].astro.sunset}`
+                } </p>
               </div>
             </div>`
     );

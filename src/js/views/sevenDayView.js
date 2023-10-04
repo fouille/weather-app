@@ -8,7 +8,7 @@ class SevenDayView extends View {
     this._clear();
     const html = this._data.forecast.forecastday
       .map((day, i) => {
-        const weekDay = this._data.weekdays[new Date(day.date).getDay()];
+        const weekDay = this._data.weekdays[new Date(day.date).getDay() - 1];
         if (i === 0) return this._generateMarkup(day, "Today");
         return this._generateMarkup(day, weekDay);
       })

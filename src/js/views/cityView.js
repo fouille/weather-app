@@ -21,7 +21,6 @@ class CityView extends View {
   }
 
   _generateMarkup() {
-    console.log(this._data);
     return `<div class="city-text">
             <p class="city-name">${this._data.location.name}</p>
             <p class="rain-chance">Chance of rain: ${

@@ -53,15 +53,15 @@
 }
 
 .real-feel, .rain{
-    width: 37%;
+    width: 36%;
 }
 
 .wind, .uv{
-    width: 37%;
+    width: 36%;
 }
 
 .visibility, .sunset{
-    width: 26%;
+    width: 28%;
 }
 
 .icon-text{
@@ -80,4 +80,5 @@
     padding: 0 2.4rem;
     font-weight: 700;
     font-size: 1.6rem;
+    /* border: 1px solid green; */
 }

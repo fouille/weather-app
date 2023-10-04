@@ -14,6 +14,14 @@ class SettingsView extends View {
     });
   }
 
+  addHandlerGeneralSettings(callback) {
+    this._generalContainer.addEventListener("click", (e) => {
+      const toggle = e.target.closest(".toggle-switch");
+      if (!toggle) return;
+      callback(e.target)
+    });
+  }
+
   addHandlerSettings(callback) {
     this._container.addEventListener("click", (e) => {
       const pressure = e.target.closest(".pressure");
@@ -33,8 +41,8 @@ class SettingsView extends View {
     });
   }
 
-  toggleActive(target){
-    if(!target) return;
+  toggleActive(target) {
+    if (!target) return;
     const elArray = Array.from(
       target.closest(".toggle").querySelectorAll(".toggle-el")
     );
@@ -172,7 +180,9 @@ class SettingsView extends View {
         <div class="general-row">
           <p class="general-text ">24-Hour Time</p>
           <div class="toggle-switch-container">
-            <input type="checkbox" class="toggle-switch" checked>
+            <input type="checkbox" class="toggle-switch" ${
+              this._data.generalSettings.TFhours ? "checked" : ""
+            } data-general="TFhours">
           </div>
         </div>
       </div>
@@ -180,7 +190,9 @@ class SettingsView extends View {
         <div class="general-row">
           <p class="general-text">Location</p>
           <div class="toggle-switch-container">
-            <input type="checkbox" class="toggle-switch" checked>
+            <input type="checkbox" class="toggle-switch" ${
+              this._data.generalSettings.location ? "checked" : ""
+            } data-general="location">
           </div>
         </div>
         <div class="general-row row-small">
@@ -191,7 +203,9 @@ class SettingsView extends View {
         <div class="general-row">
           <p class="general-text ">Notifications</p>
           <div class="toggle-switch-container">
-            <input type="checkbox" class="toggle-switch" checked>
+            <input type="checkbox" class="toggle-switch" ${
+              this._data.generalSettings.notifications ? "checked" : ""
+            } data-general="notifications">
           </div>
         </div>
         <div class="general-row row-small">

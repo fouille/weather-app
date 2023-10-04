@@ -45,3 +45,27 @@ export const convertTo24Hour = function (time12Hour) {
 
   return time24Hour;
 };
+
+
+export const convertTo12Hour = function(time24hour) {
+  const [hours, minutes] = time24hour.split(":");
+  let period = "AM";
+
+  // Convert hours to a number
+  let hourNum = parseInt(hours, 10);
+
+  // Determine the period (AM or PM)
+  if (hourNum >= 12) {
+    period = "PM";
+    if (hourNum > 12) {
+      hourNum -= 12;
+    }
+  }
+
+  // Ensure the hour is in two-digit format (e.g., 03 instead of 3)
+  const hour12 = hourNum.toString().padStart(2, "0");
+
+  // Construct the 12-hour format time string
+  const time12 = `${hour12}:${minutes} ${period}`;
+  return time12;
+}
