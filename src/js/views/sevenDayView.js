@@ -34,10 +34,17 @@ class SevenDayView extends View {
                 }</p>
               </div>
               <div class="s-d-smallest-highest">
-                <p class="bold-light-text">${Math.round(day.day.maxtemp_c)}</p>
-                <div class="regular-light-text">/${Math.round(
-                  day.day.mintemp_c
-                )}</div>
+                <p class="bold-light-text">
+                ${
+                  this._data.userSettings.temperature === "celsius"
+                    ? `${Math.round(day.day.maxtemp_c)}`
+                    : `${Math.round(day.day.maxtemp_f)}`
+                }</p>
+                <div class="regular-light-text">/${
+                  this._data.userSettings.temperature === "celsius"
+                    ? `${Math.round(day.day.mintemp_c)}`
+                    : `${Math.round(day.day.mintemp_f)}`
+                }</div>
               </div>
             </li>`;
   }

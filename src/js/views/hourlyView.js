@@ -16,16 +16,20 @@ class HourlyView extends View {
     return this._allImports[condition];
   }
 
-  _generateMarkup(hour) {
+  _generateMarkup(hour){
     return `<li class="h-item">
                 <div class="h-time">${new Date(hour.time).getHours()}:00</div>
                 <img src="${this._getSrc(hour.img)}" alt="weather condition" ${
-      (this._getSrc(hour.img) !== this._allImports.cloud &&
-      this._getSrc(hour.img) !== this._allImports.snowyCloud)
+      this._getSrc(hour.img) !== this._allImports.cloud &&
+      this._getSrc(hour.img) !== this._allImports.snowyCloud
         ? 'id="not-fit"'
         : ""
     } />
-                <div class="h-temp">${Math.round(hour.feelslike_c)}°</div>
+                <div class="h-temp">${
+                  this._data.userSettings.temperature === "celsius"
+                    ? `${Math.round(hour.feelslike_c)}`
+                    : `${Math.round(hour.feelslike_f)}`
+                }°</div>
               </li>`;
   }
 }

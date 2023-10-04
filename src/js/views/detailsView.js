@@ -19,7 +19,11 @@ class DetailsView extends View {
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
 
+  _convertToKnots(km) {
+    return (km * 0.539957).toFixed(1);
+  }
   _generateMarkup() {
+    console.log(this._data);
     return (
       `<div class="d-h-item-1 real-feel">
               <div class="icon-text">
@@ -34,7 +38,11 @@ class DetailsView extends View {
                 <p class="grey-classic">Real Feel</p>
               </div>
               <div class="feel-value">
-                <p class="d-value">${this._data.current.feelslike_c}°</p>
+                <p class="d-value">${
+                  this._data.userSettings.temperature === "celsius"
+                    ? `${this._data.current.feelslike_c}`
+                    : `${this._data.current.feelslike_f}`
+                }°</p>
               </div>
             </div>` +
       `<div class="d-h-item-1 wind">
@@ -50,7 +58,7 @@ class DetailsView extends View {
                 <p class="grey-classic">Wind</p>
               </div>
               <div class="wind-value">
-                <p class="d-value">${this._data.current.wind_kph} km/h</p>
+                <p class="d-value">${this._data.userSettings.windSpeed === "km/h" ? `${this._data.current.wind_kph} km/h` : `${this._data.userSettings.windSpeed === "m/h" ? `${this._data.current.wind_mph} m/h` : `${this._convertToKnots(this._data.current.wind_kph)} knots` }`} </p>
               </div>
             </div>` +
       `<div class="d-h-item-1 visibility">
@@ -66,7 +74,11 @@ class DetailsView extends View {
                 <p class="grey-classic">Visibility</p>
               </div>
               <div class="visibility-value">
-                <p class="d-value">${this._data.current.vis_km} km</p>
+                <p class="d-value">${
+                  this._data.userSettings.distance === "kilometers"
+                    ? `${this._data.current.vis_km} km`
+                    : `${this._data.current.vis_miles} miles`
+                }</p>
               </div>
             </div>` +
       `<div class="d-h-item-1 rain">

@@ -70,8 +70,16 @@ class SettingsView extends View {
         <div class="setting-o-text">TEMPERATURE</div>
         <div class="toggle-container">
           <div class="toggle temperature">
-            <div class="toggle-el toggle-el--active celsius" data-setting="temperature">Celsius</div>
-            <div class="toggle-el fahrenheit" data-setting="temperature">Fahrenheit</div>
+            <div class="toggle-el ${
+              this._data.userSettings.temperature === "celsius"
+                ? "toggle-el--active"
+                : ""
+            } celsius" data-setting="temperature">Celsius</div>
+            <div class="toggle-el ${
+              this._data.userSettings.temperature === "fahrenheit"
+                ? "toggle-el--active"
+                : ""
+            } fahrenheit" data-setting="temperature">Fahrenheit</div>
           </div>
         </div>
       </div>
@@ -79,9 +87,21 @@ class SettingsView extends View {
         <div class="setting-o-text">WIND SPEED</div>
         <div class="toggle-container">
           <div class="toggle wind-speed">
-            <div class="toggle-el toggle-el--active wind-km" data-setting="windSpeed">km/h</div>
-            <div class="toggle-el wind-miles" data-setting="windSpeed">m/h</div>
-            <div class="toggle-el wind-knots" data-setting="windSpeed">Knots</div>
+            <div class="toggle-el ${
+              this._data.userSettings.windSpeed === "km/h"
+                ? "toggle-el--active"
+                : ""
+            } wind-km" data-setting="windSpeed">km/h</div>
+            <div class="toggle-el ${
+              this._data.userSettings.windSpeed === "m/h"
+                ? "toggle-el--active"
+                : ""
+            } wind-miles" data-setting="windSpeed">m/h</div>
+            <div class="toggle-el ${
+              this._data.userSettings.windSpeed === "knots"
+                ? "toggle-el--active"
+                : ""
+            } wind-knots" data-setting="windSpeed">Knots</div>
           </div>
         </div>
       </div>
@@ -89,9 +109,21 @@ class SettingsView extends View {
         <div class="setting-o-text">PRESSURE</div>
         <div class="toggle-container">
           <div class="toggle pressure">
-            <div class="toggle-el pressure-in" data-setting="pressure">Inches</div>
-            <div class="toggle-el toggle-el--active pressure-mb" data-setting="pressure">mb</div>
-            <div class="toggle-el pressure-mm" data-setting="pressure">mm</div>
+            <div class="toggle-el ${
+              this._data.userSettings.pressure === "inches"
+                ? "toggle-el--active"
+                : ""
+            } pressure-in" data-setting="pressure">Inches</div>
+            <div class="toggle-el ${
+              this._data.userSettings.pressure === "mb"
+                ? "toggle-el--active"
+                : ""
+            } pressure-mb" data-setting="pressure">mb</div>
+            <div class="toggle-el ${
+              this._data.userSettings.pressure === "mm"
+                ? "toggle-el--active"
+                : ""
+            } pressure-mm" data-setting="pressure">mm</div>
           </div>
         </div>
       </div>
@@ -99,8 +131,16 @@ class SettingsView extends View {
         <div class="setting-o-text">PRECIPITATION</div>
         <div class="toggle-container">
           <div class="toggle precipitation">
-            <div class="toggle-el precipitation-in" data-setting="precipitation">Inches</div>
-            <div class="toggle-el toggle-el--active precipitation-mm" data-setting="precipitation">Millimiters</div>
+            <div class="toggle-el ${
+              this._data.userSettings.precipitation === "inches"
+                ? "toggle-el--active"
+                : ""
+            } precipitation-in" data-setting="precipitation">Inches</div>
+            <div class="toggle-el ${
+              this._data.userSettings.precipitation === "millimiters"
+                ? "toggle-el--active"
+                : ""
+            } precipitation-mm" data-setting="precipitation">Millimiters</div>
           </div>
         </div>
       </div>
@@ -108,8 +148,16 @@ class SettingsView extends View {
         <div class="setting-o-text">DISTANCE</div>
         <div class="toggle-container">
           <div class="toggle distance">
-            <div class="toggle-el toggle-el--active distance-km" data-setting="distance">Kilometers</div>
-            <div class="toggle-el distance-miles" data-setting="distance">Miles</div>
+            <div class="toggle-el ${
+              this._data.userSettings.distance === "kilometers"
+                ? "toggle-el--active"
+                : ""
+            } distance-km" data-setting="distance">Kilometers</div>
+            <div class="toggle-el ${
+              this._data.userSettings.distance === "miles"
+                ? "toggle-el--active"
+                : ""
+            } distance-miles" data-setting="distance">Miles</div>
           </div>
         </div>
       </div>

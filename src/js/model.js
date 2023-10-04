@@ -10,7 +10,13 @@ import { AJAX } from "./helpers.js";
 
 export const state = {
   weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  userSettings: {},
+  userSettings: {
+    temperature: "celsius",
+    windSpeed: "km/h",
+    pressure: "mb",
+    precipitation: "millimiters",
+    distance: "kilometers"
+  },
 };
 
 const createObj = function (data) {
@@ -32,6 +38,7 @@ export const getLocation = async function () {
       const data = await AJAX(
         `https://geocode.xyz/${latitude},${longitude}?geoit=json`
       );
+      console.log(data); 
       if (data.city.includes("Throttled")) return "Zhytomyr";
       return data.city;
     } catch (error) {
@@ -144,7 +151,6 @@ const getPredominantWeather = function (day) {
 
 // Get 6 hours (every 3 hours)
 const getHours = function () {
-  console.log(state);
   const firstDayArr = state.forecast.forecastday[0].hour;
   const secondDayArr = state.forecast.forecastday[1].hour;
   const curHour = new Date().getHours();
@@ -282,5 +288,18 @@ export const saveOptions = function (target) {
   if (!setting) return;
   const value = target.textContent.trim().toLowerCase();
   state.userSettings[setting] = value;
+  persistSettings();
   return target;
 };
+
+const persistSettings = function(){
+  localStorage.setItem("settings", JSON.stringify(state.userSettings))
+}
+
+
+const init = function(){
+  const storage = localStorage.getItem("settings")
+  if(storage) state.userSettings = JSON.parse(storage);
+}
+
+init();

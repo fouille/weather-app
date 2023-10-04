@@ -33,7 +33,8 @@ const controlShowWeather = async function (city = undefined) {
     hourlyView.render(model.state);
     detailsView.render(model.state);
     cityView.render(model.state);
-
+    settingsView.render(model.state);
+    
     // Insert city data
     cityView.insertCity();
 
