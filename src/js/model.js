@@ -5,11 +5,13 @@ import {
   SEVEN_DAY_F,
   HOURLY_LENGTH,
   WINDY_LEVEL,
+  F_D_API_KEY,
+  F_D_API_URL,
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
 export const state = {
-  weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   userSettings: {
     temperature: "celsius",
     windSpeed: "km/h",
@@ -104,6 +106,23 @@ export const getCurrentWeather = async function (city) {
     throw error;
   }
 };
+
+export const getFiveDaysForecast = async function(city){
+  try{
+    const data = await AJAX(`${F_D_API_URL}${city}${F_D_API_KEY}`);
+    convertForecast(data.list)
+  }catch(err){
+    throw err;
+  }
+}
+
+const convertForecast = function(data){
+  console.log(data);
+  let incDate = new Date(data[0].dt_txt).getDay() + 1;
+  data.forEach((period) => {
+    console.log(incDate === new Date(period.dt_txt).getDay());
+  });
+}
 
 // get the highest wind value of the day
 const getHighestWind = function (day) {
