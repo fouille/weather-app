@@ -7,6 +7,7 @@ import {
   WINDY_LEVEL,
   F_D_API_KEY,
   F_D_API_URL,
+  CITY_TO_COORDS,
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
@@ -42,12 +43,15 @@ export const getLocation = async function () {
       });
 
       const { longitude, latitude } = position.coords;
+      // const data = await AJAX(
+      //   `https://geocode.xyz/${latitude},${longitude}?geoit=json`
+      // );
       const data = await AJAX(
-        `https://geocode.xyz/${latitude},${longitude}?geoit=json`
+        `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`
       );
-      console.log(data); 
-      if (data.city.includes("Throttled")) return "Zhytomyr";
-      return data.city;
+      
+      if (!data) return "Zhytomyr";
+      return data.address.city;
     } catch (error) {
       console.error("Error getting location:", error);
       throw error; // Optionally rethrow the error for handling at a higher level.
@@ -110,17 +114,20 @@ export const getCurrentWeather = async function (city) {
 export const getFiveDaysForecast = async function(city){
   try{
     const data = await AJAX(`${F_D_API_URL}${city}${F_D_API_KEY}`);
-    convertForecast(data.list)
+    const location = await AJAX(`${CITY_TO_COORDS}${city}`);
+    console.log(location);
+    // convertForecast(data.list)
   }catch(err){
     throw err;
   }
 }
 
 const convertForecast = function(data){
-  console.log(data);
   let incDate = new Date(data[0].dt_txt).getDay() + 1;
   data.forEach((period) => {
-    console.log(incDate === new Date(period.dt_txt).getDay());
+    if(incDate === new Date(period.dt_txt).getDay()){
+
+    };
   });
 }
 
