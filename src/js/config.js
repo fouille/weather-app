@@ -10,3 +10,4 @@ export const F_D_API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
 export const S_API = "http://api.weatherunlocked.com/api/forecast/";
 export const S_KEY = "?app_id=3ed297ac&app_key=74ed1138d50f76e0be473e2ab68677b2";
 export const CITY_TO_COORDS = "https://geocode.maps.co/search?q=";
+export const COORDS_TO_CITY = "https://geocode.maps.co/reverse?";

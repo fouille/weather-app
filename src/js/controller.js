@@ -24,8 +24,8 @@ const controlShowWeather = async function (city = undefined) {
     }
     // load weather data from the model
     await model.getCurrentWeather(city);
-    
-    await model.getFiveDaysForecast(city);
+
+    await model.getSevenDaysForecast(city);
 
     // Render loading animation
     controlLoadAnimation();

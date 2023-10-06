@@ -8,6 +8,9 @@ import {
   F_D_API_KEY,
   F_D_API_URL,
   CITY_TO_COORDS,
+  S_API,
+  S_KEY,
+  COORDS_TO_CITY,
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
@@ -47,9 +50,9 @@ export const getLocation = async function () {
       //   `https://geocode.xyz/${latitude},${longitude}?geoit=json`
       // );
       const data = await AJAX(
-        `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`
+        `${COORDS_TO_CITY}lat=${latitude}&lon=${longitude}`
       );
-      
+
       if (!data) return "Zhytomyr";
       return data.address.city;
     } catch (error) {
@@ -111,25 +114,48 @@ export const getCurrentWeather = async function (city) {
   }
 };
 
-export const getFiveDaysForecast = async function(city){
+export const getSevenDaysForecast = async function(city){
   try{
-    const data = await AJAX(`${F_D_API_URL}${city}${F_D_API_KEY}`);
     const location = await AJAX(`${CITY_TO_COORDS}${city}`);
-    console.log(location);
+    const data = await AJAX(
+      `${S_API}${location[0].lat},${location[0].lon}${S_KEY}`
+    );
+    console.log(data.Days);
+    state.forecastSeven = data.Days;
+    state.forecastSeven.forEach(day=>{
+      day.highestWind = day.windspd_max_mph; 
+      day.img = getDominantWeather(
+        day,
+        day.highestWind > WINDY_LEVEL
+      );
+    })
     // convertForecast(data.list)
   }catch(err){
     throw err;
   }
 }
 
-const convertForecast = function(data){
-  let incDate = new Date(data[0].dt_txt).getDay() + 1;
-  data.forEach((period) => {
-    if(incDate === new Date(period.dt_txt).getDay()){
+const getDominantWeather = function(day, isWindy){
+  const condCounts = {};
+  day.Timeframes.forEach((timeframe, i)=>{
+    // console.log(timeframe);
+    if(timeframe.wx_desc.toLowerCase().includes("clear")) return;
+    const condition = getWeatherImage(timeframe.wx_desc, isWindy, true);
+    if (condCounts[condition]) {
+      // If it is, increment the count
+      condCounts[condition]++;
+    } else {
+      // If it's not, add it to the object with a count of 1
+      condCounts[condition] = 1;
+    }
+  })
+  if (Object.keys(condCounts).length === 0) return "sunny";
+    const sortedArr = Object.entries(condCounts);
+    sortedArr.sort((a, b) => b[1] - a[1]);
 
-    };
-  });
+    return sortedArr[0][0];
 }
+
 
 // get the highest wind value of the day
 const getHighestWind = function (day) {
@@ -201,23 +227,15 @@ const getHours = function () {
 
 const getWeatherImage = function (condition, isWindy, isDay) {
   // clear sun
-  if (condition === "Sunny") {
+  if (condition.toLowerCase().includes("sunny")) {
     if (isWindy) return "windySun";
     return "sunny";
   }
   // clear moon
-  if (condition === "Clear") {
+  if (condition.toLowerCase().includes("clear")) {
     if (isWindy) return "windyMoon";
     return "clear";
   }
-  // cloud
-  if (
-    condition === "Cloudy" ||
-    condition === "Overcast" ||
-    condition === "Mist" ||
-    condition.toLowerCase().includes("fog")
-  )
-    return "cloud";
 
   // for sun/moon with a certain condition
   if (
@@ -298,7 +316,7 @@ const getWeatherImage = function (condition, isWindy, isDay) {
   }
 
   // clouds with sun or moon
-  if (condition === "Partly cloudy") {
+  if (condition.toLowerCase().includes("partly cloudy")) {
     if (isDay) {
       if (isWindy) return "windyCloudySun";
       return "cloudySun";
@@ -306,6 +324,16 @@ const getWeatherImage = function (condition, isWindy, isDay) {
     if (isWindy) return "windyCloudyMoon";
     return "cloudyMoon";
   }
+
+  // cloud
+  if (
+    condition.toLowerCase().includes("cloud") ||
+    condition.toLowerCase().includes("overcast") ||
+    condition.toLowerCase().includes("mist") ||
+    condition.toLowerCase().includes("fog")
+  )
+    return "cloud";
+
   // sun with snow
   if (condition.includes("snow") || condition.includes("Blizzard"))
     return "snowyCloud";
