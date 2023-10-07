@@ -1,4 +1,5 @@
 import View from "./View.js";
+import { parseDateStringToDate } from "../helpers.js";
 
 class SevenDayView extends View {
   _parentElement = document.querySelector(".s-d-list");
@@ -15,13 +16,12 @@ class SevenDayView extends View {
   }
 
   _generateMarkup(){
-    return this._data.forecast.forecastday
-      .map((day, i) => {
-        const weekDay = this._data.weekdays[new Date(day.date).getDay()];
-        if (i === 0) return this._generateHTML(day, "Today");
-        return this._generateHTML(day, weekDay);
-      })
-      .join("");
+    return this._data.forecastSeven.map((day, i)=>{
+      const date = parseDateStringToDate(day.date)
+      const weekDay = this._data.weekdays[date.getDay()];
+      if (i === 0) return this._generateHTML(day, "Today");
+      return this._generateHTML(day, weekDay);
+    }).join("");
   }
 
   _generateHTML(day, weekDay) {
@@ -41,13 +41,13 @@ class SevenDayView extends View {
                 <p class="bold-light-text">
                 ${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${Math.round(day.day.maxtemp_c)}`
-                    : `${Math.round(day.day.maxtemp_f)}`
+                    ? `${Math.round(day.temp_max_c)}`
+                    : `${Math.round(day.temp_max_f)}`
                 }</p>
                 <div class="regular-light-text">/${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${Math.round(day.day.mintemp_c)}`
-                    : `${Math.round(day.day.mintemp_f)}`
+                    ? `${Math.round(day.temp_min_c)}`
+                    : `${Math.round(day.temp_min_f)}`
                 }</div>
               </div>
             </li>`;

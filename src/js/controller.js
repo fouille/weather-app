@@ -22,13 +22,14 @@ const controlShowWeather = async function (city = undefined) {
       city = await model.getLocation();
       if (!city) city = "Zhytomyr";
     }
+
+    // Render loading animation
+    controlLoadAnimation();
+
     // load weather data from the model
     await model.getCurrentWeather(city);
 
     await model.getSevenDaysForecast(city);
-
-    // Render loading animation
-    controlLoadAnimation();
 
     // Render Data for each element
     sevenDayView.render(model.state);

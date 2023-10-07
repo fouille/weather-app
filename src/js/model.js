@@ -107,6 +107,7 @@ export const getCurrentWeather = async function (city) {
         day.highestWind > WINDY_LEVEL,
         true
       );
+
     });
   } catch (error) {
     console.error(error);
@@ -114,26 +115,23 @@ export const getCurrentWeather = async function (city) {
   }
 };
 
+// Separate API to fetch 7-day forecast
 export const getSevenDaysForecast = async function(city){
   try{
     const location = await AJAX(`${CITY_TO_COORDS}${city}`);
     const data = await AJAX(
       `${S_API}${location[0].lat},${location[0].lon}${S_KEY}`
     );
-    console.log(data.Days);
     state.forecastSeven = data.Days;
-    state.forecastSeven.forEach(day=>{
-      day.highestWind = day.windspd_max_mph; 
-      day.img = getDominantWeather(
-        day,
-        day.highestWind > WINDY_LEVEL
-      );
+    state.forecastSeven.forEach((day) => {
+      day.img = getDominantWeather(day, day.windspd_max_mph > WINDY_LEVEL);
       let predominant = getConditionForDescription(day);
       predominant = predominant.replace(" skies", "").trim();
       day.dominantCondition = shortWeatherDescription(predominant);
-    })
+    });
     // convertForecast(data.list)
   }catch(err){
+    console.error(`${err} WHAT THE HELL MAN?`)
     throw err;
   }
 }

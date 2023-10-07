@@ -69,3 +69,26 @@ export const convertTo12Hour = function(time24hour) {
   const time12 = `${hour12}:${minutes} ${period}`;
   return time12;
 }
+
+export const parseDateStringToDate = function(dateString) {
+  // Split the input string by '/' to extract day, month, and year
+  const dateParts = dateString.split("/");
+
+  // Ensure there are three parts (day, month, and year)
+  if (dateParts.length === 3) {
+    const day = parseInt(dateParts[0]);
+    const month = parseInt(dateParts[1]) - 1; // Month is zero-based (0-11)
+    const year = parseInt(dateParts[2]);
+
+    // Create a Date object
+    const properDate = new Date(year, month, day);
+
+    // Check if the Date object is valid
+    if (!isNaN(properDate.getTime())) {
+      return properDate;
+    }
+  }
+
+  // Return null for invalid input
+  return null;
+}
