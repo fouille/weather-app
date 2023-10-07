@@ -128,12 +128,35 @@ export const getSevenDaysForecast = async function(city){
         day,
         day.highestWind > WINDY_LEVEL
       );
+      let predominant = getConditionForDescription(day);
+      predominant = predominant.replace(" skies", "").trim();
+      day.dominantCondition = shortWeatherDescription(predominant);
     })
     // convertForecast(data.list)
   }catch(err){
     throw err;
   }
 }
+
+const getConditionForDescription = function(day){
+  const condCounts = {};
+  // Iterate through the array
+  for (const item of day.Timeframes) {
+    const condition = item.wx_desc;
+    if (condition.toLowerCase().includes("clear")) continue;
+    if (condCounts[condition]) {
+      // If it is, increment the count
+      condCounts[condition]++;
+    } else {
+      // If it's not, add it to the object with a count of 1
+      condCounts[condition] = 1;
+    }
+  }
+  if (Object.keys(condCounts).length === 0) return "Sunny";
+  const sortedArr = Object.entries(condCounts);
+  sortedArr.sort((a, b) => b[1] - a[1]);
+  return sortedArr[0][0];
+};
 
 const getDominantWeather = function(day, isWindy){
   const condCounts = {};
