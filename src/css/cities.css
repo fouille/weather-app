@@ -1,0 +1,123 @@
+@import url("root.css");
+
+.cities-wrapper {
+  background-color: var(--background);
+  width: 100%;
+  height: calc(100% - 50px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cities-container {
+  flex-basis: 94%;
+  background-color: var(--background);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.city-saved {
+  flex-basis: calc(20% - 5px);
+  border-radius: 20px;
+  background-color: var(--interface-color);
+  display: flex;
+  align-items: center;
+  transition: outline .2s ease-in-out;
+  cursor: pointer;
+}
+
+.city--active{
+    background-color: var(--background);
+    outline: 2px solid var(--btn-color);
+}
+
+.city-saved:hover{
+    outline: 2px solid var(--btn-color);
+}
+
+.city-img {
+  flex: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.city-img img {
+  width: 60%;
+  height: 70%;
+}
+
+.city-name-time {
+  flex: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.city-name-time svg{
+    margin-left: .3rem;
+}
+
+.city-saved-name {
+  color: var(--details-value);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.city-saved-time {
+  padding-top: 0.3rem;
+  color: var(--grey-font);
+  font-size: 1.1rem;
+}
+
+.city-saved-temp {
+  flex: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    color: var(--nav-active-p);
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.pagination {
+  flex-basis: 5%;
+  background-color: var(--background);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-page {
+  height: 100%;
+  border-radius: 10px;
+  width: 80px;
+  background-color: var(--btn-color);
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.current-page {
+  height: 100%;
+  border-radius: 10px;
+  width: 120px;
+  background-color: #455158;
+  opacity: 0.3;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.btn-page:hover {
+  background-color: var(--btn-hover);
+}

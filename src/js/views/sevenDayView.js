@@ -7,7 +7,6 @@ class SevenDayView extends View {
   insertDays() {
     if (Object.keys(this._data).length === 0) return;
     this._clear();
-    console.log(this._data.forecastSeven);
     const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
   }
@@ -26,8 +25,6 @@ class SevenDayView extends View {
   }
 
   _generateHTML(day, weekDay) {
-    console.log(day.dominantCondition);
-    console.log(day.img);
     return `<li class="s-d-item">
               <p class="regular-light-text weekday">${weekDay}</p>
               <div class="s-d-icon-condition">

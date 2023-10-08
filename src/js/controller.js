@@ -102,6 +102,9 @@ const controlGeneralSettings = function (target) {
 const controlCities = function () {
   citiesView.enableActive();
   controlActiveElement(citiesView);
+
+  landingPageView.clearContentContainer();
+  citiesView.insertElements();
 };
 
 const controlDetails = function () {
