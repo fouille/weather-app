@@ -124,10 +124,14 @@ export const getSevenDaysForecast = async function(city){
     );
     state.forecastSeven = data.Days;
     state.forecastSeven.forEach((day) => {
-      day.img = getDominantWeather(day, day.windspd_max_mph > WINDY_LEVEL);
+      // day.img = getDominantWeather(day, day.windspd_max_mph > WINDY_LEVEL);
       let predominant = getConditionForDescription(day);
       predominant = predominant.replace(" skies", "").trim();
       day.dominantCondition = shortWeatherDescription(predominant);
+      day.img = getWeatherImage(
+        day.dominantCondition,
+        day.windspd_max_mph > WINDY_LEVEL, true
+      );
     });
     // convertForecast(data.list)
   }catch(err){
@@ -153,6 +157,7 @@ const getConditionForDescription = function(day){
   if (Object.keys(condCounts).length === 0) return "Sunny";
   const sortedArr = Object.entries(condCounts);
   sortedArr.sort((a, b) => b[1] - a[1]);
+  console.log(day, sortedArr);
   return sortedArr[0][0];
 };
 
@@ -174,6 +179,7 @@ const getDominantWeather = function(day, isWindy){
     const sortedArr = Object.entries(condCounts);
     sortedArr.sort((a, b) => b[1] - a[1]);
 
+    console.log(day, sortedArr);
     return sortedArr[0][0];
 }
 

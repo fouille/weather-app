@@ -4,7 +4,7 @@ export const TIMEOUT_SEC = 10;
 export const CURRENT_W = "&days=7&aqi=yes&alerts=no";
 export const SEVEN_DAY_F = "&days=7&aqi=yes&alerts=no";
 export const HOURLY_LENGTH = 6;
-export const WINDY_LEVEL = 21;
+export const WINDY_LEVEL = 19;
 export const F_D_API_KEY = "&appid=620008ec95722257f62186be3bced52e";
 export const F_D_API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
 export const S_API = "http://api.weatherunlocked.com/api/forecast/";
