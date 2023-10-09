@@ -51,6 +51,7 @@ class SettingsView extends View {
   }
 
   clearSettingsContainer() {
+    if(!document.querySelector(".settings")) return;
     const setCont = [
       document.querySelector(".units"),
       document.querySelector(".settings"),

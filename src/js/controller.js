@@ -49,6 +49,8 @@ const controlShowWeather = async function (city = undefined) {
 
     // Insert seven day forecast data
     sevenDayView.insertDays();
+
+    console.log(model.state);
   } catch (err) {
     console.error(err);
     cityView.renderError("Failed to fetch");
@@ -75,6 +77,7 @@ const controlLanding = function () {
 
   landingPageView.reviveContentContainer();
   settingsView.clearSettingsContainer();
+  citiesView.clearContainer();
 
   // Update DOM components
   cityView.update(model.state);
@@ -88,6 +91,7 @@ const controlSettings = function () {
   controlActiveElement(settingsView);
 
   landingPageView.clearContentContainer();
+  citiesView.clearContainer();
   settingsView.insertElements();
 };
 
@@ -104,6 +108,7 @@ const controlCities = function () {
   controlActiveElement(citiesView);
 
   landingPageView.clearContentContainer();
+  settingsView.clearSettingsContainer();
   citiesView.insertElements();
 };
 

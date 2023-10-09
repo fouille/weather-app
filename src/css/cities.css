@@ -25,17 +25,17 @@
   background-color: var(--interface-color);
   display: flex;
   align-items: center;
-  transition: outline .2s ease-in-out;
+  transition: outline 0.2s ease-in-out;
   cursor: pointer;
 }
 
-.city--active{
-    background-color: var(--background);
-    outline: 2px solid var(--btn-color);
+.city--active {
+  background-color: var(--background);
+  outline: 2px solid var(--btn-color);
 }
 
-.city-saved:hover{
-    outline: 2px solid var(--btn-color);
+.city-saved:hover {
+  outline: 2px solid var(--btn-color);
 }
 
 .city-img {
@@ -58,8 +58,8 @@
   justify-content: center;
 }
 
-.city-name-time svg{
-    margin-left: .3rem;
+.city-name-time svg {
+  margin-left: 0.3rem;
 }
 
 .city-saved-name {
@@ -79,7 +79,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-    color: var(--nav-active-p);
+  color: var(--nav-active-p);
   font-weight: 400;
   font-size: 2rem;
 }
@@ -120,4 +120,203 @@
 
 .btn-page:hover {
   background-color: var(--btn-hover);
+}
+
+.preview {
+  width: 100%;
+  background-color: var(--interface-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview > * {
+  flex-basis: 33.33%;
+}
+
+.preview > *:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preview-city {
+  flex-basis: 30%;
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+}
+
+.preview-city > * {
+  flex-basis: 50%;
+}
+
+.p-c-text {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0 0 0;
+}
+
+/* .p-c-text > *{
+  border: 1px solid white;
+} */
+
+.p-city-name {
+  color: #d1d3d5;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  width: auto;
+}
+
+.p-rain-chance {
+  color: var(--grey-font);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  width: auto;
+}
+
+.p-city-temp {
+  padding-top: 0.8rem;
+  color: white;
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+.p-c-img img {
+  width: 80%;
+}
+
+.p-c-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-hourly {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--background);
+}
+
+.p-hourly-text {
+  color: var(--grey-font);
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+.p-hourly-content {
+  flex-basis: 78%;
+  width: 97%;
+  display: flex;
+}
+
+.p-hourly-content > * {
+  flex-basis: 33.3%;
+}
+
+.p-hourly-content > *:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.p-h-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.p-h-item > * {
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h-item-img img {
+  width: 60%;
+}
+
+.h-item-time {
+  color: var(--grey-font);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.h-item-temp {
+  color: var(--grey-temperature);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.forecast-text {
+  color: var(--grey-font);
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 1rem 0 0.5rem 0;
+}
+
+.preview-forecast {
+  flex-basis: 37%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  flex-basis: 90%;
+}
+
+.forecast-list > * {
+  flex-basis: 33.33%;
+  /* border: 1px solid green; */
+}
+
+.forecast-list > *:not(:last-child){
+  border-bottom: 1px solid var(--border-color);
+}
+
+.forecast-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forecast-item > * {
+  display: flex;
+  /* border: 1px solid olive; */
+}
+
+.forecast-img-cond{
+  flex-basis: 60%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+
+.forecast-img img{
+  width: 55%; 
+}
+
+.forecast-img{
+  flex-basis: 40%;
+  /* border: 1px solid white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forecast-cond {
+  color: var(--nav-active-p);
+  font-weight: 600;
+  font-size: 0.9rem;
 }

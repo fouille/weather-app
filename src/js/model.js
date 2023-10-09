@@ -28,6 +28,12 @@ export const state = {
     location: true,
     notifications: false,
   },
+  savedCities: {
+    "New York": {},
+  },
+  locationCity: {
+
+  }
 };
 
 const createObj = function (data) {
@@ -54,6 +60,7 @@ export const getLocation = async function () {
       );
 
       if (!data) return "Zhytomyr";
+      state.locationCity[data.address.city] = {};
       return data.address.city;
     } catch (error) {
       console.error("Error getting location:", error);
@@ -96,19 +103,6 @@ export const getCurrentWeather = async function (city) {
       );
     });
 
-    // get image for each day
-    state.forecast.forecastday.forEach((day) => {
-      const dominantCondition = getPredominantWeather(day);
-      day.dominantCondition = shortWeatherDescription(dominantCondition);
-      day.highestWind = getHighestWind(day);
-
-      day.img = getWeatherImage(
-        dominantCondition,
-        day.highestWind > WINDY_LEVEL,
-        true
-      );
-
-    });
   } catch (error) {
     console.error(error);
     throw error;
@@ -157,31 +151,28 @@ const getConditionForDescription = function(day){
   if (Object.keys(condCounts).length === 0) return "Sunny";
   const sortedArr = Object.entries(condCounts);
   sortedArr.sort((a, b) => b[1] - a[1]);
-  console.log(day, sortedArr);
   return sortedArr[0][0];
 };
 
-const getDominantWeather = function(day, isWindy){
-  const condCounts = {};
-  day.Timeframes.forEach((timeframe, i)=>{
-    // console.log(timeframe);
-    if(timeframe.wx_desc.toLowerCase().includes("clear")) return;
-    const condition = getWeatherImage(timeframe.wx_desc, isWindy, true);
-    if (condCounts[condition]) {
-      // If it is, increment the count
-      condCounts[condition]++;
-    } else {
-      // If it's not, add it to the object with a count of 1
-      condCounts[condition] = 1;
-    }
-  })
-  if (Object.keys(condCounts).length === 0) return "sunny";
-    const sortedArr = Object.entries(condCounts);
-    sortedArr.sort((a, b) => b[1] - a[1]);
+// const getDominantWeather = function(day, isWindy){
+//   const condCounts = {};
+//   day.Timeframes.forEach((timeframe, i)=>{
+//     if(timeframe.wx_desc.toLowerCase().includes("clear")) return;
+//     const condition = getWeatherImage(timeframe.wx_desc, isWindy, true);
+//     if (condCounts[condition]) {
+//       // If it is, increment the count
+//       condCounts[condition]++;
+//     } else {
+//       // If it's not, add it to the object with a count of 1
+//       condCounts[condition] = 1;
+//     }
+//   })
+//   if (Object.keys(condCounts).length === 0) return "sunny";
+//     const sortedArr = Object.entries(condCounts);
+//     sortedArr.sort((a, b) => b[1] - a[1]);
 
-    console.log(day, sortedArr);
-    return sortedArr[0][0];
-}
+//     return sortedArr[0][0];
+// }
 
 
 // get the highest wind value of the day
