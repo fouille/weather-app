@@ -1,5 +1,6 @@
 import View from "./View.js";
 import details from "url:../../../img/svg/details.svg";
+import {convertDateToTime} from "./../helpers.js";
 
 class CitiesView extends View {
   _parentElement = document.querySelector("nav");
@@ -32,80 +33,56 @@ class CitiesView extends View {
     this._makeVisible(citiesCont);
   }
 
+  _createCities() {
+    if (Object.keys(this._data.locationCity) !== 0) {
+      const html = this._generateSavedCity(
+        Object.values(this._data.locationCity)[0],
+        true
+      );
+      document
+        .querySelector(".cities-container")
+        .insertAdjacentHTML("beforeend", html);
+    }
+
+    let html = "";
+    if (Object.keys(this._data.savedCities).length === 0) return;
+    for (const [city, weather] of Object.entries(this._data.savedCities)) {
+      html += this._generateSavedCity(weather);
+    }
+    document
+      .querySelector(".cities-container")
+      .insertAdjacentHTML("beforeend", html);
+  }
+
+  _generateSavedCity(city, location = false) {
+    return `
+     <div class="city-saved ${
+       city.location.name === this._data.activeCity ? "city--active" : ""
+     }">
+      <div class="city-img">
+        <img src="${this._allImports[city.img]}">
+      </div>
+      <div class="city-name-time">
+        <div class="city-saved-name"><span>${city.location.name}</span>${
+      location
+        ? ` <svg width="17px" height="17px" viewBox="0 0 100 100"> <use href="${details}#icon-arrow-location"> </use> </svg>`
+        : ""
+    }</div>
+        <div class="city-saved-time">${convertDateToTime(city.location.localtime)}</div>
+      </div>
+      <div class="city-saved-temp">
+        ${Math.round(city.current.feelslike_c)}°
+      </div>
+    </div>
+    `;
+  }
+
   insertElements() {
+    console.log(this._data);
     if (document.querySelector(".cities-wrapper")) return this._reviveCities();
     const html = `
     <div class="cities-wrapper">
       <div class="cities-container">
-        <div class="city-saved city--active">
-          <div class="city-img">
-            <img src="${this._allImports.cloud}">
-          </div>
-          <div class="city-name-time">
-            <div class="city-saved-name">Madrid
-              <svg
-                width="17px"
-                height="17px"
-                viewBox="0 0 100 100"
-              >
-                  <use href="${details}#icon-arrow-location"></use>
-                </svg>
-            </div>
-            <div class="city-saved-time">10:23</div>
-          </div>
-          <div class="city-saved-temp">
-            31°
-          </div>
-        </div>
-        <div class="city-saved">
-          <div class="city-img">
-            <img src="${this._allImports.sunny}">
-          </div>
-          <div class="city-name-time">
-            <div class="city-saved-name">Vienna</div>
-            <div class="city-saved-time">11:23</div>
-          </div>
-          <div class="city-saved-temp">
-            27°
-          </div>
-        </div>
-        <div class="city-saved">
-          <div class="city-img">
-            <img src="${this._allImports.cloudySun}">
-            
-          </div>
-          <div class="city-name-time">
-            <div class="city-saved-name">Kyiv</div>
-            <div class="city-saved-time">12:23</div>
-          </div>
-          <div class="city-saved-temp">
-            30°
-          </div>
-        </div>
-        <div class="city-saved">
-          <div class="city-img">
-            <img src="${this._allImports.rainyCloudySun}">
-          </div>
-          <div class="city-name-time">
-            <div class="city-saved-name">Athens</div>
-            <div class="city-saved-time">11:23</div>
-          </div>
-          <div class="city-saved-temp">
-            33°
-          </div>
-        </div>
-        <div class="city-saved">
-          <div class="city-img">
-            <img src="${this._allImports.clear}">
-          </div>
-          <div class="city-name-time">
-            <div class="city-saved-name">Zhytomyr</div>
-            <div class="city-saved-time">12:23</div>
-          </div>
-          <div class="city-saved-temp">
-            29°
-          </div>
-        </div>
       </div>
       <div class="pagination">
         <button data-go-to="undefined" class="btn-page">Page 2</button>
@@ -114,6 +91,8 @@ class CitiesView extends View {
       </div>
     </div>`;
     this._citiesContainer.insertAdjacentHTML("beforeend", html);
+
+    this._createCities();
 
     const cityPreviewHTML = `
     <div class="preview">

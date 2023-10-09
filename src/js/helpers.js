@@ -92,3 +92,16 @@ export const parseDateStringToDate = function(dateString) {
   // Return null for invalid input
   return null;
 }
+
+export const convertDateToTime = function (dateTimeString) {
+  const dateObject = new Date(dateTimeString);
+
+  const hours = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+
+  const formattedTime =
+    hours.toString().padStart(2, "0") +
+    ":" +
+    minutes.toString().padStart(2, "0");
+  return formattedTime
+};

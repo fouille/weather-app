@@ -30,10 +30,11 @@ export const state = {
   },
   savedCities: {
     "New York": {},
+    London: {},
+    Madrid: {},
   },
-  locationCity: {
-
-  }
+  locationCity: {},
+  activeCity: "",
 };
 
 const createObj = function (data) {
@@ -102,16 +103,60 @@ export const getCurrentWeather = async function (city) {
         hour.is_day
       );
     });
-
+    state.activeCity = state.location.name;
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
+export const getWeatherForSavedCities = async function () {
+  try {
+    //get weather for location city
+    if (Object.keys(state.locationCity).length !== 0) {
+      const data = await AJAX(
+        `${URL}${API_KEY}&q=${Object.keys(state.locationCity)[0]}${CURRENT_W}`
+      );
+      state.locationCity[Object.keys(state.locationCity)[0]].current =
+        data.current;
+      state.locationCity[Object.keys(state.locationCity)[0]].forecast =
+        data.forecast;
+      state.locationCity[Object.keys(state.locationCity)[0]].location =
+        data.location;
+
+      state.locationCity[Object.keys(state.locationCity)[0]].img =
+        getWeatherImage(
+          state.locationCity[Object.keys(state.locationCity)[0]].current
+            .condition.text,
+          state.locationCity[Object.keys(state.locationCity)[0]].current
+            .wind_mph > WINDY_LEVEL,
+          state.locationCity[Object.keys(state.locationCity)[0]].current.is_day
+        );
+    }
+
+    if (Object.keys(state.savedCities).length === 0) return;
+
+    for (const city of Object.keys(state.savedCities)) {
+      const data = await AJAX(`${URL}${API_KEY}&q=${city}${CURRENT_W}`);
+      state.savedCities[city].current = data.current;
+      state.savedCities[city].forecast = data.forecast;
+      state.savedCities[city].location = data.location;
+
+      state.savedCities[city].img = getWeatherImage(
+        state.savedCities[city].current.condition.text,
+        state.savedCities[city].current.wind_mph > WINDY_LEVEL,
+        state.savedCities[city].current.is_day
+      );
+    }
+  } catch (err) {
+    console.error("error getting cities", err);
+    throw err;
+  }
+};
+
 // Separate API to fetch 7-day forecast
-export const getSevenDaysForecast = async function(city){
-  try{
+export const getSevenDaysForecast = async function (city) {
+  try {
     const location = await AJAX(`${CITY_TO_COORDS}${city}`);
     const data = await AJAX(
       `${S_API}${location[0].lat},${location[0].lon}${S_KEY}`
@@ -124,17 +169,18 @@ export const getSevenDaysForecast = async function(city){
       day.dominantCondition = shortWeatherDescription(predominant);
       day.img = getWeatherImage(
         day.dominantCondition,
-        day.windspd_max_mph > WINDY_LEVEL, true
+        day.windspd_max_mph > WINDY_LEVEL,
+        true
       );
     });
     // convertForecast(data.list)
-  }catch(err){
-    console.error(`${err} WHAT THE HELL MAN?`)
+  } catch (err) {
+    console.error(`${err} WHAT THE HELL MAN?`);
     throw err;
   }
-}
+};
 
-const getConditionForDescription = function(day){
+const getConditionForDescription = function (day) {
   const condCounts = {};
   // Iterate through the array
   for (const item of day.Timeframes) {
@@ -153,27 +199,6 @@ const getConditionForDescription = function(day){
   sortedArr.sort((a, b) => b[1] - a[1]);
   return sortedArr[0][0];
 };
-
-// const getDominantWeather = function(day, isWindy){
-//   const condCounts = {};
-//   day.Timeframes.forEach((timeframe, i)=>{
-//     if(timeframe.wx_desc.toLowerCase().includes("clear")) return;
-//     const condition = getWeatherImage(timeframe.wx_desc, isWindy, true);
-//     if (condCounts[condition]) {
-//       // If it is, increment the count
-//       condCounts[condition]++;
-//     } else {
-//       // If it's not, add it to the object with a count of 1
-//       condCounts[condition] = 1;
-//     }
-//   })
-//   if (Object.keys(condCounts).length === 0) return "sunny";
-//     const sortedArr = Object.entries(condCounts);
-//     sortedArr.sort((a, b) => b[1] - a[1]);
-
-//     return sortedArr[0][0];
-// }
-
 
 // get the highest wind value of the day
 const getHighestWind = function (day) {
@@ -369,28 +394,31 @@ export const saveOptions = function (target) {
   return target;
 };
 
-export const saveGeneral = function(target) {
+export const saveGeneral = function (target) {
   const setting = target.dataset.general;
-  if(!setting) return;
-  if(state.generalSettings[setting]) state.generalSettings[setting] = false;
+  if (!setting) return;
+  if (state.generalSettings[setting]) state.generalSettings[setting] = false;
   else state.generalSettings[setting] = true;
   persistGeneralSettings();
-}
+};
 
-const persistSettings = function(){
-  localStorage.setItem("settings", JSON.stringify(state.userSettings))
-}
+const persistSettings = function () {
+  localStorage.setItem("settings", JSON.stringify(state.userSettings));
+};
 
-const persistGeneralSettings = function() {
-  localStorage.setItem("general settings", JSON.stringify(state.generalSettings));
-}
+const persistGeneralSettings = function () {
+  localStorage.setItem(
+    "general settings",
+    JSON.stringify(state.generalSettings)
+  );
+};
 
-const init = function(){
-  const storage = localStorage.getItem("settings")
-  if(storage) state.userSettings = JSON.parse(storage);
+const init = function () {
+  const storage = localStorage.getItem("settings");
+  if (storage) state.userSettings = JSON.parse(storage);
 
   const generalStorage = localStorage.getItem("general settings");
-  if(generalStorage) state.generalSettings = JSON.parse(generalStorage);
-}
+  if (generalStorage) state.generalSettings = JSON.parse(generalStorage);
+};
 
 init();

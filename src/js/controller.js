@@ -31,12 +31,15 @@ const controlShowWeather = async function (city = undefined) {
 
     await model.getSevenDaysForecast(city);
 
+    await model.getWeatherForSavedCities();
+
     // Render Data for each element
     sevenDayView.render(model.state);
     hourlyView.render(model.state);
     detailsView.render(model.state);
     cityView.render(model.state);
     settingsView.render(model.state);
+    citiesView.render(model.state);
 
     // Insert city data
     cityView.insertCity();
