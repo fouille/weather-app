@@ -24,7 +24,7 @@ class HourlyView extends View {
                 <div class="h-time">${
                   this._data.generalSettings.TFhours
                     ? `${new Date(hour.time).getHours()}:00`
-                    : `${convertTo12Hour(`${new Date(hour.time).getHours()}:00`)}`
+                    : `${convertTo12Hour(`${new Date(hour.time).getHours()}:00`).slice(1)}`
                 }</div>
                 <img src="${this._getSrc(hour.img)}" alt="weather condition" ${
       this._getSrc(hour.img) !== this._allImports.cloud &&

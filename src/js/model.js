@@ -103,6 +103,20 @@ export const getCurrentWeather = async function (city) {
         hour.is_day
       );
     });
+
+    // get image for each day
+    state.forecast.forecastday.forEach((day) => {
+      const dominantCondition = getPredominantWeather(day);
+      day.dominantCondition = shortWeatherDescription(dominantCondition);
+      day.highestWind = getHighestWind(day);
+
+      day.img = getWeatherImage(
+        dominantCondition,
+        day.highestWind > WINDY_LEVEL,
+        true
+      );
+    });
+
     state.activeCity = state.location.name;
   } catch (error) {
     console.error(error);
@@ -253,7 +267,7 @@ const getPredominantWeather = function (day) {
 const getHours = function () {
   const firstDayArr = state.forecast.forecastday[0].hour;
   const secondDayArr = state.forecast.forecastday[1].hour;
-  const curHour = new Date().getHours();
+  const curHour = new Date(state.location.localtime).getHours();
 
   const newArr = [];
 

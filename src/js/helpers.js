@@ -46,8 +46,7 @@ export const convertTo24Hour = function (time12Hour) {
   return time24Hour;
 };
 
-
-export const convertTo12Hour = function(time24hour) {
+export const convertTo12Hour = function (time24hour) {
   const [hours, minutes] = time24hour.split(":");
   let period = "AM";
 
@@ -68,9 +67,9 @@ export const convertTo12Hour = function(time24hour) {
   // Construct the 12-hour format time string
   const time12 = `${hour12}:${minutes} ${period}`;
   return time12;
-}
+};
 
-export const parseDateStringToDate = function(dateString) {
+export const parseDateStringToDate = function (dateString) {
   // Split the input string by '/' to extract day, month, and year
   const dateParts = dateString.split("/");
 
@@ -91,7 +90,7 @@ export const parseDateStringToDate = function(dateString) {
 
   // Return null for invalid input
   return null;
-}
+};
 
 export const convertDateToTime = function (dateTimeString) {
   const dateObject = new Date(dateTimeString);
@@ -103,5 +102,5 @@ export const convertDateToTime = function (dateTimeString) {
     hours.toString().padStart(2, "0") +
     ":" +
     minutes.toString().padStart(2, "0");
-  return formattedTime
+  return formattedTime;
 };
