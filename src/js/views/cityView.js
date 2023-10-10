@@ -1,8 +1,21 @@
 import View from "./View.js";
-
+import details from "url:../../../img/svg/details.svg";
 
 class CityView extends View {
   _parentElement = document.querySelector(".city");
+
+  addHandlerSave(callback) {
+    this._parentElement.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-save");
+      if (!btn) return;
+      this.toggleAnimation(btn);
+      callback(btn);
+    });
+  }
+
+  toggleAnimation(btn) {
+    btn.classList.toggle("animate");
+  }
 
   renderSpinner() {
     this._clear();
@@ -16,31 +29,44 @@ class CityView extends View {
     this._clear();
     const html = this._generateMarkup();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
-    
+
     // return to space-between
   }
 
   _generateMarkup() {
-    return `<div class="city-text">
-            <p class="city-name">${this._data.location.name}</p>
-            <p class="rain-chance">Chance of rain: ${
-              this._data.forecast.forecastday[0].day.daily_chance_of_rain
-            }%</p>
-          </div>
-          <div class="city-temperature">${
-            this._data.userSettings.temperature === "celsius"
-              ? `${Math.round(this._data.current.feelslike_c)}`
-              : `${Math.round(this._data.current.feelslike_f)}`
-          }°</div>
-          <div class="weather-icon">
+    return `
+    <div class="city-text">
+      <p class="city-name">${this._data.location.name}</p>
+      <p class="rain-chance">Chance of rain: ${
+        this._data.forecast.forecastday[0].day.daily_chance_of_rain
+      }%</p>
+    </div>
+    <div class="city-temperature">${
+      this._data.userSettings.temperature === "celsius"
+        ? `${Math.round(this._data.current.feelslike_c)}`
+        : `${Math.round(this._data.current.feelslike_f)}`
+    }°
+    </div>
+    <div class="weather-icon">
             <img src="${this._getSrc()}" ${
       this._getSrc() === this._allImports.cloud ||
       this._getSrc() === this._allImports.lightningSnowyWindyCloud
         ? "width='200px'"
         : "width='157px'"
     } id="city-image" alt="" />
-          </div>`;
+    </div>
+    <div class="save-city">
+      <svg class="btn-save ">
+        <use href="${details}#icon-star${
+        Object.keys(this._data.savedCities).includes(this._data.location.name)
+          ? "-fill"
+          : ""
+      }" />
+      </svg>
+    </div>
+    `;
   }
+  
 }
 
 export default new CityView();

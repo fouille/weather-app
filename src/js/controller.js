@@ -121,8 +121,10 @@ const controlCities = function () {
 
   citiesView.pageResult = results;
 
-  if (!document.querySelector(".city-saved")) citiesView.insertCities();
-  else citiesView._reviveCities();
+  if (!document.querySelector(".city-saved")) {
+    citiesView.insertCities();
+    citiesView._reviveCities();
+  } else citiesView._reviveCities();
 
   if (!document.querySelector(".preview-city")) previewView.insertPreview();
 
@@ -161,6 +163,27 @@ const controlActiveElement = function (enabled) {
   });
 };
 
+const controlSavedCity = function (btn) {
+  if (Object.keys(model.state.savedCities).includes(model.state.activeCity)) {
+    model.deleteSavedCity(model.state.activeCity);
+  } else {
+    model.addSavedCity(model.state.activeCity);
+  }
+
+  cityView.toggleAnimation(btn);
+  cityView.update(model.state)
+  // cityView.render(model.state);
+  // cityView.insertCity();
+
+  let results = model.getCitiesPage(model.state.page);
+  if (Object.keys(results).length === 0 && model.state.page > 1) {
+    model.state.page--;
+    results = model.getCitiesPage(model.state.page);
+  }
+  citiesView.pageResult = results;
+  citiesView._clear();
+};
+
 const init = function () {
   landingPageView.addHandlerRender(controlShowWeather);
   searchView.addHandlerSearch(controlSearchResult);
@@ -172,6 +195,7 @@ const init = function () {
   settingsView.addHandlerGeneralSettings(controlGeneralSettings);
   citiesView.addHandlerCity(controlActiveCities);
   paginationView.addHandlerPagination(controlPagination);
+  cityView.addHandlerSave(controlSavedCity);
 };
 
 init();

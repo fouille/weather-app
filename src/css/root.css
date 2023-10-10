@@ -36,14 +36,13 @@ ul {
   list-style-type: none;
 }
 
-.spinner svg{
+.spinner svg {
   width: 150px;
   height: 150px;
 }
 
-.spinner{
+.spinner {
   align-self: center;
-  
 }
 
 #spinner {
@@ -78,14 +77,14 @@ ul {
 
 @keyframes loading {
   0% {
-      background-position: 200% 0;
+    background-position: 200% 0;
   }
   100% {
-      background-position: -200% 0;
+    background-position: -200% 0;
   }
 }
 
-.error{
+.error {
   color: var(--nav-active-p);
   font-size: 1.2rem;
   display: flex;
@@ -95,16 +94,17 @@ ul {
   align-self: center;
 }
 
-.error svg{ 
+.error svg {
   width: 50px;
   height: 50px;
   fill: var(--nav-active-svg);
 }
 
-.disable{
+.disable {
   display: none !important;
 }
 
-.btn-disabled{
+.btn-disabled {
   opacity: 0;
+  cursor: default;
 }

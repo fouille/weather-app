@@ -156,9 +156,7 @@ export const getCitiesPage = function (page = 1) {
   const keys = Object.keys(state.savedCities);
   const start = (page - 1) * state.citiesPerPage;
   const end = page * state.citiesPerPage;
-
   const citiesOnPage = keys.slice(start, end);
-
   const citiesData = {};
   citiesOnPage.forEach((city) => {
     citiesData[city] = state.savedCities[city];
@@ -413,6 +411,19 @@ export const saveGeneral = function (target) {
   if (state.generalSettings[setting]) state.generalSettings[setting] = false;
   else state.generalSettings[setting] = true;
   persistGeneralSettings();
+};
+
+export const addSavedCity = function (city) {
+  state.savedCities[city] = {
+    current: state.current,
+    forecast: state.forecast,
+    img: state.cityImg,
+    location: state.location,
+  };
+};
+
+export const deleteSavedCity = function (city) {
+  delete state.savedCities[city];
 };
 
 const persistSettings = function () {

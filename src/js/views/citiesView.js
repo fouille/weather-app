@@ -12,6 +12,7 @@ class CitiesView extends View {
   insertCities() {
     if (Object.keys(this._data).length === 0) return;
     const html = this._generateMarkup();
+    if(html === undefined) return;
     this._clear();
     this._reviveCities();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
