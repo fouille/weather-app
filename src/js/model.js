@@ -11,6 +11,7 @@ import {
   S_API,
   S_KEY,
   COORDS_TO_CITY,
+  CITIES_PER_PAGE,
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
@@ -32,9 +33,12 @@ export const state = {
     "New York": {},
     London: {},
     Madrid: {},
+    Zhytomyr: {},
+    Washington: {},
   },
-  locationCity: {},
   activeCity: "",
+  citiesPerPage: CITIES_PER_PAGE,
+  page: 1,
 };
 
 const createObj = function (data) {
@@ -61,7 +65,9 @@ export const getLocation = async function () {
       );
 
       if (!data) return "Zhytomyr";
-      state.locationCity[data.address.city] = {};
+      state.savedCities[data.address.city] = {
+        locale: true,
+      };
       return data.address.city;
     } catch (error) {
       console.error("Error getting location:", error);
@@ -126,28 +132,6 @@ export const getCurrentWeather = async function (city) {
 
 export const getWeatherForSavedCities = async function () {
   try {
-    //get weather for location city
-    if (Object.keys(state.locationCity).length !== 0) {
-      const data = await AJAX(
-        `${URL}${API_KEY}&q=${Object.keys(state.locationCity)[0]}${CURRENT_W}`
-      );
-      state.locationCity[Object.keys(state.locationCity)[0]].current =
-        data.current;
-      state.locationCity[Object.keys(state.locationCity)[0]].forecast =
-        data.forecast;
-      state.locationCity[Object.keys(state.locationCity)[0]].location =
-        data.location;
-
-      state.locationCity[Object.keys(state.locationCity)[0]].img =
-        getWeatherImage(
-          state.locationCity[Object.keys(state.locationCity)[0]].current
-            .condition.text,
-          state.locationCity[Object.keys(state.locationCity)[0]].current
-            .wind_mph > WINDY_LEVEL,
-          state.locationCity[Object.keys(state.locationCity)[0]].current.is_day
-        );
-    }
-
     if (Object.keys(state.savedCities).length === 0) return;
 
     for (const city of Object.keys(state.savedCities)) {
@@ -166,6 +150,21 @@ export const getWeatherForSavedCities = async function () {
     console.error("error getting cities", err);
     throw err;
   }
+};
+
+export const getCitiesPage = function (page = 1) {
+  const keys = Object.keys(state.savedCities);
+  const start = (page - 1) * state.citiesPerPage;
+  const end = page * state.citiesPerPage;
+
+  const citiesOnPage = keys.slice(start, end);
+
+  const citiesData = {};
+  citiesOnPage.forEach((city) => {
+    citiesData[city] = state.savedCities[city];
+  });
+
+  return citiesData;
 };
 
 // Separate API to fetch 7-day forecast

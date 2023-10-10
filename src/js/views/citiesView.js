@@ -7,6 +7,7 @@ class CitiesView extends View {
   _navElement = document.querySelector(".n-item-2");
   _parentElement = document.querySelector(".cities-container");
   target;
+  pageResult;
 
   insertCities() {
     if (Object.keys(this._data).length === 0) return;
@@ -18,15 +19,9 @@ class CitiesView extends View {
 
   _generateMarkup() {
     let html = "";
-    if (Object.keys(this._data.locationCity) !== 0) {
-      html += this._generateSavedCity(
-        Object.values(this._data.locationCity)[0],
-        true
-      );
-    }
 
-    if (Object.keys(this._data.savedCities).length === 0) return;
-    for (const [city, weather] of Object.entries(this._data.savedCities)) {
+    if (Object.keys(this.pageResult).length === 0) return;
+    for (const [city, weather] of Object.entries(this.pageResult)) {
       html += this._generateSavedCity(weather);
     }
     return html;
@@ -45,13 +40,13 @@ class CitiesView extends View {
       const target = e.target.closest(".city-saved");
       if (!target) return;
       this._toggleActive(target);
-      this.target = target.querySelector(".city-saved-name span").textContent
+      this.target = target.querySelector(".city-saved-name span").textContent;
       callback();
     });
   }
 
-  _toggleActive(target){
-    const arr = Array.from(document.querySelectorAll(".city-saved"))
+  _toggleActive(target) {
+    const arr = Array.from(document.querySelectorAll(".city-saved"));
     arr.forEach((el) => el.classList.remove("city--active"));
     target.classList.add("city--active");
   }
@@ -73,7 +68,7 @@ class CitiesView extends View {
     this._makeVisible(citiesCont);
   }
 
-  _generateSavedCity(city, location = false) {
+  _generateSavedCity(city) {
     return `
      <div class="city-saved ${
        city.location.name === this._data.activeCity ? "city--active" : ""
@@ -83,7 +78,7 @@ class CitiesView extends View {
       </div>
       <div class="city-name-time">
         <div class="city-saved-name"><span>${city.location.name}</span>${
-      location
+      city.locale
         ? ` <svg width="17px" height="17px" viewBox="0 0 100 100"> <use href="${details}#icon-arrow-location"> </use> </svg>`
         : ""
     }</div>

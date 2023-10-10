@@ -9,6 +9,7 @@ import settingsView from "./views/settingsView.js";
 import citiesView from "./views/citiesView.js";
 import detailSectionView from "./views/detailSectionView.js";
 import previewView from "./views/previewView.js";
+import paginationView from "./views/paginationView.js";
 
 const navElements = [
   landingPageView,
@@ -54,7 +55,6 @@ const controlShowWeather = async function (city = undefined) {
 
     // Insert seven day forecast data
     sevenDayView.insertDays();
-
   } catch (err) {
     console.error(err);
     cityView.renderError("Failed to fetch");
@@ -114,6 +114,13 @@ const controlCities = function () {
   landingPageView.clearContentContainer();
   settingsView.clearSettingsContainer();
 
+  const results = model.getCitiesPage(model.state.page);
+
+  paginationView.render(model.state);
+  paginationView.insertPagination();
+
+  citiesView.pageResult = results;
+
   if (!document.querySelector(".city-saved")) citiesView.insertCities();
   else citiesView._reviveCities();
 
@@ -124,12 +131,23 @@ const controlCities = function () {
   citiesView.update(model.state);
 };
 
-const controlActiveCities = async function(){
+const controlActiveCities = async function () {
   const city = citiesView.target;
-  if(!city) return
+  if (!city) return;
   await controlShowWeather(city);
   previewView.insertPreview();
-}
+};
+
+const controlPagination = function (page) {
+  const results = model.getCitiesPage(page);
+  citiesView.pageResult = results;
+  citiesView.insertCities();
+
+  model.state.page = page;
+
+  paginationView.render(model.state);
+  paginationView.insertPagination();
+};
 
 const controlDetails = function () {
   detailSectionView.enableActive();
@@ -153,6 +171,7 @@ const init = function () {
   settingsView.addHandlerSettings(controlSettingsOption);
   settingsView.addHandlerGeneralSettings(controlGeneralSettings);
   citiesView.addHandlerCity(controlActiveCities);
+  paginationView.addHandlerPagination(controlPagination);
 };
 
 init();
