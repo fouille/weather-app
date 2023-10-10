@@ -30,11 +30,6 @@ export const state = {
     notifications: false,
   },
   savedCities: {
-    "New York": {},
-    London: {},
-    Madrid: {},
-    Zhytomyr: {},
-    Washington: {},
   },
   activeCity: "",
   citiesPerPage: CITIES_PER_PAGE,
@@ -71,7 +66,8 @@ export const getLocation = async function () {
       return data.address.city;
     } catch (error) {
       console.error("Error getting location:", error);
-      throw error; // Optionally rethrow the error for handling at a higher level.
+
+      return "Zhytomyr"
     }
   } else {
     return "Zhytomyr";
@@ -420,10 +416,16 @@ export const addSavedCity = function (city) {
     img: state.cityImg,
     location: state.location,
   };
+  persistSavedCity();
 };
 
 export const deleteSavedCity = function (city) {
   delete state.savedCities[city];
+  persistSavedCity();
+};
+
+const persistSavedCity = function () {
+  localStorage.setItem("saved cities", JSON.stringify(state.savedCities));
 };
 
 const persistSettings = function () {
@@ -443,6 +445,9 @@ const init = function () {
 
   const generalStorage = localStorage.getItem("general settings");
   if (generalStorage) state.generalSettings = JSON.parse(generalStorage);
+
+  const savedCities = localStorage.getItem("saved cities");
+  if(savedCities) state.savedCities = JSON.parse(savedCities);
 };
 
 init();
