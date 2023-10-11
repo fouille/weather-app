@@ -57,6 +57,7 @@ class SettingsView extends View {
       document.querySelector(".settings"),
       document.querySelector(".general"),
       document.querySelector(".general-settings"),
+      document.querySelector(".sign-up-container"),
     ];
     this._makeInvisible(setCont);
   }
@@ -67,6 +68,7 @@ class SettingsView extends View {
       document.querySelector(".settings"),
       document.querySelector(".general"),
       document.querySelector(".general-settings"),
+      document.querySelector(".sign-up-container"),
     ];
     this._makeVisible(setCont);
   }
@@ -213,7 +215,20 @@ class SettingsView extends View {
           <p class="general-desc">Be aware of the weather</p>
         </div>
       </div>
-    </div>`;
+    </div>
+    
+    <div class="sign-up-container">
+      <div class="sign-up-header">Never forget your umbrella!</div>
+      <div class="sign-up-text-btn">
+        <div class="s-u-text">Sign up for our daily weather newsletter personalized just for you</div>
+        <ul class="s-u-list">
+            <li class="s-u-item">Severe weather notifications</li>
+            <li class="s-u-item">Health activities overview</li>
+        </ul>
+        <button class="sign-up">Sign up</button>
+      </div>
+    </div>
+    `;
     this._generalContainer.insertAdjacentHTML("beforeend", generalhtml);
   }
 }
