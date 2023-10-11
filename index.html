@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="src/css/main.css" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="img/logo/umbrella-favicon.png"
-    />
+    <link rel="icon" type="image/x-icon" href="img/logo/umbrella-favicon.png" />
     <script defer src="src/js/controller.js" type="module"></script>
   </head>
   <body>
     <div class="page">
+      
       <nav>
         <!-- App Logo -->
         <div class="logo">
@@ -39,7 +36,7 @@
 
         <!-- 3rd item: map -->
         <div class="n-item-3">
-          <svg viewBox="10 11 41 41">
+          <svg viewBox="11 11 41 41">
             <use href="img/svg/nav.svg#details"></use>
           </svg>
           <p class="nav-text">Details</p>
@@ -52,6 +49,7 @@
           </svg>
           <p class="nav-text">Settings</p>
         </div>
+        <div class="overlay"></div>
       </nav>
       <!-- End of NAV section -->
 
@@ -67,13 +65,11 @@
             />
           </div>
         </form>
-        <div class="city">
-        </div>
+        <div class="city"></div>
         <div class="hourly-forecast">
           <p class="hourly-text">TODAY'S FORECAST</p>
           <div class="hourly-content">
-            <ul class="hourly-list">
-            </ul>
+            <ul class="hourly-list"></ul>
           </div>
         </div>
 
@@ -83,22 +79,17 @@
             <p class="hourly-text">AIR CONDITIONS</p>
             <button class="see-more">See more</button>
           </div>
-          <div class="d-details">
-          </div>
+          <div class="d-details"></div>
         </div>
         <!-- end of weather details section -->
 
         <!-- disabled cities container -->
         <div class="cities-wrapper disable">
-          <div class="cities-container">
-          </div>
-          <div class="pagination">
-          </div>
+          <div class="cities-container"></div>
+          <div class="pagination"></div>
         </div>
 
-        <div class="details-section-wrapper disable">
-
-        </div>
+        <div class="details-section-wrapper disable"></div>
       </div>
       <!-- start of seven day forecast section -->
       <div class="seven-day">
@@ -107,14 +98,11 @@
           <div class="s-d-text">
             <p class="hourly-text">7-DAY FORECAST</p>
           </div>
-          <ul class="s-d-list">
-
-          </ul>
+          <ul class="s-d-list"></ul>
         </div>
         <div class="preview disable"></div>
       </div>
 
-      
       <!-- end of seven day forecast section -->
     </div>
   </body>

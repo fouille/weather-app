@@ -125,8 +125,8 @@ class DetailSectionView extends View {
           <div class="d-i-value">
           ${
             this._data.userSettings.precipitation === "millimiters"
-              ? `${this._data.current.precip_mm} mm`
-              : `${this._data.current.precip_in} in`
+              ? `${Math.round(this._data.current.precip_mm)} mm`
+              : `${Math.round(this._data.current.precip_in)} in`
           }</div>
         </div>
         <div class="details-item">

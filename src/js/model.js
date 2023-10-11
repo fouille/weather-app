@@ -45,7 +45,7 @@ const createObj = function (data) {
 };
 
 export const getLocation = async function () {
-  if (navigator.geolocation) {
+  if (navigator.geolocation && state.generalSettings.location) {
     try {
       const position = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);

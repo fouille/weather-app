@@ -10,6 +10,7 @@ import citiesView from "./views/citiesView.js";
 import detailSectionView from "./views/detailSectionView.js";
 import previewView from "./views/previewView.js";
 import paginationView from "./views/paginationView.js";
+import { forcedReload } from "./helpers.js";
 
 const navElements = [
   landingPageView,
@@ -27,6 +28,9 @@ const controlShowWeather = async function (city = undefined) {
 
     // Render loading animation
     controlLoadAnimation();
+
+    // Disable nav buttons
+    landingPageView.toggleOverlay();
 
     // load weather data from the model
     await model.getCurrentWeather(city);
@@ -56,10 +60,17 @@ const controlShowWeather = async function (city = undefined) {
 
     // Insert seven day forecast data
     sevenDayView.insertDays();
+
+    // Enable overlay
+    landingPageView.toggleOverlay();
   } catch (err) {
     console.error(err);
     cityView.renderError("Failed to fetch");
     controlLoadAnimation(true);
+    landingPageView.toggleOverlay();
+
+    // Reload the page by force after 5s
+    forcedReload();
   }
 };
 
@@ -77,7 +88,7 @@ const controlSearchResult = function () {
   controlLanding(false);
 };
 
-const controlLanding = function (update=true) {
+const controlLanding = function (update = true) {
   landingPageView.enableActive();
   controlActiveElement(landingPageView);
 
@@ -87,7 +98,7 @@ const controlLanding = function (update=true) {
   detailSectionView.clearDetailsContainer();
 
   // Update DOM components
-  if(!update) return;
+  if (!update) return;
   cityView.update(model.state);
   detailsView.update(model.state);
   hourlyView.update(model.state);
