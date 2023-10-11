@@ -218,6 +218,7 @@ const init = function () {
   citiesView.addHandlerCity(controlActiveCities);
   paginationView.addHandlerPagination(controlPagination);
   cityView.addHandlerSave(controlSavedCity);
+  landingPageView.addHandlerSeeMore(controlDetails);
 };
 
 init();

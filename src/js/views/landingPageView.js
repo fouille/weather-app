@@ -22,6 +22,14 @@ class LandingPageView extends View {
     });
   }
 
+  addHandlerSeeMore(callback){
+    document.querySelector(".weather-details").addEventListener("click", e=>{
+      const btn = e.target.closest(".see-more");
+      if(!btn) return
+      callback();
+    });
+  }
+
   clearContentContainer(){
     this._makeInvisible(this._contentContainer);
   }

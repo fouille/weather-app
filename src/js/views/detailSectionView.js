@@ -28,7 +28,6 @@ class DetailSectionView extends View {
     const html = this._generateMarkup();
     this._clear();
     this._makeVisible([this._parentElement]);
-    console.log("Data", this._data);
     this._parentElement.insertAdjacentHTML("beforeend", html);
   }
   _generateMarkup() {
