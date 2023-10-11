@@ -43,7 +43,7 @@ const controlShowWeather = async function (city = undefined) {
     settingsView.render(model.state);
     citiesView.render(model.state);
     previewView.render(model.state);
-    detailSectionView.render(model.state)
+    detailSectionView.render(model.state);
 
     // Insert city data
     cityView.insertCity();
@@ -74,17 +74,20 @@ const controlSearchResult = function () {
   const query = searchView.getQuery();
   if (!query) return;
   controlShowWeather(query);
+  controlLanding(false);
 };
 
-const controlLanding = function () {
+const controlLanding = function (update=true) {
   landingPageView.enableActive();
   controlActiveElement(landingPageView);
 
   landingPageView.reviveContentContainer();
   settingsView.clearSettingsContainer();
   citiesView.clearContainer();
+  detailSectionView.clearDetailsContainer();
 
   // Update DOM components
+  if(!update) return;
   cityView.update(model.state);
   detailsView.update(model.state);
   hourlyView.update(model.state);
@@ -97,6 +100,7 @@ const controlSettings = function () {
 
   landingPageView.clearContentContainer();
   citiesView.clearContainer();
+  detailSectionView.clearDetailsContainer();
   settingsView.insertElements();
 };
 
@@ -114,6 +118,7 @@ const controlCities = function () {
 
   landingPageView.clearContentContainer();
   settingsView.clearSettingsContainer();
+  detailSectionView.clearDetailsContainer();
 
   const results = model.getCitiesPage(model.state.page);
 
@@ -161,13 +166,15 @@ const controlDetails = function () {
   settingsView.clearSettingsContainer();
   citiesView.clearContainer();
 
-  console.log(model.state);
-  detailSectionView.insertDetails();
+  if (!document.querySelector(".air-quality-section"))
+    detailSectionView.insertDetails();
+  else detailSectionView.reviveContainer();
 
   // Insert components
   if (!document.querySelector(".preview-city")) previewView.insertPreview();
   previewView.revivePreview();
 
+  detailSectionView.update(model.state);
   previewView.update(model.state);
 };
 

@@ -4,7 +4,7 @@
   height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .air-quality-section {

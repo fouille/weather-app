@@ -1,7 +1,6 @@
 import View from "./View.js";
-import {convertTo24Hour} from './../helpers.js';
+import { convertTo24Hour } from "./../helpers.js";
 import details from "url:../../../img/svg/details.svg";
-
 
 class DetailsView extends View {
   _parentElement = document.querySelector(".d-details");
@@ -140,7 +139,9 @@ class DetailsView extends View {
                     ? `${convertTo24Hour(
                         this._data.forecast.forecastday[0].astro.sunset
                       )}`
-                    : `${this._data.forecast.forecastday[0].astro.sunset}`
+                    : `${this._data.forecast.forecastday[0].astro.sunset.slice(
+                        1
+                      )}`
                 } </p>
               </div>
             </div>`

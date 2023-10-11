@@ -15,6 +15,14 @@ class DetailSectionView extends View {
     });
   }
 
+  clearDetailsContainer() {
+    this._makeInvisible([this._parentElement]);
+  }
+
+  reviveContainer() {
+    this._makeVisible([this._parentElement]);
+  }
+
   insertDetails() {
     if (Object.keys(this._data).length === 0) return;
     const html = this._generateMarkup();
@@ -118,8 +126,8 @@ class DetailSectionView extends View {
           <div class="d-i-value">
           ${
             this._data.userSettings.precipitation === "millimiters"
-              ? `${this._data.current.precip_mm} <span class="d-i-unit">mm<span>`
-              : `${this._data.current.precip_in} <span class="d-i-unit">in<span>`
+              ? `${this._data.current.precip_mm} mm`
+              : `${this._data.current.precip_in} in`
           }</div>
         </div>
         <div class="details-item">
@@ -135,7 +143,7 @@ class DetailSectionView extends View {
               ? `${this._data.current.pressure_mb} mb`
               : `${
                   this._data.userSettings.pressure === "inches"
-                    ? `${this._data.current.pressure_in} in`
+                    ? `${Math.round(this._data.current.pressure_in)} in`
                     : `${Math.round(this._data.current.pressure_in * 25.4)} mm`
                 } `
           }</div>
@@ -190,7 +198,7 @@ class DetailSectionView extends View {
               ? `${convertTo24Hour(
                   this._data.forecast.forecastday[0].astro.sunrise
                 )}`
-              : `${this._data.forecast.forecastday[0].astro.sunrise}`
+              : `${this._data.forecast.forecastday[0].astro.sunrise.slice(1)}`
           }</div>
         </div>
         <div class="details-item">
@@ -205,7 +213,7 @@ class DetailSectionView extends View {
               ? `${convertTo24Hour(
                   this._data.forecast.forecastday[0].astro.sunset
                 )}`
-              : `${this._data.forecast.forecastday[0].astro.sunset}`
+              : `${this._data.forecast.forecastday[0].astro.sunset.slice(1)}`
           }</div>
         </div>
         <div class="details-item">
@@ -220,7 +228,7 @@ class DetailSectionView extends View {
               ? `${convertTo24Hour(
                   this._data.forecast.forecastday[0].astro.moonrise
                 )}`
-              : `${this._data.forecast.forecastday[0].astro.moonrise}`
+              : `${this._data.forecast.forecastday[0].astro.moonrise.slice(1)}`
           }</div>
         </div>
       </div>
