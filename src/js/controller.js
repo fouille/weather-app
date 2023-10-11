@@ -43,6 +43,7 @@ const controlShowWeather = async function (city = undefined) {
     settingsView.render(model.state);
     citiesView.render(model.state);
     previewView.render(model.state);
+    detailSectionView.render(model.state)
 
     // Insert city data
     cityView.insertCity();
@@ -154,6 +155,20 @@ const controlPagination = function (page) {
 const controlDetails = function () {
   detailSectionView.enableActive();
   controlActiveElement(detailSectionView);
+
+  // Clear the page
+  landingPageView.clearContentContainer();
+  settingsView.clearSettingsContainer();
+  citiesView.clearContainer();
+
+  console.log(model.state);
+  detailSectionView.insertDetails();
+
+  // Insert components
+  if (!document.querySelector(".preview-city")) previewView.insertPreview();
+  previewView.revivePreview();
+
+  previewView.update(model.state);
 };
 
 const controlActiveElement = function (enabled) {
@@ -171,7 +186,7 @@ const controlSavedCity = function (btn) {
   }
 
   cityView.toggleAnimation(btn);
-  cityView.update(model.state)
+  cityView.update(model.state);
   // cityView.render(model.state);
   // cityView.insertCity();
 

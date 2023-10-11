@@ -12,8 +12,16 @@ class PreviewView extends View {
     this._parentElement.insertAdjacentHTML("beforeend", html);
   }
 
+  clearPreviewContainer(){
+    this._makeInvisible([this._parentElement])
+  }
+
+  revivePreview() {
+    this._makeVisible([this._parentElement])
+  }
+
   _generateHourly(hour, i) {
-    if (i > 2) return;
+    if (i > 2) return;  
     return `<li class="p-h-item">
             <div class="h-item-time">${
               this._data.generalSettings.TFhours
@@ -23,7 +31,7 @@ class PreviewView extends View {
                   ).slice(1)}`
             }</div>
             <div class="h-item-img">
-              <img src="${this._getSrc(hour.img)}" alt="weather condition">
+              <img src="${this._allImports[hour.img]}" alt="weather condition">
             </div>
             <div class="h-item-temp">${
               this._data.userSettings.temperature === "celsius"
@@ -83,7 +91,9 @@ class PreviewView extends View {
         <div class="p-hourly-text">TODAY'S FORECAST</div>
         <ul class="p-hourly-content">
           ${this._data.hourly
-            .map((hour, i) => this._generateHourly(hour, i))
+            .map((hour, i) => {
+              return this._generateHourly(hour, i);
+            })
             .join("")}
         </ul>
       </div>
