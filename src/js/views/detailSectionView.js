@@ -44,7 +44,7 @@ class DetailSectionView extends View {
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.pm2_5
-        )} <span class="d-i-unit">µg/m³<span> </div>
+        )} µg/m³</div>
        </div>
        <div class="details-item">
         <div class="d-icon-text">

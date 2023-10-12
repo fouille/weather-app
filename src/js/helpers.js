@@ -11,7 +11,7 @@ const timeout = function (s) {
 export const forcedReload = function () {
   setTimeout(function () {
     location.reload();
-  }, 5000);
+  }, 3000);
 };
 
 export const AJAX = async function (url) {

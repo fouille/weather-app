@@ -43,9 +43,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: all 0.3s;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 /* .s-d-item > * {
@@ -111,10 +111,10 @@
   border-bottom: 1px solid #303f56;
 }
 
-.s-d-item:hover {
+/* .s-d-item:hover {
   background-color: #344661;
   transform: translateY(-5%);
-}
+} */
 
 .weekday{
     padding-left: .3rem;

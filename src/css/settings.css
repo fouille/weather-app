@@ -221,6 +221,7 @@ input[type="checkbox"].toggle-switch:checked::after {
 .sign-up-container {
   margin-top: 0.7rem;
   width: 100%;
+  min-width: 250px;
   min-height: 40%;
   background-color: var(--interface-color);
   border-radius: 18px;
