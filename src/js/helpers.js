@@ -16,10 +16,8 @@ export const forcedReload = function () {
 
 export const AJAX = async function (url) {
   try {
-    console.log("NO CORS !!!");
     const fetchPro = fetch(url, {
       method: "GET",
-      mode: "no-cors",
     });
     const response = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
     const data = await response.json();
