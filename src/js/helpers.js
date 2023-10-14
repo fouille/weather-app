@@ -112,3 +112,7 @@ export const convertDateToTime = function (dateTimeString) {
     minutes.toString().padStart(2, "0");
   return formattedTime;
 };
+
+export const celsiusToFahrenheit = function(temp){
+  return Math.round((temp * 9 / 5) + 32);
+}

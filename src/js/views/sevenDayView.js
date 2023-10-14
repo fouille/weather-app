@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { parseDateStringToDate } from "../helpers.js";
+import { celsiusToFahrenheit } from "../helpers.js";
 
 class SevenDayView extends View {
   _parentElement = document.querySelector(".s-d-list");
@@ -15,18 +15,18 @@ class SevenDayView extends View {
     return this._allImports[condition];
   }
 
-  _generateMarkup(){
-    return this._data.forecastSeven.map((day, i)=>{
-      const date = parseDateStringToDate(day.date)
-      const weekDay = this._data.weekdays[date.getDay()];
-      if (i === 0) return this._generateHTML(day, "Today");
-      return this._generateHTML(day, weekDay);
-    }).join("");
+  _generateMarkup() {
+    return this._data.forecastSeven
+      .map((day, i) => {
+        if (i === 0) return this._generateHTML(day, "Today");
+        return this._generateHTML(day);
+      })
+      .join("");
   }
 
-  _generateHTML(day, weekDay) {
+  _generateHTML(day, weekDay=undefined) {
     return `<li class="s-d-item">
-              <p class="regular-light-text weekday">${weekDay}</p>
+              <p class="regular-light-text weekday">${weekDay ? weekDay : day.weekDay}</p>
               <div class="s-d-icon-condition">
                 <div class="img-container">
                   <img src="${
@@ -41,13 +41,13 @@ class SevenDayView extends View {
                 <p class="bold-light-text">
                 ${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${Math.round(day.temp_max_c)}`
-                    : `${Math.round(day.temp_max_f)}`
+                    ? `${day.max}`
+                    : `${celsiusToFahrenheit(day.max)}`
                 }</p>
                 <div class="regular-light-text">/${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${Math.round(day.temp_min_c)}`
-                    : `${Math.round(day.temp_min_f)}`
+                    ? `${day.min}`
+                    : `${celsiusToFahrenheit(day.min)}`
                 }</div>
               </div>
             </li>`;

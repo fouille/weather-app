@@ -38,8 +38,8 @@ class DetailsView extends View {
               <div class="feel-value">
                 <p class="d-value">${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${this._data.current.feelslike_c}`
-                    : `${this._data.current.feelslike_f}`
+                    ? `${Math.round(this._data.current.feelslike_c)}`
+                    : `${Math.round(this._data.current.feelslike_f)}`
                 }°</p>
               </div>
             </div>` +

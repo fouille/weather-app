@@ -39,10 +39,10 @@
 
 .s-d-item {
   /* border: 1px solid pink; */
-  flex-basis: calc(100% / 7);
+  flex-basis: calc(100% / 5);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* cursor: pointer; */
   transition: all 0.3s;
   /* border-radius: 5px; */
@@ -82,12 +82,17 @@
   align-items: center;
   /* border: 1px solid black; */
   flex-basis: 60%;
+  height: 100%;
+  gap: 10px;
   justify-content: center;
 }
 
+/* .s-d-icon-condition > *{
+  border: 1px solid white;
+} */
+
 .s-d-icon-condition img {
-  height: 40px;
-  width: auto;
+  width: 90%;
   /* border: 1px solid white; */
 }
 

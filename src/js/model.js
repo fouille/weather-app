@@ -8,10 +8,9 @@ import {
   F_D_API_KEY,
   F_D_API_URL,
   CITY_TO_COORDS,
-  S_API,
-  S_KEY,
   COORDS_TO_CITY,
   CITIES_PER_PAGE,
+  forecast_URL,
 } from "./config.js";
 import { AJAX } from "./helpers.js";
 
@@ -29,8 +28,7 @@ export const state = {
     location: true,
     notifications: false,
   },
-  savedCities: {
-  },
+  savedCities: {},
   activeCity: "",
   citiesPerPage: CITIES_PER_PAGE,
   page: 1,
@@ -67,7 +65,7 @@ export const getLocation = async function () {
     } catch (error) {
       console.error("Error getting location:", error);
 
-      return "Zhytomyr"
+      return "Zhytomyr";
     }
   } else {
     return "Zhytomyr";
@@ -164,35 +162,78 @@ export const getCitiesPage = function (page = 1) {
 // Separate API to fetch 7-day forecast
 export const getSevenDaysForecast = async function (city) {
   try {
-    const location = await AJAX(`${CITY_TO_COORDS}${city}`);
-    const data = await AJAX(
-      `${S_API}${location[0].lat},${location[0].lon}${S_KEY}`
-    );
-    state.forecastSeven = data.Days;
-    state.forecastSeven.forEach((day) => {
-      // day.img = getDominantWeather(day, day.windspd_max_mph > WINDY_LEVEL);
-      let predominant = getConditionForDescription(day);
-      predominant = predominant.replace(" skies", "").trim();
-      day.dominantCondition = shortWeatherDescription(predominant);
-      day.img = getWeatherImage(
-        day.dominantCondition,
-        day.windspd_max_mph > WINDY_LEVEL,
-        true
-      );
-    });
-    // convertForecast(data.list)
+    const data = await AJAX(`${F_D_API_URL}${city}${F_D_API_KEY}&units=metric`);
+    console.log(data);
+
+    state.forecastSeven = [];
+
+    getForecastData(data);
   } catch (err) {
     console.error(`${err} WHAT THE HELL MAN?`);
     throw err;
   }
 };
 
+const getForecastData = function (data) {
+  let date = null;
+  let dayObject = [];
+  for (const [i, timeframe] of data.list.entries()) {
+    const newDate = new Date(timeframe.dt_txt).getDate();
+    if (date === null) {
+      date = newDate;
+      dayObject.push(timeframe);
+    } else if (newDate !== date) {
+      const dominantCondition = getConditionForDescription(dayObject);
+      const img = getWeatherImage(dominantCondition, false, true);
+      const weekDay =
+        state.weekdays[new Date(data.list[i - 1].dt_txt).getDay()];
+      const [max, min] = getMinMaxTemp(dayObject);
+      state.forecastSeven.push({
+        dominantCondition,
+        img,
+        weekDay,
+        min,
+        max,
+      });
+      dayObject = [];
+      date = newDate;
+    }
+
+    if (!dayObject.includes(timeframe)) dayObject.push(timeframe);
+  }
+
+  const dominantCondition = getConditionForDescription(dayObject);
+  const img = getWeatherImage(dominantCondition, false, true);
+  const weekDay =
+    state.weekdays[new Date(data.list[data.list.length - 1].dt_txt).getDay()];
+  const [max, min] = getMinMaxTemp(dayObject);
+  state.forecastSeven.push({
+    dominantCondition,
+    img,
+    weekDay,
+    min,
+    max,
+  });
+};
+
+const getMinMaxTemp = function (day) {
+  let min = Infinity;
+  let max = -Infinity;
+  for (const tf of day) {
+    if (tf.main.temp_max > max) max = tf.main.temp_max;
+    if (tf.main.temp_min < min) min = tf.main.temp_min;
+  }
+  return [Math.round(max), Math.round(min)];
+};
+
 const getConditionForDescription = function (day) {
   const condCounts = {};
   // Iterate through the array
-  for (const item of day.Timeframes) {
-    const condition = item.wx_desc;
-    if (condition.toLowerCase().includes("clear")) continue;
+  for (const item of day) {
+    const condition = convertIDtoWeather(...item.weather);
+
+    if (!condition) continue;
+
     if (condCounts[condition]) {
       // If it is, increment the count
       condCounts[condition]++;
@@ -201,10 +242,44 @@ const getConditionForDescription = function (day) {
       condCounts[condition] = 1;
     }
   }
+
   if (Object.keys(condCounts).length === 0) return "Sunny";
   const sortedArr = Object.entries(condCounts);
   sortedArr.sort((a, b) => b[1] - a[1]);
   return sortedArr[0][0];
+};
+
+const convertIDtoWeather = function (condObj) {
+  const id = condObj.id;
+  if (id > 199 && id < 300) {
+    return "Thunder";
+  }
+  if (id > 299 && id < 500) {
+    return "Drizzle";
+  }
+  if (id > 499 && id < 600) {
+    if (id === 500 || id === 520) return "Patchy rain";
+    return "Rainy";
+  }
+  if (id > 599 && id < 700) {
+    if (id === 600) return "Patchy snow";
+    if (id === 612) return "Patchy sleet";
+    if (id === 611 || id === 613) return "Sleet";
+    return "Snowy";
+  }
+  if (id > 699 && id < 800) {
+    if (id === 701) return "Mist";
+    if (id === 741) return "Fog";
+    return "Cloudy";
+  }
+  if (id === 800) {
+    return "Sunny";
+  }
+  if (id > 800) {
+    if (id === 801) return "Partly cloudy";
+    if (id === 804) return "Overcast";
+    return "Cloudy";
+  }
 };
 
 // get the highest wind value of the day
@@ -447,7 +522,7 @@ const init = function () {
   if (generalStorage) state.generalSettings = JSON.parse(generalStorage);
 
   const savedCities = localStorage.getItem("saved cities");
-  if(savedCities) state.savedCities = JSON.parse(savedCities);
+  if (savedCities) state.savedCities = JSON.parse(savedCities);
 };
 
 init();
