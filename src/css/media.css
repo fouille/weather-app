@@ -1,19 +1,21 @@
-
-
 @media screen and (max-width: 1200px) {
     
     .page{
         flex-direction: column;
         width: 95vw;
-        margin: 2rem auto;
+        height: calc(100vh - 1.5rem);
+        margin: 1rem auto;
         position: relative;
+        margin-bottom: .5rem;
     }
 
     nav{
         flex-direction: row;
-        height: 17%;
+        /* height: 10%; */
         padding: .3rem 0;
-        min-width: 68.2%;
+        min-width: 700px;
+        width: 100%;
+        max-width: 100%;
         align-items: center;
         justify-self: start;
     }
@@ -49,9 +51,31 @@
 
 @media screen and (max-width: 923px) {
     .d-value{
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
         .grey-classic{
         font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 836px) {
+    
+    .main__wrapper{
+        flex-direction: column;
+        max-height: 80%;
+    }
+
+    .content{
+        min-height: 600px;
+    }
+
+    nav{
+        max-height: 4%;
+        min-height: 60px;
+        min-width: 100%;
+    }
+
+    .page{
+        max-height: 200vh;
     }
 }

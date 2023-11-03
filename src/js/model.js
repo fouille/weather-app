@@ -69,7 +69,6 @@ export const getLocation = async function () {
     }
   } else {
     return "Zhytomyr";
-    // You can also throw an error here if needed.
   }
 };
 
