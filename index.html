@@ -53,54 +53,56 @@
       </nav>
       <!-- End of NAV section -->
 
-      <div class="content">
-        <form action="" class="search_form">
-          <div class="search">
-            <input
-              class="search__field"
-              type="text"
-              name="city"
-              id=""
-              placeholder="Search for cities"
-            />
+      <div class="main__wrapper">
+        <div class="content">
+          <form action="" class="search_form">
+            <div class="search">
+              <input
+                class="search__field"
+                type="text"
+                name="city"
+                id=""
+                placeholder="Search for cities"
+              />
+            </div>
+          </form>
+          <div class="city"></div>
+          <div class="hourly-forecast">
+            <p class="hourly-text">TODAY'S FORECAST</p>
+            <div class="hourly-content">
+              <ul class="hourly-list"></ul>
+            </div>
           </div>
-        </form>
-        <div class="city"></div>
-        <div class="hourly-forecast">
-          <p class="hourly-text">TODAY'S FORECAST</p>
-          <div class="hourly-content">
-            <ul class="hourly-list"></ul>
+  
+          <!-- start of details and weather conditions section -->
+          <div class="weather-details">
+            <div class="d-text-btn">
+              <p class="hourly-text">AIR CONDITIONS</p>
+              <button class="see-more">See more</button>
+            </div>
+            <div class="d-details"></div>
           </div>
-        </div>
-
-        <!-- start of details and weather conditions section -->
-        <div class="weather-details">
-          <div class="d-text-btn">
-            <p class="hourly-text">AIR CONDITIONS</p>
-            <button class="see-more">See more</button>
+          <!-- end of weather details section -->
+  
+          <!-- disabled cities container -->
+          <div class="cities-wrapper disable">
+            <div class="cities-container"></div>
+            <div class="pagination"></div>
           </div>
-          <div class="d-details"></div>
+  
+          <div class="details-section-wrapper disable"></div>
         </div>
-        <!-- end of weather details section -->
-
-        <!-- disabled cities container -->
-        <div class="cities-wrapper disable">
-          <div class="cities-container"></div>
-          <div class="pagination"></div>
-        </div>
-
-        <div class="details-section-wrapper disable"></div>
-      </div>
-      <!-- start of seven day forecast section -->
-      <div class="seven-day">
-        <div class="empty-container"></div>
-        <div class="s-d-forecast">
-          <div class="s-d-text">
-            <p class="hourly-text">5-DAY FORECAST</p>
+        <!-- start of seven day forecast section -->
+        <div class="seven-day">
+          <div class="empty-container"></div>
+          <div class="s-d-forecast">
+            <div class="s-d-text">
+              <p class="hourly-text">5-DAY FORECAST</p>
+            </div>
+            <ul class="s-d-list"></ul>
           </div>
-          <ul class="s-d-list"></ul>
+          <div class="preview disable"></div>
         </div>
-        <div class="preview disable"></div>
       </div>
 
       <!-- end of seven day forecast section -->

@@ -1,14 +1,36 @@
 
 
 @media screen and (max-width: 1200px) {
-    nav{
-        display: none;
-    }
+    
     .page{
-        width: 100%;
-        margin: auto;
-        justify-content: center;
+        flex-direction: column;
+        width: 95vw;
+        margin: 2rem auto;
+        position: relative;
     }
+
+    nav{
+        flex-direction: row;
+        height: 17%;
+        padding: .3rem 0;
+        min-width: 68.2%;
+        align-items: center;
+        justify-self: start;
+    }
+
+    .logo{
+        padding: 0;
+        padding-left: 2rem;
+        width: 17%;
+        height: 100%;
+    }
+
+    [class^="n-item"] {
+        width: 20%;
+        height: 100%;
+        margin: 0;
+    }
+
     .empty-container{
         display: none;
     }
