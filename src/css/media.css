@@ -1,0 +1,35 @@
+
+
+@media screen and (max-width: 1200px) {
+    nav{
+        display: none;
+    }
+    .page{
+        width: 100%;
+        margin: auto;
+        justify-content: center;
+    }
+    .empty-container{
+        display: none;
+    }
+    .s-d-forecast{
+        flex-basis: 100%;
+    }
+
+    .d-value{
+        font-size: 1.4rem;
+    }
+
+    .grey-classic{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 923px) {
+    .d-value{
+        font-size: 1.2rem;
+    }
+        .grey-classic{
+        font-size: 1rem;
+    }
+}
