@@ -6,13 +6,14 @@ class CitiesView extends View {
   _nav = document.querySelector("nav");
   _navElement = document.querySelector(".n-item-2");
   _parentElement = document.querySelector(".cities-container");
+  _contentElement = document.querySelector(".content");
   target;
   pageResult;
 
   insertCities() {
     if (Object.keys(this._data).length === 0) return;
     const html = this._generateMarkup();
-    if(html === undefined) return;
+    if (html === undefined) return;
     this._clear();
     this._reviveCities();
     this._parentElement.insertAdjacentHTML("afterbegin", html);
@@ -67,6 +68,14 @@ class CitiesView extends View {
       document.querySelector(".preview"),
     ];
     this._makeVisible(citiesCont);
+  }
+
+  enableResponsive() {
+    this._contentElement.classList.add("content__cities--responsive");
+  }
+
+  disableResponsive() {
+    this._contentElement.classList.remove("content__cities--responsive");
   }
 
   _generateSavedCity(city) {

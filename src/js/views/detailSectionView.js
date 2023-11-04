@@ -6,6 +6,7 @@ class DetailSectionView extends View {
   _nav = document.querySelector("nav");
   _navElement = document.querySelector(".n-item-3");
   _parentElement = document.querySelector(".details-section-wrapper");
+  _wrapperElement = document.querySelector(".content");
 
   addHandlerClick(callback) {
     this._nav.addEventListener("click", (e) => {
@@ -30,6 +31,15 @@ class DetailSectionView extends View {
     this._makeVisible([this._parentElement]);
     this._parentElement.insertAdjacentHTML("beforeend", html);
   }
+
+  enableResponsive() {
+    this._wrapperElement.classList.add("content--responsive");
+  }
+
+  disableResponsive(){
+    this._wrapperElement.classList.remove("content--responsive");
+  }
+
   _generateMarkup() {
     return `
     <div class="air-quality-section">

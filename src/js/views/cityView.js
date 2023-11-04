@@ -35,17 +35,19 @@ class CityView extends View {
 
   _generateMarkup() {
     return `
-    <div class="city-text">
-      <p class="city-name">${this._data.location.name}</p>
-      <p class="rain-chance">Chance of rain: ${
-        this._data.forecast.forecastday[0].day.daily_chance_of_rain
-      }%</p>
-    </div>
-    <div class="city-temperature">${
-      this._data.userSettings.temperature === "celsius"
-        ? `${Math.round(this._data.current.feelslike_c)}`
-        : `${Math.round(this._data.current.feelslike_f)}`
-    }°
+    <div class="city__resp">
+      <div class="city-text">
+        <p class="city-name">${this._data.location.name}</p>
+        <p class="rain-chance">Chance of rain: ${
+          this._data.forecast.forecastday[0].day.daily_chance_of_rain
+        }%</p>
+      </div>
+      <div class="city-temperature">${
+        this._data.userSettings.temperature === "celsius"
+          ? `${Math.round(this._data.current.feelslike_c)}`
+          : `${Math.round(this._data.current.feelslike_f)}`
+      }°
+      </div>
     </div>
     <div class="weather-icon">
             <img src="${this._getSrc()}" ${

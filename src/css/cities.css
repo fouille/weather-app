@@ -46,6 +46,7 @@
 }
 
 .city-img img {
+  min-width: 40px;
   width: 60%;
   height: 70%;
 }
@@ -304,6 +305,7 @@
 
 
 .forecast-img img{
+  min-width: 40px;
   width: 55%; 
 }
 

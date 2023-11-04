@@ -28,6 +28,11 @@
     border: 1px solid white;
 } */
 
+.city__resp{
+    flex-basis: 65%;
+    display: flex;
+}
+
 .weather-icon{
     flex-basis: 30%;
     display: flex;
@@ -45,7 +50,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-basis: 35%;
+    flex-basis: 57%;
 }
 
 .city-name{
@@ -69,7 +74,7 @@
     color: white;
     font-weight: 700;
     font-size: 3.5rem;
-    flex-basis: 30%;
+    flex-basis: 43%;
     justify-content: center;
 }
 
@@ -86,6 +91,8 @@
     width: 100%;
     /* border: 1px solid white; */
     height: 40%;
+    min-height: 15px;
+    min-width: 25px;
     cursor: pointer;
     fill: #344661; 
     transition: fill .2s ease, scale .2s ease-in-out;

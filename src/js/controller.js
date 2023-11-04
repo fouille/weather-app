@@ -96,6 +96,9 @@ const controlLanding = function (update = true) {
   settingsView.clearSettingsContainer();
   citiesView.clearContainer();
   detailSectionView.clearDetailsContainer();
+  detailSectionView.disableResponsive();
+  settingsView.disableResponsive();
+  citiesView.disableResponsive();
 
   // Update DOM components
   if (!update) return;
@@ -109,10 +112,13 @@ const controlSettings = function () {
   settingsView.enableActive();
   controlActiveElement(settingsView);
 
+  detailSectionView.disableResponsive();
   landingPageView.clearContentContainer();
   citiesView.clearContainer();
   detailSectionView.clearDetailsContainer();
   settingsView.insertElements();
+  settingsView.enableResponsive();
+  citiesView.disableResponsive();
 };
 
 const controlSettingsOption = function (target) {
@@ -144,6 +150,10 @@ const controlCities = function () {
   } else citiesView._reviveCities();
 
   if (!document.querySelector(".preview-city")) previewView.insertPreview();
+
+  detailSectionView.disableResponsive();
+  settingsView.disableResponsive();
+  citiesView.enableResponsive();
 
   //Update preview
   previewView.update(model.state);
@@ -184,6 +194,10 @@ const controlDetails = function () {
   // Insert components
   if (!document.querySelector(".preview-city")) previewView.insertPreview();
   previewView.revivePreview();
+
+  detailSectionView.enableResponsive();
+  settingsView.disableResponsive();
+  citiesView.disableResponsive();
 
   detailSectionView.update(model.state);
   previewView.update(model.state);

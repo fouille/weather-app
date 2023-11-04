@@ -127,7 +127,7 @@
   flex-direction: column;
   background-color: var(--interface-color);
   width: 100%;
-  min-height: 40%;
+  min-height: 230px;
   border-radius: 18px;
   padding: 1rem 1.5rem;
   gap: 0.2rem;
@@ -222,12 +222,12 @@ input[type="checkbox"].toggle-switch:checked::after {
   margin-top: 0.7rem;
   width: 100%;
   min-width: 250px;
-  min-height: 40%;
+  min-height: 270px;
   background-color: var(--interface-color);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  padding: 0rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 

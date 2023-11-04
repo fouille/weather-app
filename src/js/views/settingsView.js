@@ -5,6 +5,8 @@ class SettingsView extends View {
   _navElement = document.querySelector(".n-item-4");
   _container = document.querySelector(".content");
   _generalContainer = document.querySelector(".seven-day");
+  _seachElement = document.querySelector(".search_form");
+  _contentElement = document.querySelector(".content");
 
   addHandlerClick(callback) {
     this._parentElement.addEventListener("click", (e) => {
@@ -18,7 +20,7 @@ class SettingsView extends View {
     this._generalContainer.addEventListener("click", (e) => {
       const toggle = e.target.closest(".toggle-switch");
       if (!toggle) return;
-      callback(e.target)
+      callback(e.target);
     });
   }
 
@@ -51,7 +53,7 @@ class SettingsView extends View {
   }
 
   clearSettingsContainer() {
-    if(!document.querySelector(".settings")) return;
+    if (!document.querySelector(".settings")) return;
     const setCont = [
       document.querySelector(".units"),
       document.querySelector(".settings"),
@@ -71,6 +73,16 @@ class SettingsView extends View {
       document.querySelector(".sign-up-container"),
     ];
     this._makeVisible(setCont);
+  }
+
+  enableResponsive() {
+    this._seachElement.classList.add("search--responsive");
+    this._contentElement.classList.add("content__settings--responsive");
+  }
+
+  disableResponsive() {
+    this._seachElement.classList.remove("search--responsive");
+    this._contentElement.classList.remove("content__settings--responsive");
   }
 
   insertElements() {
