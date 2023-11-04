@@ -62,7 +62,6 @@
     .main__wrapper{
         flex-direction: column;
         max-height: 90%;
-        margin-bottom: 0;
     }
 
     .content{
@@ -90,5 +89,43 @@
     .s-d-icon-condition img {
         width: 50%;
         min-width: 60px
+    }
+}
+
+@media screen and (max-width: 546px) {
+    .main__wrapper{
+        min-height: 95%;
+        max-height: 97%;
+    }
+
+    .content{
+        min-height: 800px;
+    }
+
+    .weather-details{
+        height: 35%;
+    }
+
+    .d-h-item-1{
+        width: 50%;
+        height: calc(100% / 3);
+        /* justify-content: center; */
+        align-items: center;
+        gap: .2rem 0;
+    }
+
+    .hourly-forecast{
+        min-height: 25%;
+    }
+
+    .d-h-item-1 [class$="-value"]{
+        width: 100%;
+        text-align: end;
+        margin-right: 10%;
+    }
+
+    .d-details{
+        margin-left: 0%;
+        gap: .5rem 0;
     }
 }
