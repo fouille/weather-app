@@ -69,8 +69,8 @@ const controlShowWeather = async function (city = undefined) {
     controlLoadAnimation(true);
     landingPageView.toggleOverlay();
 
-    // Reload the page by force after 3s
-    // forcedReload();
+    // Reload the page by force after 2s
+    forcedReload();
   }
 };
 
