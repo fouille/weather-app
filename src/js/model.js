@@ -57,7 +57,7 @@ export const getLocation = async function () {
         `${COORDS_TO_CITY}lat=${latitude}&lon=${longitude}`
       );
 
-      if (!data) return "Paris";
+      if (!data) return "Saint-Hilaire-Sous-Romilly";
       state.savedCities[data.address.city] = {
         locale: true,
       };
@@ -65,10 +65,10 @@ export const getLocation = async function () {
     } catch (error) {
       console.error("Error getting location:", error);
 
-      return "Paris";
+      return "Saint-Hilaire-Sous-Romilly";
     }
   } else {
-    return "Paris";
+    return "Saint-Hilaire-Sous-Romilly";
   }
 };
 
@@ -242,7 +242,7 @@ const getConditionForDescription = function (day) {
     }
   }
 
-  if (Object.keys(condCounts).length === 0) return "Sunny";
+  if (Object.keys(condCounts).length === 0) return "Ensoleillé";
   const sortedArr = Object.entries(condCounts);
   sortedArr.sort((a, b) => b[1] - a[1]);
   return sortedArr[0][0];
@@ -251,33 +251,33 @@ const getConditionForDescription = function (day) {
 const convertIDtoWeather = function (condObj) {
   const id = condObj.id;
   if (id > 199 && id < 300) {
-    return "Thunder";
+    return "Tonnerre";
   }
   if (id > 299 && id < 500) {
-    return "Drizzle";
+    return "Bruine";
   }
   if (id > 499 && id < 600) {
-    if (id === 500 || id === 520) return "Patchy rain";
-    return "Rainy";
+    if (id === 500 || id === 520) return "Pluie éparse";
+    return "Pluie";
   }
   if (id > 599 && id < 700) {
-    if (id === 600) return "Patchy snow";
-    if (id === 612) return "Patchy sleet";
-    if (id === 611 || id === 613) return "Sleet";
-    return "Snowy";
+    if (id === 600) return "Neige éparse";
+    if (id === 612) return "Grésil éparse";
+    if (id === 611 || id === 613) return "Neige fondue";
+    return "Neigeux";
   }
   if (id > 699 && id < 800) {
-    if (id === 701) return "Mist";
-    if (id === 741) return "Fog";
-    return "Cloudy";
+    if (id === 701) return "Brume";
+    if (id === 741) return "Brouillard";
+    return "Nuageux";
   }
   if (id === 800) {
-    return "Sunny";
+    return "Ensoleillé";
   }
   if (id > 800) {
-    if (id === 801) return "Partly cloudy";
-    if (id === 804) return "Overcast";
-    return "Cloudy";
+    if (id === 801) return "Partiellement nuageux";
+    if (id === 804) return "Couvert";
+    return "Nuageux";
   }
 };
 
@@ -294,19 +294,19 @@ const getHighestWind = function (day) {
 // get a short description which will fit the container in 1 line
 const shortWeatherDescription = function (condition) {
   if (condition.includes("Patchy") && condition.includes("rain"))
-    return "Patchy rain";
+    return "Pluie éparse";
   if (condition.includes("Patchy") && condition.includes("snow"))
-    return "Patchy snow";
+    return "Neige éparse";
   if (condition.includes("Patchy") && condition.includes("sleet"))
-    return "Patchy sleet";
-  if (condition.toLowerCase().includes("thunder")) return "Thunder";
+    return "Grésil éparse";
+  if (condition.toLowerCase().includes("thunder")) return "Tonnerre";
   if (condition.includes("shower") && condition.includes("rain"))
-    return "Rain showers";
-  if (condition.includes("rain")) return "Rainy";
-  if (condition.includes("snow")) return "Snowy";
-  if (condition.includes("drizzle")) return "Drizzle";
-  if (condition.includes("sleet")) return "Sleet";
-  if (condition.includes("pellets")) return "Ice pellets";
+    return "Averses de pluie";
+  if (condition.includes("rain")) return "Pluvieux";
+  if (condition.includes("snow")) return "Neigeux";
+  if (condition.includes("drizzle")) return "Bruine";
+  if (condition.includes("sleet")) return "Neige fondue";
+  if (condition.includes("pellets")) return "Grêle";
   return condition;
 };
 

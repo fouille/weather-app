@@ -1,6 +1,6 @@
 import View from "./View.js";
-import { convertTo24Hour } from "./../helpers.js";
 import details from "url:../../../img/svg/details.svg";
+import { convertTo24Hour } from "./../helpers.js";
 
 class DetailsView extends View {
   _parentElement = document.querySelector(".d-details");
