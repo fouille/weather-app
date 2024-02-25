@@ -15,13 +15,13 @@ import {
 import { AJAX } from "./helpers.js";
 
 export const state = {
-  weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  weekdays: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
   userSettings: {
     temperature: "celsius",
     windSpeed: "km/h",
     pressure: "mb",
-    precipitation: "millimiters",
-    distance: "kilometers",
+    precipitation: "millimètres",
+    distance: "kilomètres",
   },
   generalSettings: {
     TFhours: true,
@@ -57,7 +57,7 @@ export const getLocation = async function () {
         `${COORDS_TO_CITY}lat=${latitude}&lon=${longitude}`
       );
 
-      if (!data) return "Zhytomyr";
+      if (!data) return "Paris";
       state.savedCities[data.address.city] = {
         locale: true,
       };
@@ -65,10 +65,10 @@ export const getLocation = async function () {
     } catch (error) {
       console.error("Error getting location:", error);
 
-      return "Zhytomyr";
+      return "Paris";
     }
   } else {
-    return "Zhytomyr";
+    return "Paris";
   }
 };
 
