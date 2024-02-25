@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
-  "description": "",
-  "version": "1.0.0",
+  "description": "Meteo tablette",
+  "version": "1.0.1",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"

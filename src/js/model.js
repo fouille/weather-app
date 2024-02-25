@@ -452,7 +452,7 @@ const getWeatherImage = function (condition, isWindy, isDay) {
   // cloud
   if (
     condition.toLowerCase().includes("cloud") ||
-    condition.toLowerCase().includes("couvert") ||
+    condition.toLowerCase().includes("overcast") ||
     condition.toLowerCase().includes("mist") ||
     condition.toLowerCase().includes("fog")
   )
