@@ -1,4 +1,4 @@
-export const API_KEY = "https://api.weatherapi.com/v1";
+export const API_KEY = "c85aebd946df4e3780f115317242502";
 export const URL = "https://api.weatherapi.com/v1/forecast.json?key=";
 export const TIMEOUT_SEC = 10;
 export const CURRENT_W = "&days=7&aqi=yes&alerts=no";
