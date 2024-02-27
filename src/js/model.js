@@ -294,7 +294,7 @@ const getHighestWind = function (day) {
 // get a short description which will fit the container in 1 line
 const shortWeatherDescription = function (condition) {
   if (condition.includes("Patchy") && condition.includes("rain"))
-    return "Pluie éparse";
+    return "Patchy rain";
   if (condition.includes("Patchy") && condition.includes("snow"))
     return "Patchy snow";
   if (condition.includes("Patchy") && condition.includes("sleet"))
