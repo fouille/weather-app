@@ -33,7 +33,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#therm"></use>
                 </svg>
-                <p class="grey-classic">Real Feel</p>
+                <p class="grey-classic">Vraie sensation</p>
               </div>
               <div class="feel-value">
                 <p class="d-value">${
@@ -53,7 +53,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#wind"></use>
                 </svg>
-                <p class="grey-classic">Wind</p>
+                <p class="grey-classic">Vent</p>
               </div>
               <div class="wind-value">
                 <p class="d-value">${
@@ -79,7 +79,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#eye"></use>
                 </svg>
-                <p class="grey-classic">Visibility</p>
+                <p class="grey-classic">Visibilité</p>
               </div>
               <div class="visibility-value">
                 <p class="d-value">${
@@ -99,7 +99,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#water"></use>
                 </svg>
-                <p class="grey-classic">Chance of rain</p>
+                <p class="grey-classic">Probabilité de pluie</p>
               </div>
               <div class="rain-value">
                 <p class="d-value">${this._data.forecast.forecastday[0].day.daily_chance_of_rain}%</p>
@@ -115,7 +115,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#sun"></use>
                 </svg>
-                <p class="grey-classic">UV index</p>
+                <p class="grey-classic">Index UV</p>
               </div>
               <div class="uv-value">
                 <p class="d-value">${this._data.current.uv}</p>
@@ -131,7 +131,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#cloud-sun"></use>
                 </svg>
-                <p class="grey-classic">Sunset</p>
+                <p class="grey-classic">Coucher de soleil</p>
               </div>
               <div class="sunset-value">
                 <p class="d-value">${
