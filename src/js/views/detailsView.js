@@ -33,7 +33,7 @@ class DetailsView extends View {
                 >
                   <use href="${details}#therm"></use>
                 </svg>
-                <p class="grey-classic">Vraie sensation</p>
+                <p class="grey-classic">Ressenti</p>
               </div>
               <div class="feel-value">
                 <p class="d-value">${

@@ -129,7 +129,7 @@ class SettingsView extends View {
         </div>
       </div>
       <div class="setting-option">
-        <div class="setting-o-text">PRESSURE</div>
+        <div class="setting-o-text">PRESSION</div>
         <div class="toggle-container">
           <div class="toggle pressure">
             <div class="toggle-el ${
@@ -163,7 +163,7 @@ class SettingsView extends View {
               this._data.userSettings.precipitation === "millimiters"
                 ? "toggle-el--active"
                 : ""
-            } precipitation-mm" data-setting="precipitation">Millimitres</div>
+            } precipitation-mm" data-setting="precipitation">Millimètres</div>
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@ class SettingsView extends View {
               this._data.userSettings.distance === "kilometers"
                 ? "toggle-el--active"
                 : ""
-            } distance-km" data-setting="distance">Kilometres</div>
+            } distance-km" data-setting="distance">Kilomètres</div>
             <div class="toggle-el ${
               this._data.userSettings.distance === "miles"
                 ? "toggle-el--active"
@@ -193,7 +193,7 @@ class SettingsView extends View {
     <div class="general-settings">
       <div class="general-option t-f-hours">
         <div class="general-row">
-          <p class="general-text ">24 heures</p>
+          <p class="general-text ">Format 24H</p>
           <div class="toggle-switch-container">
             <input type="checkbox" class="toggle-switch" ${
               this._data.generalSettings.TFhours ? "checked" : ""
@@ -228,18 +228,6 @@ class SettingsView extends View {
         </div>
       </div>
     </div>
-    
-    // <div class="sign-up-container">
-    //   <div class="sign-up-header">Never forget your umbrella!</div>
-    //   <div class="sign-up-text-btn">
-    //     <div class="s-u-text">Sign up for our daily weather newsletter personalized just for you</div>
-    //     <ul class="s-u-list">
-    //         <li class="s-u-item">Severe weather notifications</li>
-    //         <li class="s-u-item">Health activities overview</li>
-    //     </ul>
-    //     <button class="sign-up">Sign up</button>
-    //   </div>
-    // </div>
     `;
     this._generalContainer.insertAdjacentHTML("beforeend", generalhtml);
   }

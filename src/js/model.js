@@ -15,7 +15,7 @@ import {
 import { AJAX } from "./helpers.js";
 
 export const state = {
-  weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  weekdays: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
   userSettings: {
     temperature: "celsius",
     windSpeed: "km/h",
