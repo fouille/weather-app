@@ -18,7 +18,7 @@ class SevenDayView extends View {
   _generateMarkup() {
     return this._data.forecastSeven
       .map((day, i) => {
-        if (i === 0) return this._generateHTML(day, "Today");
+        if (i === 0) return this._generateHTML(day, "Aujourd'hui");
         return this._generateHTML(day);
       })
       .join("");
