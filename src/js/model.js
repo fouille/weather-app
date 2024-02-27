@@ -294,19 +294,19 @@ const getHighestWind = function (day) {
 // get a short description which will fit the container in 1 line
 const shortWeatherDescription = function (condition) {
   if (condition.includes("Patchy") && condition.includes("rain"))
-    return "Pluie éparse";
+    return "Patchy rain";
   if (condition.includes("Patchy") && condition.includes("snow"))
-    return "Neige éparse";
+    return "Patchy snow";
   if (condition.includes("Patchy") && condition.includes("sleet"))
-    return "Grésil éparse";
-  if (condition.toLowerCase().includes("thunder")) return "Tonnerre";
+    return "Patchy sleet";
+  if (condition.toLowerCase().includes("thunder")) return "Thunder";
   if (condition.includes("shower") && condition.includes("rain"))
-    return "Averses de pluie";
-  if (condition.includes("rain")) return "Pluvieux";
-  if (condition.includes("snow")) return "Neigeux";
-  if (condition.includes("drizzle")) return "Bruine";
-  if (condition.includes("sleet")) return "Neige fondue";
-  if (condition.includes("pellets")) return "Grêle";
+    return "Rain showers";
+  if (condition.includes("rain")) return "Rainy";
+  if (condition.includes("snow")) return "Snowy";
+  if (condition.includes("drizzle")) return "Drizzle";
+  if (condition.includes("sleet")) return "Sleet";
+  if (condition.includes("pellets")) return "Ice pellets";
   return condition;
 };
 
