@@ -251,33 +251,33 @@ const getConditionForDescription = function (day) {
 const convertIDtoWeather = function (condObj) {
   const id = condObj.id;
   if (id > 199 && id < 300) {
-    return "Tonnerre";
+    return "Thunder";
   }
   if (id > 299 && id < 500) {
-    return "Bruine";
+    return "Drizzle";
   }
   if (id > 499 && id < 600) {
-    if (id === 500 || id === 520) return "Pluie éparse";
-    return "Pluie";
+    if (id === 500 || id === 520) return "Patchy rain";
+    return "Rainy";
   }
   if (id > 599 && id < 700) {
-    if (id === 600) return "Neige éparse";
-    if (id === 612) return "Grésil éparse";
-    if (id === 611 || id === 613) return "Neige fondue";
-    return "Neigeux";
+    if (id === 600) return "Patchy snow";
+    if (id === 612) return "Patchy sleet";
+    if (id === 611 || id === 613) return "Sleet";
+    return "Snowy";
   }
   if (id > 699 && id < 800) {
-    if (id === 701) return "Brume";
-    if (id === 741) return "Brouillard";
-    return "Nuageux";
+    if (id === 701) return "Mist";
+    if (id === 741) return "Fog";
+    return "Cloudy";
   }
   if (id === 800) {
-    return "Ensoleillé";
+    return "Sunny";
   }
   if (id > 800) {
-    if (id === 801) return "Partiellement nuageux";
-    if (id === 804) return "Couvert";
-    return "Nuageux";
+    if (id === 801) return "Partly cloudy";
+    if (id === 804) return "Overcast";
+    return "Cloudy";
   }
 };
 
@@ -294,7 +294,7 @@ const getHighestWind = function (day) {
 // get a short description which will fit the container in 1 line
 const shortWeatherDescription = function (condition) {
   if (condition.includes("Patchy") && condition.includes("rain"))
-    return "Patchy rain";
+    return "Pluie éparse";
   if (condition.includes("Patchy") && condition.includes("snow"))
     return "Patchy snow";
   if (condition.includes("Patchy") && condition.includes("sleet"))
