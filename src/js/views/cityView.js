@@ -38,7 +38,7 @@ class CityView extends View {
     <div class="city__resp">
       <div class="city-text">
         <p class="city-name">${this._data.location.name}</p>
-        <p class="rain-chance">Chance of rain: ${
+        <p class="rain-chance">Probabilité de pluie: ${
           this._data.forecast.forecastday[0].day.daily_chance_of_rain
         }%</p>
       </div>
