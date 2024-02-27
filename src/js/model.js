@@ -57,7 +57,7 @@ export const getLocation = async function () {
         `${COORDS_TO_CITY}lat=${latitude}&lon=${longitude}`
       );
 
-      if (!data) return "Zhytomyr";
+      if (!data) return "Saint-hilaire-sous-romilly";
       state.savedCities[data.address.city] = {
         locale: true,
       };
@@ -65,10 +65,10 @@ export const getLocation = async function () {
     } catch (error) {
       console.error("Error getting location:", error);
 
-      return "Zhytomyr";
+      return "Saint-hilaire-sous-romilly";
     }
   } else {
-    return "Zhytomyr";
+    return "Saint-hilaire-sous-romilly";
   }
 };
 
