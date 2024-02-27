@@ -176,7 +176,7 @@ class DetailSectionView extends View {
             <svg viewBox="-100 0 605.394 605.395">
               <use href="${details}#thermometer">
             </svg>
-            <p class="d-i-text">Feels Like</p>
+            <p class="d-i-text">Ressenti</p>
           </div> 
           <div class="d-i-value">${
             this._data.userSettings.temperature === "celsius"

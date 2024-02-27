@@ -87,7 +87,7 @@ class SettingsView extends View {
 
   insertElements() {
     if (document.querySelector(".settings")) return this.reviveSettings();
-    const html = `<div class="setting-text units">Units</div>
+    const html = `<div class="setting-text units">Unités</div>
     <div class="settings">
       <div class="setting-option">
         <div class="setting-o-text">TEMPERATURE</div>
@@ -107,7 +107,7 @@ class SettingsView extends View {
         </div>
       </div>
       <div class="setting-option">
-        <div class="setting-o-text">WIND SPEED</div>
+        <div class="setting-o-text">VITESSE DU VENT</div>
         <div class="toggle-container">
           <div class="toggle wind-speed">
             <div class="toggle-el ${
@@ -124,19 +124,19 @@ class SettingsView extends View {
               this._data.userSettings.windSpeed === "knots"
                 ? "toggle-el--active"
                 : ""
-            } wind-knots" data-setting="windSpeed">Knots</div>
+            } wind-knots" data-setting="windSpeed">Noeuds</div>
           </div>
         </div>
       </div>
       <div class="setting-option">
-        <div class="setting-o-text">PRESSURE</div>
+        <div class="setting-o-text">PRESSION</div>
         <div class="toggle-container">
           <div class="toggle pressure">
             <div class="toggle-el ${
               this._data.userSettings.pressure === "inches"
                 ? "toggle-el--active"
                 : ""
-            } pressure-in" data-setting="pressure">Inches</div>
+            } pressure-in" data-setting="pressure">Pouces</div>
             <div class="toggle-el ${
               this._data.userSettings.pressure === "mb"
                 ? "toggle-el--active"
@@ -158,12 +158,12 @@ class SettingsView extends View {
               this._data.userSettings.precipitation === "inches"
                 ? "toggle-el--active"
                 : ""
-            } precipitation-in" data-setting="precipitation">Inches</div>
+            } precipitation-in" data-setting="precipitation">Pouces</div>
             <div class="toggle-el ${
               this._data.userSettings.precipitation === "millimiters"
                 ? "toggle-el--active"
                 : ""
-            } precipitation-mm" data-setting="precipitation">Millimiters</div>
+            } precipitation-mm" data-setting="precipitation">Millimètres</div>
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@ class SettingsView extends View {
               this._data.userSettings.distance === "kilometers"
                 ? "toggle-el--active"
                 : ""
-            } distance-km" data-setting="distance">Kilometers</div>
+            } distance-km" data-setting="distance">Kilomètres</div>
             <div class="toggle-el ${
               this._data.userSettings.distance === "miles"
                 ? "toggle-el--active"
@@ -193,7 +193,7 @@ class SettingsView extends View {
     <div class="general-settings">
       <div class="general-option t-f-hours">
         <div class="general-row">
-          <p class="general-text ">24-Hour Time</p>
+          <p class="general-text ">Format 24H</p>
           <div class="toggle-switch-container">
             <input type="checkbox" class="toggle-switch" ${
               this._data.generalSettings.TFhours ? "checked" : ""
@@ -203,7 +203,7 @@ class SettingsView extends View {
       </div>
       <div class="general-option location">
         <div class="general-row">
-          <p class="general-text">Location</p>
+          <p class="general-text">Lieu</p>
           <div class="toggle-switch-container">
             <input type="checkbox" class="toggle-switch" ${
               this._data.generalSettings.location ? "checked" : ""
@@ -211,7 +211,7 @@ class SettingsView extends View {
           </div>
         </div>
         <div class="general-row row-small">
-          <p class="general-desc">Get weather of your location</p>
+          <p class="general-desc">Obtenez la météo de votre emplacement</p>
         </div>
       </div>
       <div class="general-option notifications">
@@ -224,20 +224,8 @@ class SettingsView extends View {
           </div>
         </div>
         <div class="general-row row-small">
-          <p class="general-desc">Be aware of the weather</p>
+          <p class="general-desc">Etre notifié de la météo</p>
         </div>
-      </div>
-    </div>
-    
-    <div class="sign-up-container">
-      <div class="sign-up-header">Never forget your umbrella!</div>
-      <div class="sign-up-text-btn">
-        <div class="s-u-text">Sign up for our daily weather newsletter personalized just for you</div>
-        <ul class="s-u-list">
-            <li class="s-u-item">Severe weather notifications</li>
-            <li class="s-u-item">Health activities overview</li>
-        </ul>
-        <button class="sign-up">Sign up</button>
       </div>
     </div>
     `;

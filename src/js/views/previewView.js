@@ -74,7 +74,7 @@ class PreviewView extends View {
          <div class="preview-city">
         <div class="p-c-text">
           <p class="p-city-name">${this._data.location.name}</p>
-          <p class="p-rain-chance">Chance of rain: ${
+          <p class="p-rain-chance">Probabilité de pluie: ${
             this._data.forecast.forecastday[0].day.daily_chance_of_rain
           }%</p>
           <p class="p-city-temp">${
@@ -88,7 +88,7 @@ class PreviewView extends View {
         </div>
       </div>
       <div class="preview-hourly">
-        <div class="p-hourly-text">TODAY'S FORECAST</div>
+        <div class="p-hourly-text">PRÉVISIONS DU JOUR</div>
         <ul class="p-hourly-content">
           ${this._data.hourly
             .map((hour, i) => {
@@ -98,7 +98,7 @@ class PreviewView extends View {
         </ul>
       </div>
       <div class="preview-forecast">
-        <div class="forecast-text">3-DAY FORECAST</div>
+        <div class="forecast-text">PRÉVISIONS SUR 3 JOURS</div>
         <ul class="forecast-list">
             ${this._data.forecast.forecastday
               .map((day, i) => this._generateForecast(day, i))
