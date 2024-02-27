@@ -43,14 +43,14 @@ class DetailSectionView extends View {
   _generateMarkup() {
     return `
     <div class="air-quality-section">
-      <div class="d-s-text">Air quality</div>
+      <div class="d-s-text">Qualité d'air</div>
       <div class="air-quality">
        <div class="details-item">
         <div class="d-icon-text">
           <svg>
             <use href="${details}#pm-2">
           </svg>
-          <p class="d-i-text">Particle Matter 2.5</p>
+          <p class="d-i-text">Particules 2.5</p>
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.pm2_5
@@ -61,7 +61,7 @@ class DetailSectionView extends View {
           <svg>
             <use href="${details}#pm-10">
           </svg>
-          <p class="d-i-text">Particle Matter 10</p>
+          <p class="d-i-text">Particules 10</p>
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.pm10
@@ -72,7 +72,7 @@ class DetailSectionView extends View {
           <svg>
             <use href="${details}#no2">
           </svg>
-          <p class="d-i-text">Nitrogen dioxide</p>
+          <p class="d-i-text">Dioxide Nitrogen</p>
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.no2
@@ -83,7 +83,7 @@ class DetailSectionView extends View {
           <svg>
             <use href="${details}#co">
           </svg>
-          <p class="d-i-text">Carbon Monoxide</p>
+          <p class="d-i-text">Monoxide de Carbone</p>
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.co
@@ -105,7 +105,7 @@ class DetailSectionView extends View {
           <svg>
             <use href="${details}#so2">
           </svg>
-          <p class="d-i-text">Sulfur Dioxide</p>
+          <p class="d-i-text">Dioxide de souffre</p>
         </div> 
         <div class="d-i-value">${Math.round(
           this._data.current.air_quality.so2
@@ -114,14 +114,14 @@ class DetailSectionView extends View {
       </div>
     </div>
     <div class="other-details-section">
-      <div class="d-s-text">Miscellaneous details</div>
+      <div class="d-s-text">Détails divers</div>
       <div class="other-details">
         <div class="details-item">
           <div class="d-icon-text">
             <svg>
               <use href="${details}#humidity">
             </svg>
-            <p class="d-i-text">Humidity</p>
+            <p class="d-i-text">Humidité</p>
           </div> 
           <div class="d-i-value">${this._data.current.humidity}%</div>
         </div>
@@ -130,7 +130,7 @@ class DetailSectionView extends View {
             <svg>
               <use href="${details}#precipitation">
             </svg>
-            <p class="d-i-text">Precipitation</p>
+            <p class="d-i-text">Précipitation</p>
           </div> 
           <div class="d-i-value">
           ${
@@ -144,7 +144,7 @@ class DetailSectionView extends View {
             <svg>
               <use href="${details}#pressure">
             </svg>
-            <p class="d-i-text">Pressure</p>
+            <p class="d-i-text">Pression</p>
           </div> 
           <div class="d-i-value">
           ${
@@ -189,7 +189,7 @@ class DetailSectionView extends View {
             <svg viewBox="-50 0 300.564 300.564" id="not-svg">
               <use href="${details}#water">
             </svg>
-            <p class="d-i-text">Chance of rain</p>
+            <p class="d-i-text">Probabilité de pluie</p>
           </div> 
           <div class="d-i-value">${
             this._data.forecast.forecastday[0].day.daily_chance_of_rain
@@ -200,7 +200,7 @@ class DetailSectionView extends View {
             <svg>
               <use href="${details}#sunrise">
             </svg>
-            <p class="d-i-text">Sunrise</p>
+            <p class="d-i-text">Lever du soleil</p>
           </div> 
           <div class="d-i-value">${
             this._data.generalSettings.TFhours
@@ -215,7 +215,7 @@ class DetailSectionView extends View {
             <svg viewBox="-1.147 -22.185 141.732 141.732">
               <use href="${details}#cloud-sun">
             </svg>
-            <p class="d-i-text">Sunset</p>
+            <p class="d-i-text">Coucher de soleil</p>
           </div> 
           <div class="d-i-value">${
             this._data.generalSettings.TFhours
@@ -230,7 +230,7 @@ class DetailSectionView extends View {
             <svg>
               <use href="${details}#moorise">
             </svg>
-            <p class="d-i-text">Moonrise</p>
+            <p class="d-i-text">Lever de lune</p>
           </div> 
           <div class="d-i-value">${
             this._data.generalSettings.TFhours
