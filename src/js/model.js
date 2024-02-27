@@ -15,13 +15,13 @@ import {
 import { AJAX } from "./helpers.js";
 
 export const state = {
-  weekdays: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+  weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   userSettings: {
     temperature: "celsius",
     windSpeed: "km/h",
     pressure: "mb",
-    precipitation: "millimètres",
-    distance: "kilomètres",
+    precipitation: "millimiters",
+    distance: "kilometers",
   },
   generalSettings: {
     TFhours: true,
@@ -57,7 +57,7 @@ export const getLocation = async function () {
         `${COORDS_TO_CITY}lat=${latitude}&lon=${longitude}`
       );
 
-      if (!data) return "Saint-Hilaire-Sous-Romilly";
+      if (!data) return "Zhytomyr";
       state.savedCities[data.address.city] = {
         locale: true,
       };
@@ -65,10 +65,10 @@ export const getLocation = async function () {
     } catch (error) {
       console.error("Error getting location:", error);
 
-      return "Saint-Hilaire-Sous-Romilly";
+      return "Zhytomyr";
     }
   } else {
-    return "Saint-Hilaire-Sous-Romilly";
+    return "Zhytomyr";
   }
 };
 
@@ -242,7 +242,7 @@ const getConditionForDescription = function (day) {
     }
   }
 
-  if (Object.keys(condCounts).length === 0) return "Ensoleillé";
+  if (Object.keys(condCounts).length === 0) return "Sunny";
   const sortedArr = Object.entries(condCounts);
   sortedArr.sort((a, b) => b[1] - a[1]);
   return sortedArr[0][0];
@@ -251,33 +251,33 @@ const getConditionForDescription = function (day) {
 const convertIDtoWeather = function (condObj) {
   const id = condObj.id;
   if (id > 199 && id < 300) {
-    return "Tonnerre";
+    return "Thunder";
   }
   if (id > 299 && id < 500) {
-    return "Bruine";
+    return "Drizzle";
   }
   if (id > 499 && id < 600) {
-    if (id === 500 || id === 520) return "Pluie éparse";
-    return "Pluie";
+    if (id === 500 || id === 520) return "Patchy rain";
+    return "Rainy";
   }
   if (id > 599 && id < 700) {
-    if (id === 600) return "Neige éparse";
-    if (id === 612) return "Grésil éparse";
-    if (id === 611 || id === 613) return "Neige fondue";
-    return "Neigeux";
+    if (id === 600) return "Patchy snow";
+    if (id === 612) return "Patchy sleet";
+    if (id === 611 || id === 613) return "Sleet";
+    return "Snowy";
   }
   if (id > 699 && id < 800) {
-    if (id === 701) return "Brume";
-    if (id === 741) return "Brouillard";
-    return "Nuageux";
+    if (id === 701) return "Mist";
+    if (id === 741) return "Fog";
+    return "Cloudy";
   }
   if (id === 800) {
-    return "Ensoleillé";
+    return "Sunny";
   }
   if (id > 800) {
-    if (id === 801) return "Partiellement nuageux";
-    if (id === 804) return "Couvert";
-    return "Nuageux";
+    if (id === 801) return "Partly cloudy";
+    if (id === 804) return "Overcast";
+    return "Cloudy";
   }
 };
 
@@ -456,7 +456,7 @@ const getWeatherImage = function (condition, isWindy, isDay) {
     condition.toLowerCase().includes("mist") ||
     condition.toLowerCase().includes("fog")
   )
-    return "Nuageux";
+    return "cloud";
 
   // sun with snow
   if (condition.includes("snow") || condition.includes("Blizzard"))
