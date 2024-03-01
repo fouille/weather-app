@@ -51,7 +51,7 @@
     justify-content: center;
     align-items: center;
     flex-basis: 57%;
-    container-name: city-text
+    container-name: city
 }
 
 .city-name{
@@ -62,7 +62,7 @@
     width: auto;
 }
 
-@container city-text (min-width: 200px){
+@container city (max-width: 200px){
     .city-name {
         font-size: medium !important;
     }
