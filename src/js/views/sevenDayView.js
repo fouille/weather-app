@@ -41,13 +41,13 @@ class SevenDayView extends View {
                 <p class="bold-light-text">
                 ${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${day.max}`
-                    : `${celsiusToFahrenheit(day.max)}`
+                    ? `${day.max}` + '°c'
+                    : `${celsiusToFahrenheit(day.max)}` + '°f'
                 }</p>
                 <div class="regular-light-text">/${
                   this._data.userSettings.temperature === "celsius"
-                    ? `${day.min}`
-                    : `${celsiusToFahrenheit(day.min)}`
+                    ? `${day.min}` + '°c'
+                    : `${celsiusToFahrenheit(day.min)}` + '°f'
                 }</div>
               </div>
             </li>`;
