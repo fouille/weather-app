@@ -51,6 +51,7 @@
     justify-content: center;
     align-items: center;
     flex-basis: 57%;
+    container-name: city-text
 }
 
 .city-name{
@@ -59,6 +60,12 @@
     font-weight: 700;
     margin-bottom: .2rem;
     width: auto;
+}
+
+@container city-text (min-width: 200px){
+    .city-name {
+        font-size: medium !important;
+    }
 }
 
 .rain-chance{
