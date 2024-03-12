@@ -1,6 +1,0 @@
-[build]
-    command = "cp -f ./manifest.json dist/ && parcel build index.html"
-    publish = "dist"
-    functions = "functions"
-[functions]
-    node_bundler = "esbuild"

@@ -26,7 +26,7 @@
         ], 
         "name": "Meteo",
         "contentUrl": "./index.html",
-        "icon": "../img/weather-imgs/sun/sunny.png"
+        "icon": "./app-img/sunny.png"
       }
     ]
   }
