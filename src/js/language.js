@@ -15,5 +15,6 @@ export const frenchTranslation = {
     "Mist": "Brume",
     "Fog": "Brouillard",
     "Partly cloudy": "Partiellement couvert",
-    "Clear": "Clair"
+    "Clear": "Clair",
+    "Freezing fog": "Brouillard glacial"
 }
