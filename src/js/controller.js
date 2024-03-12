@@ -23,7 +23,7 @@ const controlShowWeather = async function (city = undefined) {
   try {
     if (typeof city === "object") {
       city = await model.getLocation();
-      if (!city) city = "Zhytomyr";
+      if (!city) city = "Saint-Hilaire-Sous-Romilly";
     }
 
     // Render loading animation
