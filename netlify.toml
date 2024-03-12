@@ -1,3 +1,6 @@
 [build]
     command = "cp -f ./manifest.json dist/"
     publish = "dist"
+    functions = "functions"
+[functions]
+    node_bundler = "esbuild"
