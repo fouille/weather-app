@@ -5,15 +5,15 @@
     "packageName": "io.wazo.wda.weather-app-muller",
     "productType": "app",
     "name" : {
-      "short": "Meteo",
-      "full": "Meteo"
+      "short": "Météo",
+      "full": "Météo"
     },
     "developer": {
       "name": "MULLER Franck"
     },
     "description": {
-      "short": "Affichage de la page meteo muller.tel",
-      "full": "Affichage de la page meteo muller.tel"
+      "short": "Affichage de la page météo muller.tel",
+      "full": "Affichage de la page météo muller.tel"
     },
     "icons": {
       "color": "https://avatars.githubusercontent.com/u/68688703?s=200&v=4"
@@ -24,7 +24,7 @@
         "context": [
           "sidebarTab"
         ], 
-        "name": "Meteo",
+        "name": "Météo",
         "contentUrl": "./index.html",
         "icon": "./app-img/sunny.png"
       }

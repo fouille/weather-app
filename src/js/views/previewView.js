@@ -1,5 +1,6 @@
 import View from "./View.js";
 import { convertTo12Hour } from "./../helpers.js";
+import { frenchTranslation, getLanguage } from "../language.js";
 
 class PreviewView extends View {
   _parentElement = document.querySelector(".preview");
@@ -46,23 +47,26 @@ class PreviewView extends View {
     const weekDay = this._data.weekdays[new Date(day.date).getDay()];
     return `
     <li class="forecast-item">
-            <p class="regular-light-text">${i > 0 ? weekDay : "Today"}</p>
+            <p class="regular-light-text">${i > 0 ? weekDay : "Aujourd'hui"}</p>
             <div class="forecast-img-cond">
               <div class="forecast-img">
                 <img src="${this._allImports[day.img]}">
               </div>
-              <div class="forecast-cond">${day.dominantCondition}</div>
+              <div class="forecast-cond">${
+                frenchTranslation.hasOwnProperty(day.dominantCondition.trim()) ? frenchTranslation[day.dominantCondition.trim()] : day.dominantCondition
+              }
+                </div>
             </div>
             <div class="forecast-temp">
               <p class="bold-light-text"> ${
                 this._data.userSettings.temperature === "celsius"
-                  ? `${Math.round(day.day.maxtemp_c)}`
-                  : `${Math.round(day.day.maxtemp_f)}`
+                  ? `${Math.round(day.day.maxtemp_c)}` + '°c'
+                  : `${Math.round(day.day.maxtemp_f)}` + '°f'
               }</p>
               <p class="regular-light-text">/${
                 this._data.userSettings.temperature === "celsius"
-                  ? `${Math.round(day.day.mintemp_c)}`
-                  : `${Math.round(day.day.mintemp_f)}`
+                  ? `${Math.round(day.day.mintemp_c)}` + '°c'
+                  : `${Math.round(day.day.mintemp_f)}` + '°f'
               }</p>
             </div>
           </li>

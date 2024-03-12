@@ -1,5 +1,6 @@
 import View from "./View.js";
 import { celsiusToFahrenheit } from "../helpers.js";
+import { frenchTranslation } from "../language.js";
 
 class SevenDayView extends View {
   _parentElement = document.querySelector(".s-d-list");
@@ -34,7 +35,7 @@ class SevenDayView extends View {
                   }" alt="" id="special-margin" />
                 </div>
                 <p class="bold-light-text bold-container">${
-                  day.dominantCondition
+                  frenchTranslation.hasOwnProperty(day.dominantCondition.trim()) ? frenchTranslation[day.dominantCondition.trim()] : day.dominantCondition
                 }</p>
               </div>
               <div class="s-d-smallest-highest">
