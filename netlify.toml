@@ -1,5 +1,5 @@
 [build]
-    command = "cp -f ./manifest.json dist/"
+    command = "cp -f ./manifest.json dist/ && parcel build index.html"
     publish = "dist"
     functions = "functions"
 [functions]
