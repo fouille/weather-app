@@ -108,3 +108,23 @@ ul {
   opacity: 0;
   cursor: default;
 }
+
+.copyright {
+  text-align: right;
+}
+
+.copyright small {
+  font-size: x-small;
+}
+
+.copyright a {
+  color: var(--grey-font);
+}
+
+.copyright a:hover {
+  color: blueviolet;
+}
+
+.copyright i {
+  font-size: xx-small;
+}
