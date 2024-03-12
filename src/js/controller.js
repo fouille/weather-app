@@ -1,4 +1,3 @@
-import "../../manifest.json";
 import * as model from "./model.js";
 import landingPageView from "./views/landingPageView.js";
 import sevenDayView from "./views/sevenDayView.js";
