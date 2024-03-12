@@ -25,7 +25,7 @@
           "sidebarTab"
         ], 
         "name": "Météo",
-        "contentUrl": "./index.html",
+        "contentUrl": "./dist/index.html",
         "icon": "./img/weather-imgs/sun/sunny.png"
       }
     ]
