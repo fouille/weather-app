@@ -1,0 +1,3 @@
+[build]
+    command = "cp -f ./manifest.json dist/"
+    publish = "dist"
