@@ -1,6 +1,6 @@
 {
     "manifestVersion": "0.1",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "id": "weather-app-muller",
     "packageName": "io.wazo.wda.weather-app-muller",
     "productType": "app",
