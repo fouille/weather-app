@@ -1,13 +1,13 @@
 {
-  "buildCommand": "parcel build index.html",
-  "devCommand": "parcel index.html",
-  "installCommand": "npm install",
-  "framework": null,
-  "outputDirectory": "dist",
-  "build": {
-    "env": {
-      "API_KEY": "@api_key",
-      "F_D_API_KEY": "@f_d_api_key"
+    "buildCommand": "parcel build index.html",
+    "devCommand": "parcel index.html",
+    "installCommand": "npm install",
+    "framework": null,
+    "outputDirectory": "dist",
+    "build": {
+        "env": [
+            "API_KEY",
+            "F_D_API_KEY"
+        ]
     }
-  }
 }
