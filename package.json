@@ -9,7 +9,7 @@
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "author": "",
+  "author": "Muller Franck",
   "license": "ISC",
   "devDependencies": {
     "parcel": "^2.12.0"
