@@ -1,11 +1,11 @@
-export const API_KEY = process.env.API_KEY || "c85aebd946df4e3780f115317242502";
+export const API_KEY = process.env.API_KEY || "none";
 export const URL = "https://api.weatherapi.com/v1/forecast.json?key=";
 export const TIMEOUT_SEC = 10;
 export const CURRENT_W = "&days=7&aqi=yes&alerts=no";
 export const SEVEN_DAY_F = "&days=7&aqi=yes&alerts=no";
 export const HOURLY_LENGTH = 6;
 export const WINDY_LEVEL = 19;
-export const F_D_API_KEY = `&appid=${process.env.F_D_API_KEY || "cd57eb0bd3d5c7882ff7fc77a043d77e"}`;
+export const F_D_API_KEY = `&appid=${process.env.F_D_API_KEY || "none"}`;
 export const F_D_API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 // export const S_API = "http://api.weatherunlocked.com/api/forecast/";
 // export const S_KEY = "?app_id=3ed297ac&app_key=74ed1138d50f76e0be473e2ab68677b2";4
